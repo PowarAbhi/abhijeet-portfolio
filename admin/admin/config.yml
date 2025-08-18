@@ -1,0 +1,26 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "works"
+    label: "Works"
+    label_singular: "Work"
+    files:
+      - file: "data/works.json"
+        name: "works_json"
+        label: "Works JSON"
+        format: json
+        fields:
+          - label: "Works"
+            name: "works"
+            widget: list
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Type", name: "type", widget: "select", options: ["Illustration","Photoshop","Video","Other"], default: "Other" }
+              - { label: "External URL", name: "url", widget: "string", required: false }
