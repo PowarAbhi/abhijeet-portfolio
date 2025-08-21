@@ -1,3 +1,30 @@
 {
-  "works": []
+  "works": [
+    {
+      "title": "Vector Portrait",
+      "src": "assets/uploads/vector-portrait-01.jpg",
+      "tags": ["Illustrator"]
+    },
+    {
+      "title": "Poster Design",
+      "src": "assets/uploads/poster-01.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "YouTube Thumbnail",
+      "src": "assets/uploads/yt-thumb-01.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "Logo Concept",
+      "src": "assets/uploads/logo-01.png",
+      "tags": ["Illustrator"]
+    },
+    {
+      "title": "Edit: Festival Recap",
+      "src": "assets/uploads/festival-still-01.jpg",
+      "tags": ["Video"],
+      "href": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+    }
+  ]
 }
