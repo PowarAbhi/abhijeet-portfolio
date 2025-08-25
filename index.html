@@ -1,157 +1,151 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Abhijeet Powar – Portfolio</title>
-  <meta name="description" content="Portfolio of Abhijeet Powar – Graphic Designer, Video Editor & AI Creative. Vector illustration, portraits, logos, posters, photo manipulations, digital paintings, motion graphics and more." />
-  <meta name="theme-color" content="#0f172a" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta name="description" content="Portfolio of Abhijeet Powar – Graphic Designer, Video Editor & AI Creative." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0f19; /* slate-950 */
-      --panel:#0f172a; /* slate-900 */
-      --muted:#94a3b8; /* slate-400 */
-      --text:#e2e8f0; /* slate-200 */
-      --brand:#22d3ee; /* cyan-400 */
-      --accent:#a78bfa; /* violet-400 */
-      --ring:#38bdf8; /* sky-400 */
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius-xl: 22px;
-      --radius-lg: 16px;
-      --radius-md: 14px;
-    }
-    [data-theme="light"]{
-      --bg:#ffffff;
-      --panel:#f1f5f9; /* slate-100 */
-      --muted:#475569; /* slate-600 */
-      --text:#0f172a; /* slate-900 */
-      --brand:#0891b2; /* cyan-700 */
-      --accent:#6d28d9; /* violet-700 */
-      --ring:#0284c7; /* sky-700 */
-      --shadow: 0 12px 28px rgba(2,6,23,.12);
+      --bg:#0b0f19; --panel:#0f172a; --muted:#94a3b8; --text:#e2e8f0;
+      --brand:#22d3ee; --accent:#a78bfa; --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius-lg:14px; --container:1100px;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";
-      background:linear-gradient(180deg,var(--bg),var(--panel));
-      color:var(--text);
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-    }
-    a{color:inherit;text-decoration:none}
-    .container{width:min(1100px,92vw);margin-inline:auto}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);background:linear-gradient(180deg,var(--bg),var(--panel));-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    .container{width:min(var(--container),94vw);margin-inline:auto;}
 
     /* NAV */
-    .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(10px);
-      background:color-mix(in hsl, var(--panel) 85%, transparent);
-      border-bottom:1px solid color-mix(in hsl,var(--text) 10%, transparent);}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
-    .badge{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:var(--shadow);font-weight:900}
-    .links{display:flex;gap:18px;align-items:center}
-    .links a{opacity:.88;font-weight:600}
-    .links a:hover{opacity:1}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border:1px solid color-mix(in hsl,var(--ring) 30%, transparent);border-radius:14px;background:linear-gradient(180deg,color-mix(in hsl,var(--panel) 40%, transparent),color-mix(in hsl,var(--panel) 70%, transparent));box-shadow:var(--shadow);font-weight:700}
-    .btn:focus{outline:3px solid var(--ring);outline-offset:2px}
-    .ghost{background:transparent;border-color:color-mix(in hsl,var(--text) 12%, transparent)}
+    .nav{position:sticky;top:0;z-index:60;background:rgba(15,23,42,0.85);backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .badge{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--accent));display:grid;place-items:center;font-weight:800}
+    .links{display:flex;gap:14px;align-items:center}
+    .links a{padding:8px 10px;border-radius:8px;font-weight:600;opacity:.95}
+    .links a:active,.links a:focus{outline:3px solid rgba(34,211,238,.12);outline-offset:3px}
+    .nav-toggle{display:none;background:transparent;border:0;color:var(--text);font-size:20px;padding:8px;border-radius:8px}
 
     /* HERO */
-    .hero{padding:86px 0 40px}
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center}
-    .kicker{color:var(--muted);font-weight:700;letter-spacing:.25em;text-transform:uppercase}
-    .title{font-size:clamp(32px,5vw,54px);line-height:1.05;margin:8px 0 14px;font-weight:900}
-    .title b{background:linear-gradient(135deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .lead{color:var(--muted);font-size:clamp(15px,2.3vw,18px)}
-    .cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
-    .card{background:linear-gradient(180deg,color-mix(in hsl,var(--panel) 55%, transparent),color-mix(in hsl,var(--panel) 80%, transparent));border:1px solid color-mix(in hsl,var(--text) 12%, transparent);border-radius:var(--radius-xl);padding:18px;box-shadow:var(--shadow)}
-    .thumb{aspect-ratio:4/3;border-radius:var(--radius-lg);background:radial-gradient(120% 120% at 0% 0%,color-mix(in hsl,var(--brand) 35%, var(--panel)),color-mix(in hsl,var(--panel) 90%, transparent));border:1px dashed color-mix(in hsl,var(--text) 16%, transparent);display:grid;place-items:center;color:var(--muted);font-weight:700}
+    .hero{padding:64px 0}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .kicker{color:var(--muted);font-weight:700;letter-spacing:.25em;text-transform:uppercase;font-size:12px}
+    .title{font-size:clamp(28px,5vw,48px);line-height:1.05;margin:10px 0 12px;font-weight:900}
+    .title b{background:linear-gradient(135deg,var(--brand),var(--accent));-webkit-background-clip:text;color:transparent}
+    .lead{color:var(--muted);font-size:clamp(14px,2.2vw,16px)}
+    .cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);font-weight:700}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.04)}
+
+    .card{border-radius:18px;padding:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .thumb{border-radius:12px;overflow:hidden;background:#08101a;display:block}
+    .thumb img{display:block;width:100%;height:auto;object-fit:cover}
 
     /* SECTIONS */
-    section{padding:64px 0}
-    .section-title{font-size:clamp(22px,3.8vw,34px);margin:0 0 14px;font-weight:900}
+    section{padding:56px 0}
+    .section-title{font-size:clamp(20px,3.4vw,30px);margin:0 0 10px;font-weight:800}
     .muted{color:var(--muted)}
-    .grid{display:grid;gap:18px}
+    .grid{display:grid;gap:16px}
     .grid.cols-3{grid-template-columns:repeat(3,1fr)}
     .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-    @media (max-width:900px){.hero-grid{grid-template-columns:1fr}.grid.cols-3{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:640px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
-    .pill{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;border:1px solid color-mix(in hsl,var(--text) 12%, transparent);font-size:12px;color:var(--muted)}
-    .resume-item{display:grid;gap:6px;padding:16px;border-radius:18px;background:linear-gradient(180deg,color-mix(in hsl,var(--panel) 65%, transparent),color-mix(in hsl,var(--panel) 88%, transparent));border:1px solid color-mix(in hsl,var(--text) 12%, transparent)}
-    .resume-item h4{margin:0;font-size:18px}
-    .resume-item small{color:var(--muted);font-weight:600}
+    .resume-item{padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.03)}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:700;font-size:13px}
 
-    /* MASONRY (Pinterest style) */
-    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 18px}
-    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:linear-gradient(180deg,color-mix(in hsl,var(--panel) 50%, transparent),color-mix(in hsl,var(--panel) 80%, transparent));border:1px solid color-mix(in hsl,var(--text) 12%, transparent);cursor:pointer;font-weight:600}
-    .chip[aria-pressed="true"]{outline:3px solid color-mix(in hsl,var(--brand) 50%, transparent)}
+    /* FILTERS & MASONRY */
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);cursor:pointer;font-weight:700;font-size:14px}
+    .chip[aria-pressed="true"]{box-shadow:0 6px 18px rgba(0,0,0,0.35);transform:translateY(-1px)}
 
-    /* columns-based masonry */
-    .masonry{column-width:320px;column-gap:16px}
-    @media (max-width:1100px){.masonry{column-width:280px}}
-    @media (max-width:700px){.masonry{column-width:100%}}
-    .masonry-item{break-inside:avoid;display:inline-block;width:100%;margin:0 0 16px}
-    .work-card{display:block;background:linear-gradient(180deg,color-mix(in hsl,var(--panel) 60%, transparent),color-mix(in hsl,var(--panel) 90%, transparent));border:1px solid color-mix(in hsl,var(--text) 12%, transparent);border-radius:var(--radius-lg);overflow:hidden}
-    .work-img{display:block;width:100%;height:auto;aspect-ratio:auto;border:0}
+    .masonry{column-width:300px;column-gap:14px}
+    @media (max-width:1100px){.masonry{column-width:260px}}
+    @media (max-width:760px){.masonry{column-width:100%}}
+    .masonry-item{break-inside:avoid;display:inline-block;width:100%;margin:0 0 14px}
+    .work-card{display:block;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg,rgba(255,255,255,0.015),transparent)}
+    .work-img{width:100%;display:block;height:auto;object-fit:cover}
     .work-caption{padding:10px 12px;color:var(--muted);font-size:14px}
 
     /* FOOTER */
-    footer{padding:40px 0;color:var(--muted);border-top:1px solid color-mix(in hsl,var(--text) 10%, transparent)}
-    .social{display:flex;gap:12px;flex-wrap:wrap}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    .toggle{inline-size:46px;block-size:28px;border:1px solid color-mix(in hsl,var(--text) 12%, transparent);border-radius:999px;position:relative;background:color-mix(in hsl,var(--panel) 40%, transparent)}
-    .toggle input{appearance:none;position:absolute;inset:0;margin:0}
-    .toggle i{position:absolute;inset-block:3px;inset-inline-start:3px;inline-size:22px;block-size:22px;border-radius:999px;background:linear-gradient(180deg,#fff,#ddd);box-shadow:var(--shadow);transition:transform .25s ease}
-    [data-theme="light"] .toggle i{transform:translateX(18px)}
+    footer{padding:32px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03)}
+
+    /* RESPONSIVE adjustments */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr;gap:18px;padding:0}
+      .nav-inner{padding:10px 4px}
+      .links{display:none}
+      .nav-toggle{display:inline-flex}
+      .container{width:94vw}
+    }
+    /* mobile tweaks */
+    @media (max-width:520px){
+      .hero{padding:36px 0}
+      .title{font-size:24px}
+      .cta .btn{padding:9px 12px;font-size:14px}
+      .section-title{font-size:20px}
+    }
+
+    /* simple mobile menu (when toggled) */
+    .mobile-menu{display:none;position:absolute;inset-inline:0;top:64px;background:rgba(6,10,15,0.95);padding:12px;border-bottom:1px solid rgba(255,255,255,0.02)}
+    .mobile-menu a{display:block;padding:10px 12px;border-radius:10px;margin-bottom:6px}
+    .mobile-menu.show{display:block}
   </style>
 </head>
-<body>
-  <header class="nav">
+<body id="top">
+  <header class="nav" role="banner">
     <div class="container nav-inner">
       <a class="brand" href="#top" aria-label="Home">
-        <span class="badge">AP</span>
-        <span>Abhijeet Powar</span>
+        <span class="badge" aria-hidden="true">AP</span>
+        <span style="font-weight:800">Abhijeet Powar</span>
       </a>
+
+      <!-- desktop links -->
       <nav class="links" aria-label="Primary">
         <a href="#resume">Resume</a>
         <a href="#works">Works</a>
         <a href="#contact">Contact</a>
-        <label class="chip" title="Toggle theme">
-          <span>Theme</span>
-          <span class="toggle"><input id="themeToggle" type="checkbox" aria-label="Toggle dark/light"><i></i></span>
-        </label>
+        <button id="themeToggleBtn" class="chip" title="Toggle theme" aria-pressed="false">Theme</button>
       </nav>
+
+      <!-- mobile toggle -->
+      <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+      <a href="#resume">Resume</a>
+      <a href="#works">Works</a>
+      <a href="#contact">Contact</a>
+      <a href="mailto:abhipowar2400@gmail.com">Email</a>
     </div>
   </header>
 
-  <main id="top">
-    <!-- HERO / LANDING -->
+  <main id="main">
+    <!-- HERO -->
     <section class="hero">
       <div class="container hero-grid">
         <div>
           <div class="kicker">My Portfolio — Design</div>
           <h1 class="title">Hi, I'm <b>Abhijeet Powar</b> — Graphic Designer, Video Editor & <b>AI Creative</b>.</h1>
-          <p class="lead">I craft visuals that captivate and communicate effectively — from vector illustration and logos to photo manipulation, posters, digital painting, motion graphics and video edits.</p>
+          <p class="lead">I craft visuals that captivate — vector art, logos, photo manipulation, posters, digital painting, motion graphics and video edits.</p>
           <div class="cta">
-            <a class="btn" href="#resume">View My Resume</a>
-            <a class="btn ghost" href="#works">View My Works</a>
+            <a class="btn" href="#resume">View Resume</a>
+            <a class="btn ghost" href="#works">View Works</a>
           </div>
-          <div style="margin-top:14px" class="muted">Based in Gadhinglaj, Maharashtra • Available for freelance & collaborations</div>
+          <p class="muted" style="margin-top:12px">Based in Gadhinglaj, Maharashtra • Available for freelance & collaborations</p>
         </div>
-        <div class="card">
-          <div class="thumb" aria-label="Portfolio cover image placeholder">
-            Replace with a hero image (e.g. assets/cover.jpg)
+
+        <aside class="card" aria-hidden="false">
+          <div class="thumb">
+            <!-- change hero image below: replace the src with your file (assets/uploads/cover.jpg suggested) -->
+            <img id="heroImage" src="assets/uploads/cover.jpg" alt="Portfolio cover">
           </div>
-          <div class="grid cols-2" style="margin-top:12px">
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
             <span class="pill">Illustrator</span>
             <span class="pill">Photoshop</span>
             <span class="pill">Video Editing</span>
             <span class="pill">AI Tools</span>
           </div>
-        </div>
+        </aside>
       </div>
     </section>
 
@@ -159,49 +153,32 @@
     <section id="resume" class="container">
       <h2 class="section-title">Resume</h2>
       <p class="muted">A quick view of my background, experience and skills.</p>
-      <div class="grid cols-2" style="margin-top:18px">
+
+      <div class="grid cols-2" style="margin-top:12px">
         <article class="resume-item">
           <h4>Senior Computer Trainer</h4>
-          <small>Hitech Computer Education Institute • 2022–2025</small>
-          <p>Trained students in CCC, Tally, Graphic Designing, Video Editing and more. Focused on strong fundamentals and a growth mindset to help learners adapt to the fast-changing digital world.</p>
+          <small class="muted">Hitech Computer Education Institute • 2022–2025</small>
+          <p>Trained students in CCC, Tally, Graphic Designing, Video Editing and more.</p>
         </article>
+
         <article class="resume-item">
           <h4>Marketing & Graphic Designer</h4>
-          <small>Marketing Department • 2022–2025</small>
-          <p>Designed posters, ads and digital graphics; managed social presence (Instagram, Facebook, YouTube) to amplify brand communication and reach.</p>
-        </article>
-        <article class="resume-item">
-          <h4>Head, Management Department</h4>
-          <small>Operations & Content • 2023–2025</small>
-          <p>Oversaw daily ops: student coordination, schedules, system maintenance. Updated and designed course content aligned with current industry trends.</p>
-        </article>
-        <article class="resume-item">
-          <h4>AI Skills & Tools</h4>
-          <small>Creative + Productivity</small>
-          <p>Regularly use ChatGPT, Midjourney, Lovable, and other AI tools for text, images, video, sites and code to deliver faster, smarter outcomes.</p>
+          <small class="muted">Marketing Department • 2022–2025</small>
+          <p>Designed posters, ads and digital graphics; managed social presence.</p>
         </article>
       </div>
-      <div class="grid cols-3" style="margin-top:18px">
-        <article class="resume-item">
-          <h4>Education</h4>
-          <small>2022–2025</small>
-          <p>B.Com — Sadhana College of Commerce.</p>
-        </article>
-        <article class="resume-item">
-          <h4>Software Skills</h4>
-          <p>Adobe Illustrator, Adobe Photoshop, Premiere/After Effects (or preferred NLE), AI tooling.</p>
-        </article>
-        <article class="resume-item">
-          <h4>Personal Skills</h4>
-          <p>Adaptable • Communication • Desire to Learn • Positive Attitude • Teamwork</p>
-        </article>
+
+      <div class="grid cols-3" style="margin-top:14px">
+        <article class="resume-item"><h4>Education</h4><small class="muted">2022–2025</small><p>B.Com — Sadhana College of Commerce.</p></article>
+        <article class="resume-item"><h4>Software Skills</h4><p>Illustrator, Photoshop, Premiere/After Effects, AI tools.</p></article>
+        <article class="resume-item"><h4>Personal Skills</h4><p>Adaptable • Communication • Teamwork • Learning mindset</p></article>
       </div>
     </section>
 
-    <!-- WORKS — SINGLE PINTEREST STYLE -->
+    <!-- WORKS -->
     <section id="works" class="container">
       <h2 class="section-title">Works</h2>
-      <p class="muted">One gallery for everything. Filter by category and scroll — images pack themselves like Pinterest. Add new items by uploading an image and editing <code>data/works.json</code>.</p>
+      <p class="muted">One gallery for everything. Use the filters to view specific categories.</p>
 
       <div class="filters" role="toolbar" aria-label="Work Filters">
         <button class="chip" data-filter="All" aria-pressed="true">All</button>
@@ -209,66 +186,75 @@
         <button class="chip" data-filter="Photoshop">Photoshop</button>
         <button class="chip" data-filter="Video">Video</button>
         <button class="chip" data-filter="Blender">Blender</button>
-        <!-- You can add more chips like <button class="chip" data-filter="Logos">Logos</button> -->
       </div>
 
-      <div id="masonry" class="masonry" aria-live="polite"></div>
+      <div id="masonry" class="masonry" aria-live="polite" tabindex="0" aria-label="Portfolio gallery"></div>
       <div id="emptyMsg" class="muted" style="display:none;margin-top:8px">No items match this filter yet.</div>
     </section>
   </main>
 
   <footer id="contact">
-    <div class="container">
-      <div class="grid cols-2">
+    <div class="container" style="padding:18px 0">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
         <div>
           <h3 class="section-title" style="margin-bottom:6px">Let's Connect</h3>
-          <p class="muted">Ready to collaborate? Reach out for freelance, roles, or creative collabs.</p>
-          <div class="social" style="margin-top:10px">
-            <a class="btn" href="mailto:abhipowar2400@gmail.com" aria-label="Email">Email</a>
-            <a class="btn ghost" href="tel:+919422733472" aria-label="Phone">+91‑94227‑33472</a>
-            <a class="btn ghost" href="https://instagram.com/abhi._powar._" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+          <p class="muted">Ready to collaborate? Reach out for freelance or projects.</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <a class="btn" href="mailto:abhipowar2400@gmail.com">Email</a>
+            <a class="btn ghost" href="tel:+919422733472">+91-94227-33472</a>
+            <a class="btn ghost" href="https://instagram.com/abhi._powar._" target="_blank" rel="noopener">Instagram</a>
           </div>
         </div>
-        <div class="card">
-          <div class="grid cols-2">
+
+        <div class="card" style="min-width:220px;padding:12px;border-radius:12px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
             <span class="pill">Gadhinglaj, Maharashtra</span>
-            <span class="pill">Timezone: IST (UTC+5:30)</span>
-            <span class="pill">Available: Remote / On‑site</span>
-            <span class="pill">Turnaround: Project‑based</span>
+            <span class="pill">IST (UTC+5:30)</span>
+            <span class="pill">Remote / On-site</span>
           </div>
         </div>
       </div>
-      <p class="muted" style="margin-top:18px">© <span id="y"></span> Abhijeet Powar • Designed & built with ♥</p>
+
+      <p class="muted" style="margin-top:14px">© <span id="y"></span> Abhijeet Powar • Designed with ❤️</p>
     </div>
   </footer>
 
   <script>
-    // THEME TOGGLE (persisted)
-    const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if(saved){ root.setAttribute('data-theme', saved); }
-    const toggle = document.querySelector('#themeToggle');
-    const applyToggleState = () => toggle.checked = (root.getAttribute('data-theme') === 'light');
-    applyToggleState();
-    toggle.addEventListener('change', () => {
-      const next = toggle.checked ? 'light' : '';
-      if(next) root.setAttribute('data-theme', next); else root.removeAttribute('data-theme');
-      localStorage.setItem('theme', next);
-    });
-
-    // Footer year
+    // footer year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // WORKS — Load JSON & render masonry grid
+    // mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      mobileMenu.classList.toggle('show');
+      mobileMenu.setAttribute('aria-hidden', String(expanded));
+    });
+
+    // theme toggle (simple)
+    const themeBtn = document.getElementById('themeToggleBtn');
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved) root.setAttribute('data-theme', saved);
+    themeBtn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? '' : 'light';
+      if(next) root.setAttribute('data-theme', next); else root.removeAttribute('data-theme');
+      localStorage.setItem('theme', next);
+      themeBtn.setAttribute('aria-pressed', String(next === 'light'));
+    });
+
+    /* ------- WORKS: load data/works.json and render masonry ------- */
     const state = { all: [], filter: 'All' };
     const masonry = document.getElementById('masonry');
     const emptyMsg = document.getElementById('emptyMsg');
 
-    fetch('data/works.json')
+    fetch('data/works.json', {cache: 'no-store'})
       .then(r => r.ok ? r.json() : Promise.reject('Missing data/works.json'))
       .then(json => { state.all = json.works || []; render(); })
       .catch(err => {
-        masonry.innerHTML = `<div class="muted">${err}. Create it using the example in the README below.</div>`;
+        masonry.innerHTML = `<div class="muted">${err}. Add data/works.json to the repo.</div>`;
       });
 
     function toCard(w){
@@ -286,7 +272,7 @@
       emptyMsg.style.display = list.length ? 'none' : 'block';
     }
 
-    // Filter chips
+    // filter chips
     document.querySelector('.filters').addEventListener('click', (e) => {
       const btn = e.target.closest('[data-filter]');
       if(!btn) return;
@@ -295,6 +281,14 @@
         el.setAttribute('aria-pressed', el === btn ? 'true' : 'false');
       }
       render();
+      // scroll into view so user sees results on mobile
+      document.getElementById('masonry').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+
+    // accessibility: keyboard focus for chips
+    document.querySelectorAll('.chip').forEach(chip => {
+      chip.tabIndex = 0;
+      chip.addEventListener('keyup', (e) => { if(e.key === 'Enter' || e.key === ' ') chip.click(); });
     });
   </script>
 </body>
