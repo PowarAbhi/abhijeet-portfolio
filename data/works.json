@@ -1,124 +1,124 @@
 {
-	"works": [
-	{
-		"title": "Vector Portrait Krishna",
-		"src": "assets/uploads/vector-portrait-01.jpg",
-		"tags": ["Illustrator"]
-	},
-	{
-		"title": "Vector Illustration-1",
-		"src": "assets/uploads/Illustration1.jpg",
-		"tags": ["Illustrator"]
-	},
-	{
-		"title": "Vector Illustration-2",
-		"src": "assets/uploads/Illustration2.jpg",
-		"tags": ["Illustrator"]
-	},
-	{
-		"title": "Vector Illustration-Gojo",
-		"src": "assets/uploads/Illustration3.jpg",
-		"tags": ["Illustrator"]
-	},
-	{
-		"title": "Poster Design-Illustrator",
-		"src": "assets/uploads/Illustration5.jpg",
-		"tags": ["Illustrator"]
-	},
-	{
-		"title": "Vector Portrait-Baby Face",
-		"src": "assets/uploads/Illustration6.jpg",
-		"tags": ["Illustrator"]
-	},
-	{
-		"title": "Simple Illustration",
-		"src": "assets/uploads/Illustration7.jpg",
-		"tags": ["Illustrator"]
-	},
-	{
-		"title": "Vector Illustration-Saturo Gojo",
-		"src": "assets/uploads/Illustration8.jpg",
-		"tags": ["Illustrator"]
-	},
-{
-		"title": "Vector Illustration",
-		"src": "assets/uploads/Illustration9.jpg",
-		"tags": ["Illustrator"]
-	},
-{
-		"title": "Logo Design-Coffee Cup",
-		"src": "assets/uploads/Illustration10.jpg",
-		"tags": ["Illustrator"]
-	},
-{
-		"title": "Baby Sketch Effect-Photoshop",
-		"src": "assets/uploads/photoshop1.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "Glow Effect-Photoshop",
-		"src": "assets/uploads/photoshop2.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "PhotoManipulation",
-		"src": "assets/uploads/photoshop3.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "Pokemon-PhotoManipulation",
-		"src": "assets/uploads/photoshop4.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "AlbumDesign",
-		"src": "assets/uploads/photoshop5.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "Village Scene-PhotoManipulation",
-		"src": "assets/uploads/photoshop6.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "Haloween-PhotoManipulation",
-		"src": "assets/uploads/photoshop7.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "Poster/Banner Design",
-		"src": "assets/uploads/photoshop8.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "Digital Painting-Photoshop",
-		"src": "assets/uploads/photoshop9.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "Digital Artwork-Photoshop",
-		"src": "assets/uploads/photoshop10.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "Sketch Effects",
-		"src": "assets/uploads/photoshop11.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "Snake PhotoManipulation",
-		"src": "assets/uploads/photoshop12.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "Bakery-Social Media Post Design",
-		"src": "assets/uploads/photoshop13.jpg",
-		"tags": ["Photoshop"]
-	},
-{
-		"title": "Album Design 2",
-		"src": "assets/uploads/photoshop14.jpg",
-		"tags": ["Photoshop"]
-	},
-	]
+  "works": [
+    {
+      "title": "Vector Portrait Krishna",
+      "src": "assets/uploads/vector-portrait-01.jpg",
+      "tags": ["Illustrator"]
+    },
+    {
+      "title": "Vector Illustration-1",
+      "src": "assets/uploads/Illustration1.jpg",
+      "tags": ["Illustrator"]
+    },
+    {
+      "title": "Vector Illustration-2",
+      "src": "assets/uploads/Illustration2.jpg",
+      "tags": ["Illustrator"]
+    },
+    {
+      "title": "Vector Illustration-Gojo",
+      "src": "assets/uploads/Illustration3.jpg",
+      "tags": ["Illustrator"]
+    },
+    {
+      "title": "Poster Design-Illustrator",
+      "src": "assets/uploads/Illustration5.jpg",
+      "tags": ["Illustrator"]
+    },
+    {
+      "title": "Vector Portrait-Baby Face",
+      "src": "assets/uploads/Illustration6.jpg",
+      "tags": ["Illustrator"]
+    },
+    {
+      "title": "Simple Illustration",
+      "src": "assets/uploads/Illustration7.jpg",
+      "tags": ["Illustrator"]
+    },
+    {
+      "title": "Vector Illustration-Saturo Gojo",
+      "src": "assets/uploads/Illustration8.jpg",
+      "tags": ["Illustrator"]
+    },
+    {
+      "title": "Vector Illustration",
+      "src": "assets/uploads/Illustration9.jpg",
+      "tags": ["Illustrator"]
+    },
+    {
+      "title": "Logo Design-Coffee Cup",
+      "src": "assets/uploads/Illustration10.jpg",
+      "tags": ["Illustrator"]
+    },
+    {
+      "title": "Baby Sketch Effect-Photoshop",
+      "src": "assets/uploads/photoshop1.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "Glow Effect-Photoshop",
+      "src": "assets/uploads/photoshop2.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "PhotoManipulation",
+      "src": "assets/uploads/photoshop3.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "Pokemon-PhotoManipulation",
+      "src": "assets/uploads/photoshop4.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "AlbumDesign",
+      "src": "assets/uploads/photoshop5.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "Village Scene-PhotoManipulation",
+      "src": "assets/uploads/photoshop6.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "Haloween-PhotoManipulation",
+      "src": "assets/uploads/photoshop7.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "Poster/Banner Design",
+      "src": "assets/uploads/photoshop8.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "Digital Painting-Photoshop",
+      "src": "assets/uploads/photoshop9.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "Digital Artwork-Photoshop",
+      "src": "assets/uploads/photoshop10.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "Sketch Effects",
+      "src": "assets/uploads/photoshop11.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "Snake PhotoManipulation",
+      "src": "assets/uploads/photoshop12.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "Bakery-Social Media Post Design",
+      "src": "assets/uploads/photoshop13.jpg",
+      "tags": ["Photoshop"]
+    },
+    {
+      "title": "Album Design 2",
+      "src": "assets/uploads/photoshop14.jpg",
+      "tags": ["Photoshop"]
+    }
+  ]
 }
