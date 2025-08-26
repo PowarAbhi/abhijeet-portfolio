@@ -609,23 +609,25 @@
     /* Pinterest-style masonry layout for all screen sizes */
     .masonry {
       display: grid;
-      grid-gap: 20px; /* Reduced gap */
+      grid-gap: 25px;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      /* Removed grid-auto-rows and grid-row-end to let content define height */
       align-items: start; /* Align items to the start of their grid area */
     }
     /* Mobile adjustments for masonry grid */
     @media (max-width: 768px) {
       .masonry {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        grid-gap: 15px;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Two columns for mobile */
+        grid-gap: 20px;
       }
     }
     @media (max-width: 520px) {
       .masonry {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* More compact two columns for very small mobile */
+        grid-gap: 15px;
       }
     }
+
 
     .masonry-item {
       break-inside: avoid;
@@ -633,15 +635,14 @@
       margin: 0;
     }
     .work-card {
-      display: flex; /* Make it a flex container */
-      flex-direction: column; /* Stack image and caption vertically */
-      height: fit-content; /* Allow it to shrink wrap its content */
+      display: block;
       border-radius: 20px;
       overflow: hidden;
       border: 2px solid var(--border-color);
       background: var(--panel);
       box-shadow: 0 8px 20px var(--shadow-color);
       transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      /* Removed height: 100% to allow images to define card height */
     }
     html[data-theme="theme-2"] .work-card {
       border-width: 1px;
@@ -658,17 +659,12 @@
     }
     .image-wrapper { /* New wrapper for image loading animation */
       position: relative;
+      min-height: 100px; /* Minimum height for spinner visibility */
       background-color: #f0f0f0; /* Placeholder background */
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden; /* Ensure spinner doesn't overflow */
-      flex-shrink: 0; /* Prevent shrinking below content size */
-      flex-grow: 1; /* Allow to grow if needed, but height is determined by image */
-    }
-
-    .image-wrapper:not(.loaded) { /* Apply min-height only when not loaded */
-      min-height: 100px; /* Placeholder height for spinner */
     }
 
     .loading-spinner {
@@ -698,8 +694,8 @@
       width: 100%;
       height: auto; /* Allow image to define its height */
       display: block;
-      object-fit: contain; /* Changed to contain to show full image without cropping for Pinterest effect */
-      /* No border-bottom here if you want it between image and caption */
+      object-fit: cover; /* Cover the available width, maintaining aspect ratio */
+      border-bottom: 1px solid var(--border-color);
       transition: opacity 0.3s ease; /* Smooth image fade-in */
       opacity: 0; /* Initially hidden */
     }
@@ -713,8 +709,6 @@
       font-size: 16px;
       font-weight: 500;
       transition: color 0.3s ease;
-      border-top: 1px solid var(--border-color); /* Separator between image and caption */
-      margin-top: auto; /* Push caption to the bottom if image is short */
     }
 
     footer {
@@ -1142,8 +1136,7 @@
     function toCard(w){
       const alt = (w.alt || w.title || 'Portfolio image').replace(/"/g,'&quot;');
       const caption = w.title ? `<figcaption class="work-caption">${w.title}</figcaption>` : '';
-      // Generate a truly unique ID for each image element
-      const uniqueId = `work-img-${w.src.replace(/[^a-zA-Z0-9]/g, '')}-${Math.random().toString(36).substr(2, 5)}`;
+      const imgId = `work-img-${Math.random().toString(36).substr(2, 9)}`; // Unique ID for each image
 
       return `
         <div class="masonry-item">
@@ -1153,7 +1146,7 @@
               <img
                 loading="lazy"
                 class="work-img"
-                id="${uniqueId}"
+                id="${imgId}"
                 src="${w.src}"
                 alt="${alt}"
               />
@@ -1169,39 +1162,24 @@
       masonry.innerHTML = list.map(toCard).join('');
 
       // Attach loading event listeners after rendering HTML
-      document.querySelectorAll('.work-img').forEach(imgElement => {
-        const imageWrapper = imgElement.closest('.image-wrapper');
-        if (imageWrapper) {
-          const startTime = Date.now();
-          const MIN_SPINNER_DISPLAY_TIME = 1000; // Minimum 1 second for the spinner
-
-          const hideSpinner = () => {
-            const elapsedTime = Date.now() - startTime;
-            const remainingTime = MIN_SPINNER_DISPLAY_TIME - elapsedTime;
-
-            if (remainingTime > 0) {
-              setTimeout(() => {
-                imageWrapper.classList.add('loaded');
-              }, remainingTime);
-            } else {
-              imageWrapper.classList.add('loaded');
+      list.forEach((w, index) => {
+        const imgId = `work-img-${w.src.replace(/[^a-zA-Z0-9]/g, '')}${index}`; // Reconstruct ID or use a better way
+        const imgElement = document.getElementById(imgId); // Get the image by its generated ID
+        if (imgElement) {
+            const imageWrapper = imgElement.closest('.image-wrapper');
+            if (imageWrapper) {
+                // Check if image is already cached
+                if (imgElement.complete) {
+                    imageWrapper.classList.add('loaded');
+                } else {
+                    imgElement.onload = () => {
+                        imageWrapper.classList.add('loaded');
+                    };
+                    imgElement.onerror = () => {
+                        imageWrapper.classList.add('error');
+                    };
+                }
             }
-          };
-
-          if (imgElement.complete && imgElement.naturalWidth > 0) {
-            // Image already loaded (e.g., from cache), apply minimum spinner display time
-            hideSpinner();
-          } else {
-            imgElement.onload = () => {
-              // Image just loaded, apply minimum spinner display time
-              hideSpinner();
-            };
-            imgElement.onerror = () => {
-              // On error, still hide the spinner after min display time, but also show error state
-              imageWrapper.classList.add('error');
-              hideSpinner();
-            };
-          }
         }
       });
       emptyMsg.style.display = list.length ? 'none' : 'block';
