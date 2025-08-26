@@ -608,41 +608,41 @@
 
     /* Pinterest-style masonry layout for all screen sizes */
     .masonry {
-      display: grid;
-      grid-gap: 25px;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      /* Removed grid-auto-rows and grid-row-end to let content define height */
-      align-items: start; /* Align items to the start of their grid area */
+      column-count: 3; /* Default to 3 columns on larger screens */
+      column-gap: 25px; /* Spacing between columns */
+      margin-top: 25px; /* Added spacing */
     }
-    /* Mobile adjustments for masonry grid */
-    @media (max-width: 768px) {
+    /* Mobile adjustments for masonry columns */
+    @media (max-width: 980px) {
       .masonry {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Two columns for mobile */
-        grid-gap: 20px;
+        column-count: 2; /* 2 columns on tablets */
+        column-gap: 20px;
       }
     }
     @media (max-width: 520px) {
       .masonry {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* More compact two columns for very small mobile */
-        grid-gap: 15px;
+        column-count: 1; /* Single column on small mobile */
+        column-gap: 15px;
       }
     }
 
 
     .masonry-item {
+      /* This is key for column-based masonry: ensure items don't break across columns */
       break-inside: avoid;
-      width: 100%;
-      margin: 0;
+      width: 100%; /* Important for items to take full width of their column */
+      margin-bottom: 25px; /* Vertical spacing between items within a column */
+      box-sizing: border-box; /* Include padding and border in the element's total width and height */
     }
+
     .work-card {
-      display: block;
+      display: block; /* Ensure it's a block element within the column */
       border-radius: 20px;
       overflow: hidden;
       border: 2px solid var(--border-color);
       background: var(--panel);
       box-shadow: 0 8px 20px var(--shadow-color);
       transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-      /* Removed height: 100% to allow images to define card height */
     }
     html[data-theme="theme-2"] .work-card {
       border-width: 1px;
@@ -659,12 +659,15 @@
     }
     .image-wrapper { /* New wrapper for image loading animation */
       position: relative;
-      min-height: 100px; /* Minimum height for spinner visibility */
       background-color: #f0f0f0; /* Placeholder background */
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden; /* Ensure spinner doesn't overflow */
+    }
+
+    .image-wrapper:not(.loaded) { /* Apply min-height only when not loaded */
+      min-height: 100px; /* Placeholder height for spinner */
     }
 
     .loading-spinner {
@@ -695,7 +698,6 @@
       height: auto; /* Allow image to define its height */
       display: block;
       object-fit: cover; /* Cover the available width, maintaining aspect ratio */
-      border-bottom: 1px solid var(--border-color);
       transition: opacity 0.3s ease; /* Smooth image fade-in */
       opacity: 0; /* Initially hidden */
     }
@@ -709,6 +711,7 @@
       font-size: 16px;
       font-weight: 500;
       transition: color 0.3s ease;
+      border-top: 1px solid var(--border-color); /* Separator between image and caption */
     }
 
     footer {
@@ -933,7 +936,7 @@
       <div class="container hero-grid">
         <div>
           <div class="kicker">My Portfolio — Design</div>
-          <h1 class="title">Hi, I'm <b>Abhijeet Powar</b> — Graphic Designer, Video Editor & <b>AI Creative</b>.</h1>
+          <h1 class="title">Hi, I'm <b>Abhijeet Powar</b> — Graphic Designer, Video Editor & <b>AI Creative</b>.<span style="color:red">**</span></h1>
           <p class="lead">I craft visuals that captivate — vector art, logos, photo manipulation, posters, digital painting, motion graphics and video edits.</p>
           <div class="cta">
             <a class="btn" href="#resume">View Resume</a>
@@ -1162,24 +1165,39 @@
       masonry.innerHTML = list.map(toCard).join('');
 
       // Attach loading event listeners after rendering HTML
-      list.forEach((w, index) => {
-        const imgId = `work-img-${w.src.replace(/[^a-zA-Z0-9]/g, '')}${index}`; // Reconstruct ID or use a better way
-        const imgElement = document.getElementById(imgId); // Get the image by its generated ID
-        if (imgElement) {
-            const imageWrapper = imgElement.closest('.image-wrapper');
-            if (imageWrapper) {
-                // Check if image is already cached
-                if (imgElement.complete) {
-                    imageWrapper.classList.add('loaded');
-                } else {
-                    imgElement.onload = () => {
-                        imageWrapper.classList.add('loaded');
-                    };
-                    imgElement.onerror = () => {
-                        imageWrapper.classList.add('error');
-                    };
-                }
+      document.querySelectorAll('.work-img').forEach(imgElement => {
+        const imageWrapper = imgElement.closest('.image-wrapper');
+        if (imageWrapper) {
+          const startTime = Date.now();
+          const MIN_SPINNER_DISPLAY_TIME = 1500; // Minimum 1.5 seconds for the spinner
+
+          const hideSpinner = () => {
+            const elapsedTime = Date.now() - startTime;
+            const remainingTime = MIN_SPINNER_DISPLAY_TIME - elapsedTime;
+
+            if (remainingTime > 0) {
+              setTimeout(() => {
+                imageWrapper.classList.add('loaded');
+              }, remainingTime);
+            } else {
+              imageWrapper.classList.add('loaded');
             }
+          };
+
+          if (imgElement.complete && imgElement.naturalWidth > 0) {
+            // Image already loaded (e.g., from cache), apply minimum spinner display time
+            hideSpinner();
+          } else {
+            imgElement.onload = () => {
+              // Image just loaded, apply minimum spinner display time
+              hideSpinner();
+            };
+            imgElement.onerror = () => {
+              // On error, still hide the spinner after min display time, but also show error state
+              imageWrapper.classList.add('error');
+              hideSpinner();
+            };
+          }
         }
       });
       emptyMsg.style.display = list.length ? 'none' : 'block';
