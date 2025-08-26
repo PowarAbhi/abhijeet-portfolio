@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="theme-1"> <!-- Default theme is theme-1 -->
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -8,8 +8,8 @@
   <!-- Updated Google Fonts: Kufam for body, DM Sans for headings, and Gochi Hand for decorative text -->
   <link href="https://fonts.googleapis.com/css2?family=Kufam:wght@400;500;600;700&family=DM+Sans:wght@700;800;900&family=Gochi+Hand&display=swap" rel="stylesheet">
   <style>
-    /* Exact Color Palette from Screenshot */
-    :root {
+    /* Base Theme 1 (Current Doodle Theme) Colors */
+    html[data-theme="theme-1"] {
       --bg: #FFFBF0; /* Very light creamy yellow background */
       --panel: #FFFFFF; /* Pure white for nav and card backgrounds */
       --muted: #7A7A7A; /* Medium grey for secondary text */
@@ -21,6 +21,26 @@
       --card-bg: var(--panel); /* Cards are pure white */
       --border-color: var(--text); /* Dark grey for all borders */
       --shadow-color: rgba(51, 51, 51, 0.2); /* Dark grey shadow */
+    }
+
+    /* New Theme 2 (Vibrant Lime/White Theme) Colors */
+    html[data-theme="theme-2"] {
+      --bg: #E6FFCC; /* Bright, vibrant lime green background */
+      --panel: #FFFFFF; /* Pure white for cards, nav, and other elements */
+      --muted: #777777; /* Medium grey for muted text */
+      --text: #333333; /* Dark grey for primary text and borders */
+      --brand: #D4FF00; /* Vibrant yellow-green for main highlights/buttons */
+      --accent: #B0E6F7; /* Soft light blue for secondary accents */
+      --card-bg: var(--panel);
+      --border-color: var(--text); /* Dark grey for distinct borders */
+      --shadow-color: rgba(0, 0, 0, 0.1); /* Soft, subtle shadow */
+      --border-radius-sm: 8px; /* Smaller, more consistent border radius */
+      --border-radius-md: 12px;
+      --border-radius-lg: 16px;
+    }
+
+    /* Fonts (shared across themes) */
+    :root {
       --primary-font: 'Kufam', sans-serif; /* For general text */
       --heading-font: 'DM Sans', sans-serif; /* For big headings/titles */
       --decorative-font: 'Gochi Hand', cursive; /* For the brand name */
@@ -33,7 +53,7 @@
     html, body {
       height: 100%;
       margin: 0;
-      font-family: var(--primary-font); /* Apply Kufam as primary font */
+      font-family: var(--primary-font);
       color: var(--text);
       background-color: var(--bg);
       -webkit-font-smoothing: antialiased;
@@ -41,30 +61,31 @@
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
       position: relative;
+      transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
     }
 
-    /* Background doodle shapes and pen tool (more prominent and accurately placed) */
-    body::before, body::after {
+    /* Background doodle shapes and pen tool (Theme 1 specific) */
+    html[data-theme="theme-1"] body::before,
+    html[data-theme="theme-1"] body::after {
       content: '';
       position: absolute;
       z-index: -1;
       pointer-events: none;
-      opacity: 1; /* Make shapes more visible */
+      transition: opacity 0.3s ease;
     }
-
-    body::before { /* Pen tool */
+    html[data-theme="theme-1"] body::before { /* Pen tool */
       top: 10%;
       left: 10%;
-      width: 100px; /* Larger */
+      width: 100px;
       height: 100px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFD700' d='M19.78 2.06a.75.75 0 0 0-1.06 0L4.31 16.47a.75.75 0 0 0 0 1.06l2.12 2.12a.75.75 0 0 0 1.06 0L21.78 3.12a.75.75 0 0 0 0-1.06l-2.12-2.12zM15.5 5L17 6.5L6.5 17L5 15.5z'/%3E%3C/svg%3E"); /* Yellow pen tool */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFD700' d='M19.78 2.06a.75.75 0 0 0-1.06 0L4.31 16.47a.75.75 0 0 0 0 1.06l2.12 2.12a.75.75 0 0 0 1.06 0L21.78 3.12a.75.75 0 0 0 0-1.06l-2.12-2.12zM15.5 5L17 6.5L6.5 17L5 15.5z'/%3E%3C/svg%3E");
       background-size: contain;
       background-repeat: no-repeat;
       transform: rotate(-30deg);
-      opacity: 0.6; /* More visible */
+      opacity: var(--theme-1-bg-opacity, 0.6); /* Controlled by JS/CSS */
     }
 
-    body::after { /* Shapes */
+    html[data-theme="theme-1"] body::after { /* Shapes */
       top: 0;
       left: 0;
       width: 100%;
@@ -72,8 +93,67 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3C!-- Circle --%3E%3Ccircle cx='120' cy='120' r='60' fill='%23FFD700' opacity='0.7'/%3E%3C!-- Rectangle --%3E%3Crect x='850' y='70' width='120' height='120' fill='%2380DEEA' opacity='0.7'/%3E%3C!-- Triangle --%3E%3Cpolygon points='180,850 300,950 60,950' fill='%23FF6666' opacity='0.7'/%3E%3C!-- Square 2 --%3E%3Crect x='300' y='500' width='80' height='80' fill='%2366BB6A' opacity='0.7'/%3E%3C!-- Plus Sign --%3E%3Cpath d='M700 300 H720 V280 H700 V260 H680 V280 H660 V300 H680 V320 H700 Z' fill='%23FFD700' opacity='0.7'/%3E%3C!-- Squiggly Line --%3E%3Cpath d='M50 400 Q150 350 250 400 T450 400' stroke='%23FF6666' stroke-width='10' fill='none' opacity='0.7'/%3E%3C!-- Dashed Line --%3E%3Cline x1='800' y1='700' x2='900' y2='600' stroke='%2380DEEA' stroke-width='8' stroke-dasharray='15 15' opacity='0.7'/%3E%3C/svg%3E");
       background-size: cover;
       background-repeat: no-repeat;
-      opacity: 0.2; /* Overall opacity for the shape layer */
-      transform: rotate(5deg); /* Slight rotation for a playful feel */
+      opacity: var(--theme-1-bg-opacity, 0.2); /* Controlled by JS/CSS */
+      transform: rotate(5deg);
+    }
+
+    /* Theme 2 specific background elements (Graphic Design Icons) */
+    html[data-theme="theme-2"] body::before,
+    html[data-theme="theme-2"] body::after,
+    html[data-theme="theme-2"] .bg-doodle-shapes {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      opacity: var(--theme-2-bg-opacity, 0); /* Controlled by JS/CSS */
+    }
+
+    html[data-theme="theme-2"] body::before { /* Top left pen tool */
+        top: 8%;
+        left: 5%;
+        width: 100px;
+        height: 100px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFFFFF' d='M22.5 7.5L16.5 1.5L9 9L15 15L22.5 7.5ZM2 22L7 20L4 17L2 22Z'/%3E%3C/svg%3E");
+        background-size: contain;
+        background-repeat: no-repeat;
+        transform: rotate(-20deg);
+        opacity: var(--theme-2-bg-opacity, 0); /* Controlled by JS/CSS */
+    }
+
+    html[data-theme="theme-2"] body::after { /* Bottom right color palette */
+        bottom: 10%;
+        right: 8%;
+        width: 120px;
+        height: 120px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFFFFF' d='M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 4A8 8 0 0 1 20 12A8 8 0 0 1 12 20A8 8 0 0 1 4 12A8 8 0 0 1 12 4M15.5 14L12 7V12.5L15.5 14Z'/%3E%3C/svg%3E");
+        background-size: contain;
+        background-repeat: no-repeat;
+        transform: rotate(15deg);
+        opacity: var(--theme-2-bg-opacity, 0); /* Controlled by JS/CSS */
+    }
+
+    /* Additional background elements for Theme 2 (more complex, spread out) */
+    .bg-doodle-shapes {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3C!-- Lightbulb --%3E%3Cpath d='M300 150 Q300 100 350 100 Q400 100 400 150 L400 250 Q400 300 350 300 Q300 300 300 250 Z M350 300 L350 320 M330 320 L370 320' fill='%23FFFFFF' opacity='0.7'/%3E%3C!-- Scissors --%3E%3Cpath d='M750 200 A50 50 0 0 1 700 250 A50 50 0 0 1 750 300 A50 50 0 0 1 800 250 A50 50 0 0 1 750 200 Z M850 200 A50 50 0 0 1 800 250 A50 50 0 0 1 850 300 A50 50 0 0 1 900 250 A50 50 0 0 1 850 200 Z M800 250 L750 300 L780 330 L830 280 Z' fill='%23FFFFFF' opacity='0.7'/%3E%3C!-- Ruler & Pencil --%3E%3Cpath d='M100 400 L200 400 L200 420 L100 420 Z M150 400 L150 350 L170 350 L170 400 Z' fill='%23FFFFFF' opacity='0.7'/%3E%3C!-- Dropper --%3E%3Cpath d='M800 700 L820 650 L840 700 Z M810 680 L810 750 Q810 780 780 780 Q750 780 750 750 L750 680 L760 660 Z' fill='%23FFFFFF' opacity='0.7'/%3E%3C!-- AI Text Icon --%3E%3Cpath d='M400 600 H450 L425 550 Z M480 600 V550 H500 V600' fill='%23FFFFFF' opacity='0.7'/%3E%3C/svg%3E");
+        background-size: cover;
+        background-repeat: no-repeat;
+        transform: rotate(5deg);
+        opacity: var(--theme-2-bg-opacity, 0); /* Controlled by JS/CSS */
+    }
+
+    /* Global opacity for theme backgrounds */
+    html[data-theme="theme-1"] {
+      --theme-1-bg-opacity: 1;
+      --theme-2-bg-opacity: 0;
+    }
+    html[data-theme="theme-2"] {
+      --theme-1-bg-opacity: 0;
+      --theme-2-bg-opacity: 1;
     }
 
     a {
@@ -141,7 +221,7 @@
       }
     }
 
-    /* ---------- NAV & LAYOUT (doodle style) ---------- */
+    /* ---------- NAV & LAYOUT ---------- */
     .container {
       width: min(1100px, 94vw);
       margin-inline: auto;
@@ -150,14 +230,21 @@
       position: sticky;
       top: 0;
       z-index: 60;
-      background: var(--panel); /* Pure white */
+      background: var(--panel);
       backdrop-filter: blur(6px);
-      border: 2px solid var(--border-color); /* Exact border thickness */
-      border-top: none; /* No top border */
-      box-shadow: 0 4px 10px var(--shadow-color); /* Softer shadow */
+      border: 2px solid var(--border-color);
+      border-top: none;
+      box-shadow: 0 4px 10px var(--shadow-color);
       border-bottom-left-radius: 20px;
       border-bottom-right-radius: 20px;
       padding: 5px 0;
+      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    html[data-theme="theme-2"] .nav {
+      border-radius: 0;
+      border-width: 1px;
+      box-shadow: 0 1px 5px var(--shadow-color);
+      background: var(--panel);
     }
     .nav-inner {
       display: flex;
@@ -172,8 +259,15 @@
       gap: 10px;
       font-weight: 800;
       color: var(--text);
-      font-family: var(--decorative-font); /* Gochi Hand for brand name */
+      font-family: var(--decorative-font);
       font-size: 1.6em;
+      transition: color 0.3s ease;
+    }
+    html[data-theme="theme-2"] .brand {
+      font-family: var(--primary-font);
+      font-weight: 700;
+      font-size: 1.3em;
+      color: var(--text);
     }
     .badge {
       width: 44px;
@@ -186,6 +280,14 @@
       color: var(--text);
       border: 2px solid var(--border-color);
       box-shadow: 0 3px 8px var(--shadow-color);
+      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    }
+    html[data-theme="theme-2"] .badge {
+        background: var(--brand);
+        color: var(--text);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 1px 4px var(--shadow-color);
+        border-radius: var(--border-radius-sm);
     }
     .links {
       display: flex;
@@ -211,6 +313,9 @@
       background-color: var(--brand);
       transition: all 0.3s ease;
       transform: translateX(-50%);
+    }
+    html[data-theme="theme-2"] .links a::before {
+        background-color: var(--brand);
     }
     .links a:hover::before {
       width: 80%;
@@ -252,24 +357,33 @@
       letter-spacing: .3em;
       text-transform: uppercase;
       font-size: 14px;
+      transition: color 0.3s ease;
     }
     .title {
-      font-family: var(--heading-font); /* DM Sans for title */
+      font-family: var(--heading-font);
       font-size: clamp(38px, 6vw, 64px);
       line-height: 1.1;
       margin: 15px 0 20px;
       font-weight: 900;
-      color: var(--text);
+      color: var(--text); /* Ensure dark text for title */
+      transition: color 0.3s ease;
+    }
+    html[data-theme="theme-2"] .title {
+      font-weight: 900;
+      font-size: clamp(34px, 5vw, 56px);
+      color: var(--text); /* Ensure good contrast in theme-2 */
     }
     .title b {
       background: linear-gradient(135deg, var(--brand), var(--accent));
       -webkit-background-clip: text;
       color: transparent;
+      transition: background 0.3s ease;
     }
     .lead {
       color: var(--muted);
       font-size: clamp(17px, 2.2vw, 20px);
       line-height: 1.7;
+      transition: color 0.3s ease;
     }
     .cta {
       display: flex;
@@ -283,29 +397,45 @@
       gap: 12px;
       padding: 14px 28px;
       border-radius: 18px;
-      background: var(--brand); /* Solid yellow background */
+      background: var(--brand);
       border: 2px solid var(--border-color);
       font-weight: 800;
       color: var(--text);
-      box-shadow: 0 4px 10px var(--shadow-color); /* Matches screenshot shadow depth */
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 4px 10px var(--shadow-color);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    }
+    html[data-theme="theme-2"] .btn {
+      border-width: 1px;
+      border-radius: var(--border-radius-sm);
+      background-color: var(--brand);
+      box-shadow: 2px 2px 5px var(--shadow-color);
     }
     .btn:hover {
       transform: translateY(-3px) scale(1.02);
       box-shadow: 0 6px 15px var(--shadow-color);
-      background: var(--accent); /* Light blue on hover */
+      background: var(--accent);
+    }
+    html[data-theme="theme-2"] .btn:hover {
+      background-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 1px 1px 3px var(--shadow-color);
     }
     .ghost {
-      background: var(--panel); /* White background for ghost buttons */
+      background: var(--panel);
       border: 2px solid var(--border-color);
       color: var(--text);
-      box-shadow: 0 4px 10px var(--shadow-color); /* Matches screenshot shadow depth */
+      box-shadow: 0 4px 10px var(--shadow-color);
     }
-    .ghost:hover {
+    html[data-theme="theme-2"] .ghost {
+      border-width: 1px;
+      border-radius: var(--border-radius-sm);
+      background-color: var(--panel);
+      box-shadow: 2px 2px 5px var(--shadow-color);
+    }
+    html[data-theme="theme-2"] .ghost:hover {
       background-color: var(--accent);
-      color: var(--text);
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 6px 15px var(--shadow-color);
+      transform: translateY(-2px);
+      box-shadow: 1px 1px 3px var(--shadow-color);
     }
 
     .card {
@@ -313,7 +443,13 @@
       padding: 20px;
       background: var(--panel);
       border: 2px solid var(--border-color);
-      box-shadow: 0 8px 20px var(--shadow-color); /* Matches screenshot shadow depth */
+      box-shadow: 0 8px 20px var(--shadow-color);
+      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    html[data-theme="theme-2"] .card {
+      border-width: 1px;
+      border-radius: var(--border-radius-lg);
+      box-shadow: 3px 3px 8px var(--shadow-color);
     }
     .thumb {
       border-radius: 15px;
@@ -321,6 +457,11 @@
       background: var(--panel);
       display: block;
       border: 2px solid var(--border-color);
+      transition: border-color 0.3s ease;
+    }
+    html[data-theme="theme-2"] .thumb {
+      border-width: 1px;
+      border-radius: var(--border-radius-md);
     }
     .thumb img {
       display: block;
@@ -333,14 +474,21 @@
       padding: 80px 0;
     }
     .section-title {
-      font-family: var(--heading-font); /* DM Sans for section titles */
+      font-family: var(--heading-font);
       font-size: clamp(32px, 4vw, 48px);
       margin: 0 0 15px;
       font-weight: 900;
       color: var(--brand);
+      transition: color 0.3s ease;
+    }
+    html[data-theme="theme-2"] .section-title {
+      font-weight: 900;
+      color: var(--text);
+      font-size: clamp(28px, 4vw, 42px);
     }
     .muted {
       color: var(--muted);
+      transition: color 0.3s ease;
     }
     .grid {
       display: grid;
@@ -357,8 +505,13 @@
       border-radius: 20px;
       background: var(--panel);
       border: 2px solid var(--border-color);
-      box-shadow: 0 4px 10px var(--shadow-color); /* Matches screenshot shadow depth */
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 4px 10px var(--shadow-color);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    html[data-theme="theme-2"] .resume-item {
+      border-width: 1px;
+      border-radius: var(--border-radius-md);
+      box-shadow: 2px 2px 5px var(--shadow-color);
     }
     .resume-item:hover {
       transform: translateY(-3px);
@@ -369,15 +522,18 @@
       margin-bottom: 10px;
       color: var(--text);
       font-size: 1.3em;
+      transition: color 0.3s ease;
     }
     .resume-item small {
       font-size: 0.9em;
       display: block;
       margin-bottom: 8px;
+      transition: color 0.3s ease;
     }
     .resume-item p {
       font-size: 1em;
       line-height: 1.6;
+      transition: color 0.3s ease;
     }
     .pill {
       display: inline-block;
@@ -388,7 +544,14 @@
       font-weight: 700;
       font-size: 14px;
       border: 2px solid var(--border-color);
-      box-shadow: 0 2px 5px var(--shadow-color); /* Matches screenshot shadow depth */
+      box-shadow: 0 2px 5px var(--shadow-color);
+      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    }
+    html[data-theme="theme-2"] .pill {
+      border-width: 1px;
+      background-color: var(--accent);
+      color: var(--text);
+      box-shadow: none;
     }
 
     .filters {
@@ -409,8 +572,14 @@
       cursor: pointer;
       font-weight: 700;
       font-size: 16px;
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 3px 8px var(--shadow-color); /* Matches screenshot shadow depth */
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+      box-shadow: 0 3px 8px var(--shadow-color);
+    }
+    html[data-theme="theme-2"] .chip {
+      border-width: 1px;
+      border-radius: var(--border-radius-sm);
+      box-shadow: 1px 1px 3px var(--shadow-color);
+      background-color: var(--panel);
     }
     .chip:hover {
       background-color: var(--accent);
@@ -419,12 +588,22 @@
       transform: translateY(-2px);
       box-shadow: 0 5px 12px var(--shadow-color);
     }
+    html[data-theme="theme-2"] .chip:hover {
+      background-color: var(--accent);
+      box-shadow: 0 1px 3px var(--shadow-color);
+      transform: translateY(-1px);
+    }
     .chip[aria-pressed="true"] {
       background: var(--brand);
       color: var(--text);
       border-color: var(--border-color);
-      box-shadow: 0 4px 10px var(--shadow-color); /* Matches screenshot shadow depth */
+      box-shadow: 0 4px 10px var(--shadow-color);
       transform: translateY(-1px);
+    }
+    html[data-theme="theme-2"] .chip[aria-pressed="true"] {
+      background-color: var(--brand);
+      border-color: var(--border-color);
+      box-shadow: 1px 1px 3px var(--shadow-color);
     }
 
     /* Pinterest-style masonry layout for all screen sizes */
@@ -432,7 +611,23 @@
       display: grid;
       grid-gap: 25px;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      /* Removed grid-auto-rows and grid-row-end to let content define height */
+      align-items: start; /* Align items to the start of their grid area */
     }
+    /* Mobile adjustments for masonry grid */
+    @media (max-width: 768px) {
+      .masonry {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Two columns for mobile */
+        grid-gap: 20px;
+      }
+    }
+    @media (max-width: 520px) {
+      .masonry {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* More compact two columns for very small mobile */
+        grid-gap: 15px;
+      }
+    }
+
 
     .masonry-item {
       break-inside: avoid;
@@ -445,26 +640,75 @@
       overflow: hidden;
       border: 2px solid var(--border-color);
       background: var(--panel);
-      box-shadow: 0 8px 20px var(--shadow-color); /* Matches screenshot shadow depth */
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      height: 100%;
+      box-shadow: 0 8px 20px var(--shadow-color);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      /* Removed height: 100% to allow images to define card height */
+    }
+    html[data-theme="theme-2"] .work-card {
+      border-width: 1px;
+      border-radius: var(--border-radius-md);
+      box-shadow: 3px 3px 8px var(--shadow-color);
     }
     .work-card:hover {
       transform: translateY(-4px) scale(1.01);
       box-shadow: 0 10px 25px var(--shadow-color);
     }
+    html[data-theme="theme-2"] .work-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 2px 2px 5px var(--shadow-color);
+    }
+    .image-wrapper { /* New wrapper for image loading animation */
+      position: relative;
+      min-height: 100px; /* Minimum height for spinner visibility */
+      background-color: #f0f0f0; /* Placeholder background */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden; /* Ensure spinner doesn't overflow */
+    }
+
+    .loading-spinner {
+      border: 4px solid var(--accent);
+      border-top: 4px solid var(--brand);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      position: absolute;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .image-wrapper.loaded .loading-spinner,
+    .image-wrapper.error .loading-spinner {
+      opacity: 0;
+      pointer-events: none;
+    }
+
     .work-img {
       width: 100%;
+      height: auto; /* Allow image to define its height */
       display: block;
-      height: auto;
-      object-fit: cover;
+      object-fit: cover; /* Cover the available width, maintaining aspect ratio */
       border-bottom: 1px solid var(--border-color);
+      transition: opacity 0.3s ease; /* Smooth image fade-in */
+      opacity: 0; /* Initially hidden */
     }
+    .image-wrapper.loaded .work-img {
+      opacity: 1; /* Show image when loaded */
+    }
+
     .work-caption {
       padding: 18px;
       color: var(--muted);
       font-size: 16px;
       font-weight: 500;
+      transition: color 0.3s ease;
     }
 
     footer {
@@ -473,20 +717,36 @@
       border-top: 2px solid var(--border-color);
       background-color: var(--panel);
       margin-top: 80px;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    html[data-theme="theme-2"] footer {
+      border-top-width: 1px;
+      background-color: var(--panel);
     }
     footer .section-title {
       color: var(--text);
-      font-family: var(--heading-font); /* DM Sans for footer section title */
+      font-family: var(--heading-font);
       font-size: clamp(28px, 3.5vw, 42px);
+      transition: color 0.3s ease;
+    }
+    html[data-theme="theme-2"] footer .section-title {
+      color: var(--text);
     }
     footer .card {
       background: var(--bg);
-      box-shadow: 0 4px 10px var(--shadow-color); /* Matches screenshot shadow depth */
+      box-shadow: 0 4px 10px var(--shadow-color);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    html[data-theme="theme-2"] footer .card {
+      border-width: 1px;
+      border-radius: var(--border-radius-lg);
+      box-shadow: 3px 3px 8px var(--shadow-color);
     }
     footer p.muted {
       text-align: center;
       margin-top: 25px;
       font-size: 1.1em;
+      transition: color 0.3s ease;
     }
 
 
@@ -519,19 +779,28 @@
       .title {
         font-size: clamp(36px, 7vw, 56px);
       }
-      body::before { /* Adjust pen tool position for mobile */
+      /* Adjust pen tool position for mobile for Theme 1 */
+      html[data-theme="theme-1"] body::before {
         top: 5vh;
         left: 5vw;
         width: 60px;
         height: 60px;
       }
+      html[data-theme="theme-2"] body::before { /* Adjust theme 2 pen tool for mobile */
+        top: 5%;
+        left: 3%;
+        width: 80px;
+        height: 80px;
+      }
+      html[data-theme="theme-2"] body::after { /* Adjust theme 2 color palette for mobile */
+        bottom: 5%;
+        right: 3%;
+        width: 100px;
+        height: 100px;
+      }
     }
 
     @media (max-width: 768px) {
-      .masonry {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        grid-gap: 20px;
-      }
       .hero {
         padding: 60px 0;
       }
@@ -563,10 +832,6 @@
       .section-title {
         font-size: 28px;
       }
-      .masonry {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        grid-gap: 15px;
-      }
       .chip {
         padding: 10px 16px;
         font-size: 14px;
@@ -581,12 +846,18 @@
       position: absolute;
       inset-inline: 0;
       top: 64px;
-      background: var(--panel); /* Pure white for mobile menu */
+      background: var(--panel);
       padding: 15px;
       border-bottom: 2px solid var(--border-color);
       box-shadow: 0 5px 15px var(--shadow-color);
       border-bottom-left-radius: 20px;
       border-bottom-right-radius: 20px;
+      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    html[data-theme="theme-2"] .mobile-menu {
+      border-radius: 0;
+      border-bottom-width: 1px;
+      box-shadow: 0 1px 5px var(--shadow-color);
     }
     .mobile-menu a {
       display: block;
@@ -597,6 +868,10 @@
       color: var(--text);
       border: 1px solid transparent;
       font-weight: 600;
+    }
+    html[data-theme="theme-2"] .mobile-menu a {
+      border-radius: var(--border-radius-sm);
+      border-width: 1px;
     }
     .mobile-menu a:hover {
       background-color: var(--accent);
@@ -613,6 +888,9 @@
   </style>
 </head>
 <body id="top" class="loading">
+  <!-- Additional container for complex background shapes in Theme 2 -->
+  <div class="bg-doodle-shapes"></div>
+
   <!-- PRELOADER -->
   <div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading portfolio">
     <div class="preloader__avatar" aria-hidden="true">
@@ -728,7 +1006,7 @@
       <div style="display:flex;gap:25px;flex-wrap:wrap;align-items:center;justify-content:space-between">
         <div>
           <h3 class="section-title" style="margin-bottom:10px">Let's Connect</h3>
-          <p class="muted">Ready to collaborate? Reach out for freelance or projects.</p>
+          <p class="muted">Ready to collaborate? Reach out for freelance & projects.</p>
           <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
             <a class="btn" href="mailto:abhipowar2400@gmail.com">Email</a>
             <a class="btn ghost" href="tel:+919422733472">+91-94227-33472</a>
@@ -766,14 +1044,24 @@
     // theme toggle (simple)
     const themeBtn = document.getElementById('themeToggleBtn');
     const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if (saved) root.setAttribute('data-theme', saved);
+
+    // Function to set theme
+    function setTheme(themeName) {
+      root.setAttribute('data-theme', themeName);
+      localStorage.setItem('theme', themeName);
+      themeBtn.setAttribute('aria-pressed', themeName === 'theme-2' ? 'true' : 'false');
+    }
+
+    // Load saved theme on page load
+    const savedTheme = localStorage.getItem('theme') || 'theme-1'; // Default to theme-1
+    setTheme(savedTheme);
+
     themeBtn.addEventListener('click', () => {
-      const next = root.getAttribute('data-theme') === 'light' ? '' : 'light';
-      if(next) root.setAttribute('data-theme', next); else root.removeAttribute('data-theme');
-      localStorage.setItem('theme', next);
-      themeBtn.setAttribute('aria-pressed', String(next === 'light'));
+      const currentTheme = root.getAttribute('data-theme');
+      const nextTheme = currentTheme === 'theme-1' ? 'theme-2' : 'theme-1';
+      setTheme(nextTheme);
     });
+
 
     /* ---------- Preloader logic ---------- */
     (function() {
@@ -848,15 +1136,52 @@
     function toCard(w){
       const alt = (w.alt || w.title || 'Portfolio image').replace(/"/g,'&quot;');
       const caption = w.title ? `<figcaption class="work-caption">${w.title}</figcaption>` : '';
-      const img = `<img loading="lazy" class="work-img" src="${w.src}" alt="${alt}">`;
-      const linkOpen = w.href ? `<a class="work-card" href="${w.href}" target="_blank" rel="noopener">` : `<figure class="work-card">`;
-      const linkClose = w.href ? `</a>` : `</figure>`;
-      return `<div class="masonry-item">${linkOpen}${img}${caption}${linkClose}</div>`;
+      const imgId = `work-img-${Math.random().toString(36).substr(2, 9)}`; // Unique ID for each image
+
+      return `
+        <div class="masonry-item">
+          <a class="work-card" href="${w.href || '#'}" ${w.href ? 'target="_blank" rel="noopener"' : ''}>
+            <div class="image-wrapper">
+              <div class="loading-spinner"></div>
+              <img
+                loading="lazy"
+                class="work-img"
+                id="${imgId}"
+                src="${w.src}"
+                alt="${alt}"
+              />
+            </div>
+            ${caption}
+          </a>
+        </div>
+      `;
     }
 
     function render(){
       const list = state.filter === 'All' ? state.all : state.all.filter(w => (w.tags || []).includes(state.filter));
       masonry.innerHTML = list.map(toCard).join('');
+
+      // Attach loading event listeners after rendering HTML
+      list.forEach((w, index) => {
+        const imgId = `work-img-${w.src.replace(/[^a-zA-Z0-9]/g, '')}${index}`; // Reconstruct ID or use a better way
+        const imgElement = document.getElementById(imgId); // Get the image by its generated ID
+        if (imgElement) {
+            const imageWrapper = imgElement.closest('.image-wrapper');
+            if (imageWrapper) {
+                // Check if image is already cached
+                if (imgElement.complete) {
+                    imageWrapper.classList.add('loaded');
+                } else {
+                    imgElement.onload = () => {
+                        imageWrapper.classList.add('loaded');
+                    };
+                    imgElement.onerror = () => {
+                        imageWrapper.classList.add('error');
+                    };
+                }
+            }
+        }
+      });
       emptyMsg.style.display = list.length ? 'none' : 'block';
     }
 
