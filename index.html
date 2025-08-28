@@ -756,6 +756,14 @@
 
     /* Responsive adjustments */
     @media (max-width: 980px) {
+      body {
+        background-color: var(--bg); /* Ensure theme background is applied */
+      }
+      .nav {
+        background: var(--panel); /* Ensure theme nav background */
+        border-color: var(--border-color); /* Ensure theme nav border */
+        box-shadow: 0 2px 8px var(--shadow-color); /* Adjust shadow for mobile nav */
+      }
       .hero-grid {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -769,6 +777,7 @@
       }
       .nav-toggle {
         display: inline-flex;
+        color: var(--text); /* Ensure mobile toggle color */
       }
       .container {
         width: 94vw; /* Consistent container width */
@@ -779,9 +788,11 @@
       }
       .section-title {
         font-size: clamp(30px, 4.5vw, 42px);
+        color: var(--text); /* Ensure section title color */
       }
       .title {
         font-size: clamp(36px, 7vw, 56px);
+        color: var(--text); /* Ensure hero title color */
       }
       /* Adjust pen tool position for mobile for Theme 1 */
       html[data-theme="theme-1"] body::before {
@@ -817,6 +828,40 @@
       .masonry-item {
         margin-bottom: 20px; /* Adjust vertical gap for tablet */
       }
+      .resume-item {
+        background: var(--panel); /* Ensure theme resume item background */
+        border-color: var(--border-color); /* Ensure theme resume item border */
+        box-shadow: 0 2px 5px var(--shadow-color); /* Adjust shadow for mobile resume items */
+      }
+      .work-card {
+        background: var(--panel); /* Ensure theme work card background */
+        border-color: var(--border-color); /* Ensure theme work card border */
+        box-shadow: 0 2px 5px var(--shadow-color); /* Adjust shadow for mobile work cards */
+      }
+      .filters .chip {
+        background: var(--panel); /* Ensure theme chip background */
+        border-color: var(--border-color); /* Ensure theme chip border */
+        color: var(--text); /* Ensure theme chip text color */
+        box-shadow: 0 1px 3px var(--shadow-color); /* Adjust shadow */
+      }
+      .filters .chip[aria-pressed="true"] {
+        background: var(--brand); /* Ensure theme chip pressed background */
+        color: var(--text); /* Ensure theme chip pressed text color */
+        border-color: var(--border-color);
+        box-shadow: 0 1px 3px var(--shadow-color);
+      }
+      footer {
+        background-color: var(--panel); /* Ensure footer background */
+        border-color: var(--border-color); /* Ensure footer border */
+      }
+      footer .section-title {
+        color: var(--text); /* Ensure footer title color */
+      }
+      footer .card {
+        background: var(--bg); /* Ensure footer card background */
+        border-color: var(--border-color); /* Ensure footer card border */
+        box-shadow: 0 2px 5px var(--shadow-color);
+      }
     }
 
     @media (max-width: 768px) {
@@ -832,6 +877,13 @@
       /* Ensure hero image scales well */
       .hero-grid aside.card {
         padding: 15px; /* Slightly reduce card padding */
+      }
+      /* More explicit styling for nested elements if needed */
+      .resume-item h4, .resume-item p, .resume-item small {
+        color: var(--text);
+      }
+      .work-caption {
+        color: var(--muted);
       }
     }
 
@@ -859,6 +911,9 @@
         top: 64px; /* Ensure it's below the fixed header */
         padding: 12px;
         border-radius: 0 0 10px 10px; /* Slightly rounded bottom corners for mobile menu */
+        background: var(--panel); /* Ensure theme mobile menu background */
+        border-color: var(--border-color); /* Ensure theme mobile menu border */
+        box-shadow: 0 2px 5px var(--shadow-color);
       }
        /* Ensure container padding for very small screens */
       .container {
@@ -892,6 +947,14 @@
       }
       .hero-grid aside.card .thumb {
           border-radius: 10px; /* Adjust thumb border radius */
+      }
+      .mobile-menu a {
+        color: var(--text); /* Ensure mobile menu link text color */
+      }
+      .mobile-menu a:hover {
+        background-color: var(--accent); /* Ensure mobile menu link hover background */
+        color: var(--text); /* Ensure mobile menu link hover text color */
+        border-color: var(--brand);
       }
     }
     .mobile-menu {
