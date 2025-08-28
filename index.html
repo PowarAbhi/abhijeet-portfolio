@@ -810,10 +810,17 @@
       .hero {
         padding: 60px 0;
       }
+      .masonry {
+        column-count: 2; /* Already there for tablets */
+        column-gap: 20px;
+      }
+      .masonry-item {
+        margin-bottom: 20px; /* Adjust vertical gap for tablet */
+      }
     }
 
     @media (max-width: 768px) {
-      /* Masonry adjustments are handled by column-count now */
+      /* Further refinements for smaller tablets/larger phones */
       .cta .btn {
         padding: 12px 24px;
         font-size: 16px;
@@ -821,6 +828,10 @@
       .pill {
         padding: 9px 16px;
         font-size: 13px;
+      }
+      /* Ensure hero image scales well */
+      .hero-grid aside.card {
+        padding: 15px; /* Slightly reduce card padding */
       }
     }
 
@@ -835,6 +846,7 @@
       .cta .btn {
         padding: 10px 18px;
         font-size: 15px;
+        width: 100%; /* Make CTA buttons full width */
       }
       .section-title {
         font-size: 28px;
@@ -844,8 +856,9 @@
         font-size: 14px;
       }
       .mobile-menu {
-        top: 70px;
+        top: 64px; /* Ensure it's below the fixed header */
         padding: 12px;
+        border-radius: 0 0 10px 10px; /* Slightly rounded bottom corners for mobile menu */
       }
        /* Ensure container padding for very small screens */
       .container {
@@ -856,6 +869,29 @@
       }
       .nav-inner {
         padding: 10px 3vw;
+      }
+      .masonry {
+        column-count: 1; /* Single column on small mobile */
+        column-gap: 0; /* No horizontal gap for single column */
+      }
+      .masonry-item {
+        margin-bottom: 15px; /* Adjust vertical gap for single column */
+      }
+      .work-card {
+        border-radius: 15px; /* Slightly smaller border radius for mobile cards */
+      }
+      .work-caption {
+        padding: 15px; /* Adjust caption padding */
+      }
+      .hero-grid aside.card {
+        padding: 12px; /* Further reduce card padding */
+      }
+      .pill {
+        font-size: 12px; /* Smaller pills */
+        padding: 8px 14px;
+      }
+      .hero-grid aside.card .thumb {
+          border-radius: 10px; /* Adjust thumb border radius */
       }
     }
     .mobile-menu {
