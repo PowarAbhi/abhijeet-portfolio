@@ -327,7 +327,7 @@
       box-shadow: 0 2px 5px var(--shadow-color);
     }
     .nav-toggle {
-      display: none;
+      display: none; /* Hide on desktop */
       background: transparent;
       border: 0;
       color: var(--text);
@@ -613,20 +613,6 @@
       margin-top: 25px; /* Added spacing */
       padding-inline: 0; /* Ensure no extra horizontal padding by default */
     }
-    /* Mobile adjustments for masonry columns */
-    @media (max-width: 980px) {
-      .masonry {
-        column-count: 2; /* 2 columns on tablets */
-        column-gap: 20px;
-      }
-    }
-    @media (max-width: 520px) {
-      .masonry {
-        column-count: 1; /* Single column on small mobile */
-        column-gap: 15px; /* Adjust gap for single column if needed */
-      }
-    }
-
 
     .masonry-item {
       /* This is key for column-based masonry: ensure items don't break across columns */
@@ -753,215 +739,12 @@
       transition: color 0.3s ease;
     }
 
-
-    /* Responsive adjustments */
-    @media (max-width: 980px) {
-      body {
-        background-color: var(--bg); /* Ensure theme background is applied */
-      }
-      .nav {
-        background: var(--panel); /* Ensure theme nav background */
-        border-color: var(--border-color); /* Ensure theme nav border */
-        box-shadow: 0 2px 8px var(--shadow-color); /* Adjust shadow for mobile nav */
-      }
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 0;
-      }
-      .nav-inner {
-        padding: 10px 4vw;
-      }
-      .links {
-        display: none;
-      }
-      .nav-toggle {
-        display: inline-flex;
-        color: var(--text); /* Ensure mobile toggle color */
-      }
-      .container {
-        width: 94vw; /* Consistent container width */
-      }
-      .grid.cols-3, .grid.cols-2 {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .section-title {
-        font-size: clamp(30px, 4.5vw, 42px);
-        color: var(--text); /* Ensure section title color */
-      }
-      .title {
-        font-size: clamp(36px, 7vw, 56px);
-        color: var(--text); /* Ensure hero title color */
-      }
-      /* Adjust pen tool position for mobile for Theme 1 */
-      html[data-theme="theme-1"] body::before {
-        top: 5vh;
-        left: 5vw;
-        width: 60px;
-        height: 60px;
-      }
-      html[data-theme="theme-2"] body::before { /* Adjust theme 2 pen tool for mobile */
-        top: 5%;
-        left: 3%;
-        width: 80px;
-        height: 80px;
-      }
-      html[data-theme="theme-2"] body::after { /* Adjust theme 2 color palette for mobile */
-        bottom: 5%;
-        right: 3%;
-        width: 100px;
-        height: 100px;
-      }
-
-      /* Adjust section padding for mobile */
-      section {
-        padding: 60px 0;
-      }
-      .hero {
-        padding: 60px 0;
-      }
-      .masonry {
-        column-count: 2; /* Already there for tablets */
-        column-gap: 20px;
-      }
-      .masonry-item {
-        margin-bottom: 20px; /* Adjust vertical gap for tablet */
-      }
-      .resume-item {
-        background: var(--panel); /* Ensure theme resume item background */
-        border-color: var(--border-color); /* Ensure theme resume item border */
-        box-shadow: 0 2px 5px var(--shadow-color); /* Adjust shadow for mobile resume items */
-      }
-      .work-card {
-        background: var(--panel); /* Ensure theme work card background */
-        border-color: var(--border-color); /* Ensure theme work card border */
-        box-shadow: 0 2px 5px var(--shadow-color); /* Adjust shadow for mobile work cards */
-      }
-      .filters .chip {
-        background: var(--panel); /* Ensure theme chip background */
-        border-color: var(--border-color); /* Ensure theme chip border */
-        color: var(--text); /* Ensure theme chip text color */
-        box-shadow: 0 1px 3px var(--shadow-color); /* Adjust shadow */
-      }
-      .filters .chip[aria-pressed="true"] {
-        background: var(--brand); /* Ensure theme chip pressed background */
-        color: var(--text); /* Ensure theme chip pressed text color */
-        border-color: var(--border-color);
-        box-shadow: 0 1px 3px var(--shadow-color);
-      }
-      footer {
-        background-color: var(--panel); /* Ensure footer background */
-        border-color: var(--border-color); /* Ensure footer border */
-      }
-      footer .section-title {
-        color: var(--text); /* Ensure footer title color */
-      }
-      footer .card {
-        background: var(--bg); /* Ensure footer card background */
-        border-color: var(--border-color); /* Ensure footer card border */
-        box-shadow: 0 2px 5px var(--shadow-color);
-      }
-    }
-
-    @media (max-width: 768px) {
-      /* Further refinements for smaller tablets/larger phones */
-      .cta .btn {
-        padding: 12px 24px;
-        font-size: 16px;
-      }
-      .pill {
-        padding: 9px 16px;
-        font-size: 13px;
-      }
-      /* Ensure hero image scales well */
-      .hero-grid aside.card {
-        padding: 15px; /* Slightly reduce card padding */
-      }
-      /* More explicit styling for nested elements if needed */
-      .resume-item h4, .resume-item p, .resume-item small {
-        color: var(--text);
-      }
-      .work-caption {
-        color: var(--muted);
-      }
-    }
-
-    @media (max-width: 520px) {
-      .hero {
-        padding: 40px 0;
-      }
-      .title {
-        font-size: 32px;
-        margin-bottom: 15px;
-      }
-      .cta .btn {
-        padding: 10px 18px;
-        font-size: 15px;
-        width: 100%; /* Make CTA buttons full width */
-      }
-      .section-title {
-        font-size: 28px;
-      }
-      .chip {
-        padding: 10px 16px;
-        font-size: 14px;
-      }
-      .mobile-menu {
-        top: 64px; /* Ensure it's below the fixed header */
-        padding: 12px;
-        border-radius: 0 0 10px 10px; /* Slightly rounded bottom corners for mobile menu */
-        background: var(--panel); /* Ensure theme mobile menu background */
-        border-color: var(--border-color); /* Ensure theme mobile menu border */
-        box-shadow: 0 2px 5px var(--shadow-color);
-      }
-       /* Ensure container padding for very small screens */
-      .container {
-        width: 96vw; /* Slightly more padding on very small screens */
-      }
-      .filters {
-        gap: 8px; /* Reduce gap for filter chips */
-      }
-      .nav-inner {
-        padding: 10px 3vw;
-      }
-      .masonry {
-        column-count: 1; /* Single column on small mobile */
-        column-gap: 0; /* No horizontal gap for single column */
-      }
-      .masonry-item {
-        margin-bottom: 15px; /* Adjust vertical gap for single column */
-      }
-      .work-card {
-        border-radius: 15px; /* Slightly smaller border radius for mobile cards */
-      }
-      .work-caption {
-        padding: 15px; /* Adjust caption padding */
-      }
-      .hero-grid aside.card {
-        padding: 12px; /* Further reduce card padding */
-      }
-      .pill {
-        font-size: 12px; /* Smaller pills */
-        padding: 8px 14px;
-      }
-      .hero-grid aside.card .thumb {
-          border-radius: 10px; /* Adjust thumb border radius */
-      }
-      .mobile-menu a {
-        color: var(--text); /* Ensure mobile menu link text color */
-      }
-      .mobile-menu a:hover {
-        background-color: var(--accent); /* Ensure mobile menu link hover background */
-        color: var(--text); /* Ensure mobile menu link hover text color */
-        border-color: var(--brand);
-      }
-    }
+    /* Mobile menu is hidden by default and only shown by JS */
     .mobile-menu {
       display: none;
       position: absolute;
       inset-inline: 0;
-      top: 64px;
+      top: 64px; /* Ensure it's below the fixed header */
       background: var(--panel);
       padding: 15px;
       border-bottom: 2px solid var(--border-color);
@@ -1002,6 +785,10 @@
       overflow: hidden;
     }
   </style>
+
+  <!-- Link to mobile-specific CSS -->
+  <link rel="stylesheet" href="mobile-styles.css" media="screen and (max-width: 980px)">
+
 </head>
 <body id="top" class="loading">
   <!-- Additional container for complex background shapes in Theme 2 -->
@@ -1093,7 +880,7 @@
 
       <div class="grid cols-3" style="margin-top:25px">
         <article class="resume-item"><h4>Education</h4><small class="muted">2022–2025</small><p>B.Com — Sadhana College of Commerce.</p></article>
-        <article class="resume-item"><h4>Software Skills</h4><p>Illustrator, Photoshop, Premiere/After Effects, AI tools.</p></article>
+        <article class="resume-item"><h4>Software Skills</h4><p>Illustrator, Photoshop, Premiere/After Effects, AI tools.</p></p></article>
         <article class="resume-item"><h4>Personal Skills</h4><p>Adaptable • Communication • Teamwork • Learning mindset</p></article>
       </div>
     </section>
