@@ -1,0 +1,395 @@
+/*
+  Mobile-specific styles for Abhijeet Powar's Portfolio
+  This stylesheet is loaded only for screens with a maximum width of 980px,
+  ensuring an adaptive layout for tablets and mobile devices.
+*/
+
+/* General Mobile Adjustments */
+body {
+  /* Ensure theme background is applied correctly on mobile */
+  background-color: var(--bg);
+}
+
+.container {
+  /* Adjust container width for better padding on mobile */
+  width: 94vw;
+}
+
+/* Navigation Bar */
+.nav {
+  /* Ensure theme nav background, border, and shadow are applied */
+  background: var(--panel);
+  border-color: var(--border-color);
+  box-shadow: 0 2px 8px var(--shadow-color); /* Adjust shadow for mobile nav */
+  border-bottom-left-radius: 15px; /* Slightly adjust radius for mobile */
+  border-bottom-right-radius: 15px;
+  padding: 8px 0; /* Slightly more padding for touch targets */
+}
+
+/* Theme 2 specific nav adjustments */
+html[data-theme="theme-2"] .nav {
+  border-bottom-width: 1px; /* Adjust border width for theme 2 */
+  border-radius: 0 0 10px 10px; /* Theme 2 can have slightly rounded corners too */
+  box-shadow: 0 1px 5px var(--shadow-color);
+}
+
+.nav-inner {
+  /* Adjust padding for the inner navigation content */
+  padding: 10px 4vw;
+}
+
+.links {
+  /* Hide desktop navigation links on mobile */
+  display: none;
+}
+
+.nav-toggle {
+  /* Display the mobile navigation toggle button */
+  display: inline-flex;
+  color: var(--text); /* Ensure mobile toggle color matches theme */
+  font-size: 28px; /* Slightly smaller icon for mobile */
+  padding: 6px; /* Adjust padding for touch target */
+}
+
+.nav-toggle:hover {
+  /* Mobile toggle hover states */
+  background-color: var(--panel);
+  box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+/* Hero Section */
+.hero {
+  /* Adjust padding for the hero section on mobile */
+  padding: 60px 0;
+}
+
+.hero-grid {
+  /* Stack grid items vertically on mobile */
+  grid-template-columns: 1fr;
+  gap: 30px; /* Adjust gap between elements */
+}
+
+.title {
+  /* Adjust font size for the main title on mobile */
+  font-size: clamp(36px, 7vw, 56px);
+  margin: 10px 0 15px; /* Adjust margins */
+}
+
+html[data-theme="theme-2"] .title {
+  font-size: clamp(32px, 6vw, 50px);
+}
+
+.lead {
+  /* Adjust font size for lead text on mobile */
+  font-size: clamp(16px, 2.5vw, 18px);
+}
+
+.cta {
+  /* Ensure CTA buttons wrap correctly and have consistent spacing */
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.btn {
+  /* Make buttons full width and adjust padding/font size */
+  width: 100%;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 15px; /* Slightly smaller border radius */
+  box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+html[data-theme="theme-2"] .btn {
+  border-radius: var(--border-radius-sm);
+  box-shadow: 1px 1px 3px var(--shadow-color);
+}
+
+.hero-grid aside.card {
+  /* Adjust hero image card padding */
+  padding: 15px;
+  border-radius: 18px; /* Adjust card border radius */
+}
+
+html[data-theme="theme-2"] .hero-grid aside.card {
+  border-radius: var(--border-radius-lg);
+}
+
+.thumb {
+  border-radius: 12px; /* Adjust thumb border radius */
+}
+
+html[data-theme="theme-2"] .thumb {
+  border-radius: var(--border-radius-md);
+}
+
+.pill {
+  /* Adjust pill size and padding for mobile */
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+/* Resume Section */
+section {
+  /* Adjust section padding for mobile */
+  padding: 60px 0;
+}
+
+.section-title {
+  /* Adjust section title font size for mobile */
+  font-size: clamp(30px, 4.5vw, 42px);
+  color: var(--text); /* Ensure section title color */
+}
+
+html[data-theme="theme-2"] .section-title {
+  font-size: clamp(28px, 4vw, 40px);
+}
+
+.grid.cols-3,
+.grid.cols-2 {
+  /* Stack grid columns vertically on mobile */
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.resume-item {
+  /* Adjust resume item padding and border radius */
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+html[data-theme="theme-2"] .resume-item {
+  border-radius: var(--border-radius-md);
+  box-shadow: 1px 1px 3px var(--shadow-color);
+}
+
+.resume-item h4 {
+  font-size: 1.2em; /* Slightly smaller heading */
+}
+
+/* Works Section */
+.filters {
+  /* Adjust filter chip spacing for mobile */
+  gap: 8px;
+  margin: 15px 0 25px;
+  justify-content: center; /* Center align chips */
+}
+
+.chip {
+  /* Adjust chip padding and font size for mobile */
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 999px; /* Keep full rounded for chips */
+  box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+html[data-theme="theme-2"] .chip {
+  border-radius: var(--border-radius-sm);
+}
+
+.chip[aria-pressed="true"] {
+  box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+/* Masonry Layout for Works */
+.masonry {
+  /* Single column on small mobile, two columns on larger phones/small tablets */
+  column-count: 1; /* Default to 1 column for smallest screens */
+  column-gap: 15px;
+}
+
+/* Further breakpoint for tablets/larger phones (e.g., up to 768px) */
+@media (min-width: 521px) and (max-width: 980px) {
+  .masonry {
+    column-count: 2; /* 2 columns on tablets/larger phones */
+    column-gap: 20px;
+  }
+}
+
+.masonry-item {
+  margin-bottom: 20px; /* Adjust vertical spacing for items */
+}
+
+.work-card {
+  border-radius: 18px; /* Adjust border radius for work cards */
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+html[data-theme="theme-2"] .work-card {
+  border-radius: var(--border-radius-md);
+  box-shadow: 2px 2px 5px var(--shadow-color);
+}
+
+.work-caption {
+  padding: 15px; /* Adjust caption padding */
+  font-size: 15px;
+}
+
+/* Footer Section */
+footer {
+  padding: 40px 0;
+  margin-top: 60px;
+}
+
+footer .section-title {
+  font-size: clamp(24px, 3.5vw, 36px);
+  text-align: center; /* Center align footer title */
+}
+
+footer p.muted {
+  font-size: 1em;
+}
+
+footer .container > div {
+  flex-direction: column; /* Stack footer elements vertically */
+  align-items: center; /* Center align items */
+  text-align: center;
+  gap: 20px;
+}
+
+footer .btn {
+  width: auto; /* Allow footer buttons to size naturally */
+  max-width: 100%;
+}
+
+footer .card {
+  min-width: unset; /* Remove min-width constraint */
+  width: 100%; /* Make footer card full width */
+  max-width: 300px; /* Max width to prevent it from being too wide */
+  padding: 15px;
+  border-radius: 18px;
+  box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+html[data-theme="theme-2"] footer .card {
+  border-radius: var(--border-radius-lg);
+  box-shadow: 1px 1px 3px var(--shadow-color);
+}
+
+/* Mobile Menu Specific Styles (always present in mobile CSS) */
+.mobile-menu {
+  /* Mobile menu is shown by JavaScript, so these are its base styles */
+  display: none; /* Hidden by default, JS toggles 'show' class */
+  top: 64px; /* Position below fixed header */
+  padding: 15px;
+  border-bottom: 2px solid var(--border-color);
+  box-shadow: 0 5px 15px var(--shadow-color);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: var(--panel);
+}
+
+html[data-theme="theme-2"] .mobile-menu {
+  border-bottom-width: 1px;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 1px 5px var(--shadow-color);
+}
+
+.mobile-menu a {
+  padding: 12px 18px;
+  border-radius: 12px; /* Slightly smaller radius for menu items */
+  margin-bottom: 8px; /* Smaller margin between links */
+  color: var(--text);
+  border: 1px solid transparent; /* Subtle border for theme 2 */
+}
+
+html[data-theme="theme-2"] .mobile-menu a {
+  border-radius: var(--border-radius-sm);
+}
+
+.mobile-menu a:hover {
+  background-color: var(--accent);
+  color: var(--text);
+  border-color: var(--brand);
+}
+
+/* Pen tool and background shapes adjustments for mobile */
+html[data-theme="theme-1"] body::before {
+  top: 5vh;
+  left: 5vw;
+  width: 60px;
+  height: 60px;
+}
+html[data-theme="theme-1"] body::after {
+  /* Hide the larger shapes for better performance/less clutter on mobile, or scale them down */
+  opacity: 0.1; /* Make it very subtle */
+  transform: scale(0.6) rotate(5deg);
+}
+
+html[data-theme="theme-2"] body::before { /* Adjust theme 2 pen tool for mobile */
+  top: 5%;
+  left: 3%;
+  width: 70px;
+  height: 70px;
+}
+html[data-theme="theme-2"] body::after { /* Adjust theme 2 color palette for mobile */
+  bottom: 5%;
+  right: 3%;
+  width: 90px;
+  height: 90px;
+}
+.bg-doodle-shapes {
+  /* Adjust additional background shapes for Theme 2 mobile */
+  opacity: var(--theme-2-bg-opacity, 0); /* Keep it very subtle or off */
+  transform: scale(0.5) rotate(5deg);
+}
+
+/* Further adjustments for very small screens (e.g., less than 520px) */
+@media (max-width: 520px) {
+  .hero {
+    padding: 40px 0;
+  }
+  .title {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+  .section-title {
+    font-size: 28px;
+  }
+  .chip {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  .mobile-menu {
+    top: 60px; /* Adjust if header height changes on smaller screens */
+    padding: 10px;
+  }
+  .mobile-menu a {
+    padding: 10px 15px;
+    margin-bottom: 6px;
+  }
+  .container {
+    width: 96vw; /* Slightly more padding on very small screens */
+  }
+  .filters {
+    gap: 6px; /* Even smaller gap for filter chips */
+  }
+  .nav-inner {
+    padding: 8px 3vw;
+  }
+  .masonry {
+    column-count: 1; /* Ensure single column on smallest screens */
+    column-gap: 0;
+  }
+  .masonry-item {
+    margin-bottom: 15px;
+  }
+  .work-card {
+    border-radius: 15px;
+  }
+  .work-caption {
+    padding: 12px;
+    font-size: 14px;
+  }
+  .hero-grid aside.card {
+    padding: 12px;
+  }
+  .pill {
+    font-size: 11px;
+    padding: 7px 12px;
+  }
+  .hero-grid aside.card .thumb {
+      border-radius: 10px;
+  }
+}
