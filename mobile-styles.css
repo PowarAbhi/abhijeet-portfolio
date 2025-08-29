@@ -1,102 +1,169 @@
 /*
-  Mobile-specific styles for Abhijeet Powar's Portfolio
-  This stylesheet is loaded only for screens with a maximum width of 980px,
-  ensuring an adaptive layout for tablets and mobile devices.
+  Mobile-specific styles for Abhijeet Powar's Portfolio - Version 2
+  This stylesheet is loaded only for screens with a maximum width of 980px.
+  Adjustments made for closer adherence to the provided mobile layout reference.
 */
 
 /* General Mobile Adjustments */
 body {
-  /* Ensure theme background is applied correctly on mobile */
   background-color: var(--bg);
+  /* Ensure background doodles are adjusted for mobile views */
+  html[data-theme="theme-1"] body::before { /* Pen tool */
+    top: 5vh;
+    left: 5vw;
+    width: 60px;
+    height: 60px;
+    opacity: 0.5; /* Slightly more visible than hidden */
+    transform: rotate(-30deg) scale(0.8);
+  }
+  html[data-theme="theme-1"] body::after { /* Shapes */
+    opacity: 0.1; /* Make it very subtle */
+    transform: scale(0.6) rotate(5deg);
+  }
+
+  html[data-theme="theme-2"] body::before { /* Adjust theme 2 pen tool for mobile */
+    top: 5%;
+    left: 3%;
+    width: 70px;
+    height: 70px;
+    opacity: var(--theme-2-bg-opacity, 0.4); /* Subtle for theme 2 */
+  }
+  html[data-theme="theme-2"] body::after { /* Adjust theme 2 color palette for mobile */
+    bottom: 5%;
+    right: 3%;
+    width: 90px;
+    height: 90px;
+    opacity: var(--theme-2-bg-opacity, 0.4); /* Subtle for theme 2 */
+  }
+  .bg-doodle-shapes {
+    opacity: var(--theme-2-bg-opacity, 0); /* Keep it very subtle or off */
+    transform: scale(0.5) rotate(5deg);
+  }
 }
 
 .container {
-  /* Adjust container width for better padding on mobile */
-  width: 94vw;
+  width: 92vw; /* A bit more constrained for a tighter mobile feel */
 }
 
-/* Navigation Bar */
+/* Navigation Bar - Refined to match mobile reference */
 .nav {
-  /* Ensure theme nav background, border, and shadow are applied */
   background: var(--panel);
   border-color: var(--border-color);
-  box-shadow: 0 2px 8px var(--shadow-color); /* Adjust shadow for mobile nav */
-  border-bottom-left-radius: 15px; /* Slightly adjust radius for mobile */
-  border-bottom-right-radius: 15px;
-  padding: 8px 0; /* Slightly more padding for touch targets */
+  box-shadow: 0 1px 5px var(--shadow-color); /* Lighter shadow for mobile */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 5px 0; /* More compact overall nav padding */
 }
 
-/* Theme 2 specific nav adjustments */
 html[data-theme="theme-2"] .nav {
-  border-bottom-width: 1px; /* Adjust border width for theme 2 */
-  border-radius: 0 0 10px 10px; /* Theme 2 can have slightly rounded corners too */
-  box-shadow: 0 1px 5px var(--shadow-color);
-}
-
-.nav-inner {
-  /* Adjust padding for the inner navigation content */
-  padding: 10px 4vw;
-}
-
-.links {
-  /* Hide desktop navigation links on mobile */
-  display: none;
-}
-
-.nav-toggle {
-  /* Display the mobile navigation toggle button */
-  display: inline-flex;
-  color: var(--text); /* Ensure mobile toggle color matches theme */
-  font-size: 28px; /* Slightly smaller icon for mobile */
-  padding: 6px; /* Adjust padding for touch target */
-}
-
-.nav-toggle:hover {
-  /* Mobile toggle hover states */
-  background-color: var(--panel);
+  border-bottom-width: 1px;
+  border-radius: 0 0 8px 8px; /* Theme 2 can have slightly rounded corners too */
   box-shadow: 0 1px 3px var(--shadow-color);
 }
 
-/* Hero Section */
+.nav-inner {
+  padding: 8px 3vw; /* Reduced padding */
+  gap: 10px; /* Reduced gap */
+}
+
+.brand {
+  font-size: 1.2em; /* Smaller brand text */
+  gap: 8px; /* Reduced gap */
+}
+
+.brand span[style="font-weight:800"] {
+  display: none; /* Hide "Abhijeet Powar" text on mobile as per reference */
+}
+
+.badge {
+  width: 38px; /* Smaller badge */
+  height: 38px;
+  border-radius: 10px; /* Slightly smaller radius */
+  border-width: 1px; /* Thinner border */
+  font-size: 0.9em;
+  box-shadow: 0 1px 3px var(--shadow-color); /* Lighter shadow */
+}
+
+html[data-theme="theme-2"] .badge {
+    border-width: 1px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 1px 2px var(--shadow-color);
+}
+
+.links {
+  display: none; /* Keep desktop navigation links hidden */
+}
+
+.nav-toggle {
+  display: inline-flex; /* Show hamburger icon */
+  font-size: 24px; /* Adjust size to fit new nav height */
+  padding: 4px;
+}
+
+/* Mobile Menu Specific Styles */
+.mobile-menu {
+  top: 55px; /* Adjust top position to sit right below the compacted nav */
+  padding: 10px;
+  border-bottom-width: 1px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+html[data-theme="theme-2"] .mobile-menu {
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 1px 4px var(--shadow-color);
+}
+
+.mobile-menu a {
+  padding: 10px 15px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  font-weight: 500; /* Slightly less bold */
+}
+
+/* Hero Section - Refined to match mobile reference */
 .hero {
-  /* Adjust padding for the hero section on mobile */
-  padding: 60px 0;
+  padding: 40px 0; /* Reduced overall padding for hero */
 }
 
 .hero-grid {
-  /* Stack grid items vertically on mobile */
-  grid-template-columns: 1fr;
-  gap: 30px; /* Adjust gap between elements */
+  grid-template-columns: 1fr; /* Single column */
+  gap: 25px; /* Reduced gap */
+}
+
+.kicker {
+  font-size: 13px; /* Smaller kicker */
+  letter-spacing: .25em; /* Adjusted letter spacing */
 }
 
 .title {
-  /* Adjust font size for the main title on mobile */
-  font-size: clamp(36px, 7vw, 56px);
-  margin: 10px 0 15px; /* Adjust margins */
+  font-size: clamp(28px, 6.5vw, 42px); /* More aggressive font size scaling for title */
+  margin: 10px 0 15px; /* Adjusted margins */
+  line-height: 1.2;
 }
 
 html[data-theme="theme-2"] .title {
-  font-size: clamp(32px, 6vw, 50px);
+  font-size: clamp(26px, 6vw, 38px);
 }
 
 .lead {
-  /* Adjust font size for lead text on mobile */
-  font-size: clamp(16px, 2.5vw, 18px);
+  font-size: clamp(15px, 2.2vw, 17px); /* Smaller lead text */
+  line-height: 1.6;
 }
 
 .cta {
-  /* Ensure CTA buttons wrap correctly and have consistent spacing */
   flex-direction: column; /* Stack buttons vertically */
-  gap: 15px;
-  margin-top: 25px;
+  gap: 12px; /* Reduced gap between buttons */
+  margin-top: 20px; /* Reduced margin top */
 }
 
 .btn {
-  /* Make buttons full width and adjust padding/font size */
-  width: 100%;
-  padding: 12px 24px;
-  font-size: 16px;
-  border-radius: 15px; /* Slightly smaller border radius */
+  width: 100%; /* Full width buttons */
+  padding: 10px 20px; /* Adjusted padding */
+  font-size: 15px;
+  border-radius: 12px; /* Smaller border radius */
+  border-width: 1px; /* Thinner border */
   box-shadow: 0 2px 5px var(--shadow-color);
 }
 
@@ -106,57 +173,75 @@ html[data-theme="theme-2"] .btn {
 }
 
 .hero-grid aside.card {
-  /* Adjust hero image card padding */
   padding: 15px;
-  border-radius: 18px; /* Adjust card border radius */
+  border-radius: 15px; /* Slightly smaller card radius */
+  border-width: 1px; /* Thinner border */
+  box-shadow: 0 4px 10px var(--shadow-color); /* Adjusted shadow */
 }
 
 html[data-theme="theme-2"] .hero-grid aside.card {
   border-radius: var(--border-radius-lg);
+  box-shadow: 2px 2px 6px var(--shadow-color);
 }
 
 .thumb {
-  border-radius: 12px; /* Adjust thumb border radius */
+  border-radius: 10px; /* Smaller thumb border radius */
+  border-width: 1px; /* Thinner border */
 }
 
 html[data-theme="theme-2"] .thumb {
   border-radius: var(--border-radius-md);
 }
 
-.pill {
-  /* Adjust pill size and padding for mobile */
-  padding: 8px 14px;
-  font-size: 13px;
+.hero-grid aside.card > div { /* This targets the div containing pills */
+  margin-top: 15px !important; /* Adjust margin for pills below image */
+  justify-content: center; /* Center align pills */
+  gap: 8px; /* Reduced gap between pills */
 }
+
+.pill {
+  padding: 7px 12px; /* Adjusted pill padding */
+  font-size: 12px; /* Smaller pill font size */
+  border-width: 1px; /* Thinner border */
+  box-shadow: none; /* No shadow for pills on mobile */
+}
+
+html[data-theme="theme-2"] .pill {
+  box-shadow: none;
+}
+
+p.muted[style="margin-top:18px"] {
+    margin-top: 15px !important; /* Adjust margin for the location text */
+    font-size: 0.9em;
+}
+
 
 /* Resume Section */
 section {
-  /* Adjust section padding for mobile */
-  padding: 60px 0;
+  padding: 50px 0; /* Reduced section padding */
 }
 
 .section-title {
-  /* Adjust section title font size for mobile */
-  font-size: clamp(30px, 4.5vw, 42px);
-  color: var(--text); /* Ensure section title color */
+  font-size: clamp(26px, 4vw, 36px); /* Adjusted section title font size */
+  margin-bottom: 12px; /* Reduced margin */
 }
 
 html[data-theme="theme-2"] .section-title {
-  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(24px, 3.8vw, 34px);
 }
 
 .grid.cols-3,
 .grid.cols-2 {
-  /* Stack grid columns vertically on mobile */
-  grid-template-columns: 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr; /* Ensure single column stacking */
+  gap: 18px; /* Reduced gap between resume items */
+  margin-top: 25px !important; /* Adjust margin for resume grid */
 }
 
 .resume-item {
-  /* Adjust resume item padding and border radius */
-  padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 2px 5px var(--shadow-color);
+  padding: 18px; /* Reduced padding */
+  border-radius: 15px; /* Smaller border radius */
+  border-width: 1px; /* Thinner border */
+  box-shadow: 0 1px 4px var(--shadow-color); /* Lighter shadow */
 }
 
 html[data-theme="theme-2"] .resume-item {
@@ -165,23 +250,30 @@ html[data-theme="theme-2"] .resume-item {
 }
 
 .resume-item h4 {
-  font-size: 1.2em; /* Slightly smaller heading */
+  font-size: 1.1em; /* Adjusted heading size */
+  margin-bottom: 8px;
+}
+.resume-item small {
+  font-size: 0.85em; /* Adjusted small text size */
+}
+.resume-item p {
+  font-size: 0.95em; /* Adjusted paragraph text size */
 }
 
 /* Works Section */
 .filters {
-  /* Adjust filter chip spacing for mobile */
-  gap: 8px;
-  margin: 15px 0 25px;
-  justify-content: center; /* Center align chips */
+  gap: 8px; /* Reduced gap */
+  margin: 15px 0 20px; /* Adjusted margins */
+  justify-content: center; /* Center align chips as in reference */
+  /* Allow chips to wrap naturally in rows */
 }
 
 .chip {
-  /* Adjust chip padding and font size for mobile */
-  padding: 10px 16px;
+  padding: 9px 15px; /* Adjusted padding */
   font-size: 14px;
-  border-radius: 999px; /* Keep full rounded for chips */
+  border-width: 1px; /* Thinner border */
   box-shadow: 0 1px 3px var(--shadow-color);
+  border-radius: 999px; /* Keep fully rounded for chips */
 }
 
 html[data-theme="theme-2"] .chip {
@@ -192,73 +284,76 @@ html[data-theme="theme-2"] .chip {
   box-shadow: 0 1px 3px var(--shadow-color);
 }
 
-/* Masonry Layout for Works */
+/* Masonry Layout for Works - Refined to match reference */
 .masonry {
-  /* Single column on small mobile, two columns on larger phones/small tablets */
   column-count: 1; /* Default to 1 column for smallest screens */
   column-gap: 15px;
+  margin-top: 20px !important; /* Reduced margin top */
 }
 
-/* Further breakpoint for tablets/larger phones (e.g., up to 768px) */
-@media (min-width: 521px) and (max-width: 980px) {
+/* For wider mobile screens / small tablets, apply 2 columns */
+@media (min-width: 480px) and (max-width: 980px) {
   .masonry {
-    column-count: 2; /* 2 columns on tablets/larger phones */
-    column-gap: 20px;
+    column-count: 2;
+    column-gap: 18px;
   }
 }
 
 .masonry-item {
-  margin-bottom: 20px; /* Adjust vertical spacing for items */
+  margin-bottom: 18px; /* Reduced vertical spacing */
 }
 
 .work-card {
-  border-radius: 18px; /* Adjust border radius for work cards */
-  box-shadow: 0 4px 10px var(--shadow-color);
+  border-radius: 15px; /* Smaller border radius for work cards */
+  border-width: 1px; /* Thinner border */
+  box-shadow: 0 3px 8px var(--shadow-color); /* Lighter shadow */
 }
 
 html[data-theme="theme-2"] .work-card {
   border-radius: var(--border-radius-md);
-  box-shadow: 2px 2px 5px var(--shadow-color);
+  box-shadow: 1px 1px 4px var(--shadow-color);
 }
 
 .work-caption {
-  padding: 15px; /* Adjust caption padding */
-  font-size: 15px;
+  padding: 12px; /* Reduced padding */
+  font-size: 14px;
 }
 
 /* Footer Section */
 footer {
-  padding: 40px 0;
-  margin-top: 60px;
-}
-
-footer .section-title {
-  font-size: clamp(24px, 3.5vw, 36px);
-  text-align: center; /* Center align footer title */
-}
-
-footer p.muted {
-  font-size: 1em;
+  padding: 30px 0; /* Reduced footer padding */
+  margin-top: 50px; /* Reduced margin top */
 }
 
 footer .container > div {
   flex-direction: column; /* Stack footer elements vertically */
   align-items: center; /* Center align items */
   text-align: center;
-  gap: 20px;
+  gap: 15px; /* Reduced gap */
+}
+
+footer .section-title {
+  font-size: clamp(22px, 3vw, 32px); /* Smaller footer title */
+  margin-bottom: 8px !important;
+}
+
+footer p.muted {
+  font-size: 0.9em;
+  margin-top: 0; /* Remove extra margin */
 }
 
 footer .btn {
   width: auto; /* Allow footer buttons to size naturally */
-  max-width: 100%;
+  max-width: 250px; /* Constraint for larger phones */
 }
 
 footer .card {
-  min-width: unset; /* Remove min-width constraint */
-  width: 100%; /* Make footer card full width */
-  max-width: 300px; /* Max width to prevent it from being too wide */
+  min-width: unset;
+  width: 90%; /* Make footer card a percentage width */
+  max-width: 300px;
   padding: 15px;
-  border-radius: 18px;
+  border-radius: 15px;
+  border-width: 1px;
   box-shadow: 0 2px 5px var(--shadow-color);
 }
 
@@ -267,129 +362,75 @@ html[data-theme="theme-2"] footer .card {
   box-shadow: 1px 1px 3px var(--shadow-color);
 }
 
-/* Mobile Menu Specific Styles (always present in mobile CSS) */
-.mobile-menu {
-  /* Mobile menu is shown by JavaScript, so these are its base styles */
-  display: none; /* Hidden by default, JS toggles 'show' class */
-  top: 64px; /* Position below fixed header */
-  padding: 15px;
-  border-bottom: 2px solid var(--border-color);
-  box-shadow: 0 5px 15px var(--shadow-color);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background: var(--panel);
+footer p.muted[style="margin-top:25px;"] {
+  margin-top: 20px !important; /* Adjust copyright margin */
+  font-size: 0.85em;
 }
 
-html[data-theme="theme-2"] .mobile-menu {
-  border-bottom-width: 1px;
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 1px 5px var(--shadow-color);
-}
-
-.mobile-menu a {
-  padding: 12px 18px;
-  border-radius: 12px; /* Slightly smaller radius for menu items */
-  margin-bottom: 8px; /* Smaller margin between links */
-  color: var(--text);
-  border: 1px solid transparent; /* Subtle border for theme 2 */
-}
-
-html[data-theme="theme-2"] .mobile-menu a {
-  border-radius: var(--border-radius-sm);
-}
-
-.mobile-menu a:hover {
-  background-color: var(--accent);
-  color: var(--text);
-  border-color: var(--brand);
-}
-
-/* Pen tool and background shapes adjustments for mobile */
-html[data-theme="theme-1"] body::before {
-  top: 5vh;
-  left: 5vw;
-  width: 60px;
-  height: 60px;
-}
-html[data-theme="theme-1"] body::after {
-  /* Hide the larger shapes for better performance/less clutter on mobile, or scale them down */
-  opacity: 0.1; /* Make it very subtle */
-  transform: scale(0.6) rotate(5deg);
-}
-
-html[data-theme="theme-2"] body::before { /* Adjust theme 2 pen tool for mobile */
-  top: 5%;
-  left: 3%;
-  width: 70px;
-  height: 70px;
-}
-html[data-theme="theme-2"] body::after { /* Adjust theme 2 color palette for mobile */
-  bottom: 5%;
-  right: 3%;
-  width: 90px;
-  height: 90px;
-}
-.bg-doodle-shapes {
-  /* Adjust additional background shapes for Theme 2 mobile */
-  opacity: var(--theme-2-bg-opacity, 0); /* Keep it very subtle or off */
-  transform: scale(0.5) rotate(5deg);
-}
-
-/* Further adjustments for very small screens (e.g., less than 520px) */
-@media (max-width: 520px) {
-  .hero {
-    padding: 40px 0;
-  }
-  .title {
-    font-size: 32px;
-    margin-bottom: 15px;
-  }
-  .section-title {
-    font-size: 28px;
-  }
-  .chip {
-    padding: 8px 14px;
-    font-size: 13px;
-  }
-  .mobile-menu {
-    top: 60px; /* Adjust if header height changes on smaller screens */
-    padding: 10px;
-  }
-  .mobile-menu a {
-    padding: 10px 15px;
-    margin-bottom: 6px;
-  }
+/* Adjustments for very small screens (e.g., less than 380px) */
+@media (max-width: 380px) {
   .container {
-    width: 96vw; /* Slightly more padding on very small screens */
-  }
-  .filters {
-    gap: 6px; /* Even smaller gap for filter chips */
+    width: 95vw;
   }
   .nav-inner {
-    padding: 8px 3vw;
+    padding: 6px 2vw;
   }
-  .masonry {
-    column-count: 1; /* Ensure single column on smallest screens */
-    column-gap: 0;
+  .badge {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
   }
-  .masonry-item {
-    margin-bottom: 15px;
+  .nav-toggle {
+    font-size: 22px;
   }
-  .work-card {
-    border-radius: 15px;
+  .mobile-menu {
+    top: 50px; /* Adjust if nav height is even smaller */
   }
-  .work-caption {
-    padding: 12px;
+  .title {
+    font-size: clamp(24px, 6vw, 38px);
+  }
+  .lead {
+    font-size: clamp(14px, 2.5vw, 16px);
+  }
+  .btn {
+    padding: 8px 15px;
     font-size: 14px;
+    border-radius: 10px;
   }
   .hero-grid aside.card {
     padding: 12px;
+    border-radius: 12px;
   }
   .pill {
+    padding: 6px 10px;
     font-size: 11px;
-    padding: 7px 12px;
   }
-  .hero-grid aside.card .thumb {
-      border-radius: 10px;
+  .section-title {
+    font-size: clamp(22px, 4.5vw, 32px);
+  }
+  .resume-item {
+    padding: 15px;
+    border-radius: 12px;
+  }
+  .resume-item h4 {
+    font-size: 1em;
+  }
+  .chip {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+  .work-card {
+    border-radius: 12px;
+  }
+  .work-caption {
+    padding: 10px;
+    font-size: 13px;
+  }
+  footer .btn {
+    max-width: 200px;
+  }
+  footer .card {
+    padding: 12px;
+    border-radius: 12px;
   }
 }
