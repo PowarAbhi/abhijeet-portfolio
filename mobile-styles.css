@@ -1,466 +1,201 @@
-`responsive-portfolio.css`
-```css
-/* Root and base styles */
-:root {
-  --color-bg: #faf3f0;
-  --color-highlight: #e0e327; /* Bright yellowish */
-  --color-accent: #39b6e8; /* Blue for tags */
-  --color-text: #000000;
-  --color-button-text: #000000;
-  --border-radius: 12px;
-  --border-radius-small: 8px;
-  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --font-mono: 'Courier New', Courier, monospace;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-family);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-}
-
-/* Container */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px 25px;
-}
-
-/* Header bar - mobile style */
-header {
-  box-sizing: border-box;
-  width: 100%;
-  background: var(--color-bg);
-  border-bottom: 1px solid #000;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-}
-
-.logo {
-  width: 45px;
-  height: 45px;
-  background-color: var(--color-highlight);
-  border-radius: var(--border-radius-small);
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  cursor: pointer;
-}
-
-.menu-button {
-  width: 35px;
-  height: 25px;
-  border: 1px solid #111;
-  border-radius: 5px;
-  background: var(--color-bg);
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  padding: 5px;
-}
-
-.menu-button span {
-  display: block;
-  width: 20px;
-  height: 2.7px;
-  background-color: #111;
-  border-radius: 2px;
-  transition: 0.3s ease;
-}
-
-/* Main hero area - mobile style */
-.hero {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  gap: 15px;
-}
-
-.hero-title-small {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 1.5px;
-  text-transform: lowercase;
-}
-
-.hero-title {
-  font-weight: 900;
-  font-size: 2.3rem;
-  line-height: 1.1;
-  max-width: 280px;
-}
-
-.hero-description {
-  max-width: 280px;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.25;
-  letter-spacing: 0.05rem;
-  margin-top: 5px;
-}
-
-.skills-section {
-  border: 1px solid #000;
-  border-radius: var(--border-radius);
-  max-width: 280px;
-  height: 142px;
-  padding: 10px 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  margin-top: 10px;
-  gap: 8px;
-}
-
-.skills-tags {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.skills-tags button {
-  background-color: var(--color-accent);
-  border: none;
-  color: #000;
-  padding: 4px 10px;
-  border-radius: 15px;
-  cursor: default;
-  font-size: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-  user-select: none;
-}
-
-/* Buttons group below hero */
-.hero-buttons {
-  margin-top: 25px;
-  display: flex;
-  gap: 24px;
-  max-width: 280px;
-}
-
-.btn-resume {
-  background-color: var(--color-highlight);
-  color: var(--color-button-text);
-  border: none;
-  padding: 11px 28px;
-  border-radius: var(--border-radius-small);
-  font-weight: 900;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease;
-}
-
-.btn-resume:hover {
-  background-color: #c6c624;
-}
-
-.btn-works {
-  background-color: transparent;
-  border: 2px solid #000;
-  padding: 11px 28px;
-  border-radius: var(--border-radius-small);
-  font-weight: 900;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.btn-works:hover {
-  background-color: var(--color-highlight);
-  color: var(--color-button-text);
-}
-
-/* Sections with titles */
-section {
-  margin-top: 50px;
-}
-
-/* Section Titles */
-section > h2 {
-  margin-bottom: 20px;
-  font-weight: 900;
-  font-size: 22px;
-  text-align: center;
-  user-select: none;
-}
-
-/* Resume Blocks Container */
-.resume-blocks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-/* Individual Resume Item */
-.resume-item {
-  border: 1px solid #000;
-  border-radius: var(--border-radius);
-  padding: 15px 20px;
-  background: var(--color-bg);
-  width: 280px;
-  box-sizing: border-box;
-  font-weight: 600;
-  font-size: 1rem;
-  user-select: none;
-  flex-shrink: 0;
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
-}
-
-/* Smaller resume cards in group */
-.resume-subgroup {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 12px;
-}
-
-.resume-subitem {
-  border: 1px solid #000;
-  border-radius: var(--border-radius);
-  padding: 12px 14px;
-  background: var(--color-bg);
-  width: 135px;
-  box-sizing: border-box;
-  font-weight: 500;
-  font-size: 13px;
-  user-select: none;
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
-}
-
-/* Works filter buttons row */
-.works-filters {
-  margin-top: 40px;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  background-color: var(--color-highlight);
-  border-radius: var(--border-radius-small);
-  font-weight: 700;
-  border: none;
-  padding: 8px 18px;
-  cursor: pointer;
-  user-select: none;
-  box-shadow: 0 1px 7px rgba(0,0,0,0.12);
-  transition: background-color 0.3s ease;
-  font-size: 14px;
-}
-
-.filter-btn:hover {
-  background-color: #c6c624;
-}
-
-/* Works gallery grid - mobile style single column */
-.works-gallery {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Each work item as outlined boxes with rounded corners and inset shadow */
-.work-item {
-  border: 1px solid #000;
-  border-radius: var(--border-radius);
-  padding: 15px;
-  background: var(--color-bg);
-  height: 140px;
-  box-sizing: border-box;
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-  user-select: none;
-}
-
-/* Connect Section */
-.connect-section {
-  margin-top: 50px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 14px;
-  user-select: none;
-  padding-bottom: 40px;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Responsive desktop styles */
-@media screen and (min-width: 1024px) {
-  /* Container wider for desktop */
-  .container {
-    max-width: 1200px;
-    padding: 30px 40px;
+/* Mobile Styles */
+@media only screen and (max-width: 600px) {
+  
+  /* General container padding */
+  body {
+    padding: 10px;
+    background-color: #faf0f0; /* slightly pinkish background similar to ref */
   }
 
-  /* Header: horizontal spacing */
+  /* Header */
   header {
-    padding: 20px 40px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
   }
+  
   .logo {
-    width: 65px;
-    height: 65px;
-    border-radius: var(--border-radius);
+    width: 40px;
+    height: 40px;
+    background-color: #ede93d;
+    border-radius: 6px;
   }
-  .menu-button {
-    width: 45px;
-    height: 35px;
-    gap: 7px;
-    padding: 8px;
-  }
-  .menu-button span {
-    width: 30px;
-    height: 3.5px;
-  }
-
-  /* Hero area: side by side layout */
-  .hero {
-    display: grid;
-    grid-template-columns: 460px 480px;
-    gap: 40px;
-    margin-top: 50px;
-  }
-
-  .hero-title-small {
-    font-size: 14px;
-  }
-  .hero-title {
-    font-size: 3.8rem;
-    max-width: 460px;
-    line-height: 1.05;
-  }
-  .hero-description {
-    font-size: 17px;
-    max-width: 460px;
-  }
-
-  /* Skills section fixed size */
-  .skills-section {
-    max-width: 480px;
-    height: 200px;
-    padding: 18px 22px;
-    justify-content: flex-end;
-  }
-  .skills-tags {
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .skills-tags button {
-    font-size: 14px;
-    padding: 6px 18px;
-  }
-
-  /* Buttons aligned horizontally */
-  .hero-buttons {
-    margin-top: 30px;
-    gap: 32px;
-    max-width: 460px;
-  }
-  .btn-resume, .btn-works {
+  
+  .menu-icon {
     font-size: 20px;
-    padding: 14px 40px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
   }
 
-  /* Resume section */
-  section#resume > h2 {
+  /* Title Section */
+  .portfolio-text {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    margin: 10px 0;
+  }
+  
+  .title {
     font-size: 28px;
-    text-align: left;
-    margin-left: 5px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  /* Skill box container */
+  .skill-box {
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill {
+    background-color: #3ab5ff;
+    color: black;
+    border-radius: 15px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* Buttons */
+  .btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 0;
+    margin: 10px 0;
+    font-weight: 700;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .btn-resume {
+    background-color: #d2db20;
+    border: none;
+    color: black;
+  }
+
+  .btn-works {
+    background-color: transparent;
+    border: 1.5px solid black;
+    color: black;
+  }
+
+  /* Resume Section */
+  .resume-section {
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .resume-title {
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .resume-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 10px;
+  }
+
+  .resume-card {
+    border: 1.5px solid black;
+    border-radius: 15px;
+    padding: 15px;
+    background: white;
+    font-size: 14px;
+  }
+
+  /* Works Section */
+  .works-section {
+    margin-top: 30px;
+  }
+
+  .works-title {
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .filter-button {
+    background-color: #d2db20;
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
     user-select: none;
   }
-  .resume-blocks {
+
+  .works-gallery {
     display: flex;
-    gap: 24px;
-    max-width: 1000px;
-    margin-top: 30px;
+    flex-direction: column;
+    gap: 20px;
   }
-  .resume-item {
-    width: 450px;
-    font-size: 16px;
-    padding: 18px 24px;
+
+  .work-item {
+    border: 1.5px solid black;
+    border-radius: 15px;
+    height: 150px; /* adjust as needed */
+    background: white;
   }
-  .resume-subgroup {
-    gap: 24px;
-    margin-top: 10px;
+
+  /* Contact Section */
+  .contact-section {
+    margin-top: 40px;
+    text-align: center;
+    font-weight: 700;
   }
-  .resume-subitem {
-    width: 210px;
+
+  .contact-text {
+    margin: 10px 15px;
     font-size: 14px;
   }
 
-  /* Works section */
-  section#works > h2 {
-    font-size: 28px;
-    text-align: left;
-    margin-left: 5px;
-  }
-  .works-filters {
-    justify-content: flex-start;
-    gap: 18px;
-    margin-top: 36px;
-  }
-  .filter-btn {
-    font-size: 16px;
-    padding: 12px 24px;
-  }
-  .works-gallery {
-    margin-top: 38px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 240px);
-    gap: 24px;
-    max-width: 1000px;
-  }
-  /* Layout the boxes by grid areas for the works as in the image */
-  .work-item:nth-child(1) {
-    grid-row: 1 / 3;
-    grid-column: 1 / 2;
-    height: 480px;
-  }
-  .work-item:nth-child(2) {
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
-  }
-  .work-item:nth-child(3) {
-    grid-row: 2 / 3;
-    grid-column: 2 / 3;
-  }
-  .work-item:nth-child(4) {
-    grid-row: 1 / 2;
-    grid-column: 3 / 4;
-  }
-  .work-item:nth-child(5) {
-    grid-row: 3 / 4;
-    grid-column: 1 / 2;
-  }
-  .work-item:nth-child(6) {
-    grid-row: 2 / 4;
-    grid-column: 3 / 4;
-    height: 480px;
-  }
-  .work-item {
-    height: 240px;
+  .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 20px;
+    margin-top: 20px;
   }
 
-  /* Connect section */
-  .connect-section {
+  .contact-btn {
+    padding: 12px 0;
+    font-weight: 700;
+    border-radius: 15px;
+    background-color: #d2db20;
+    border: none;
+    cursor: pointer;
     font-size: 16px;
-    max-width: 900px;
-    margin-top: 80px;
   }
 }
-
-```
