@@ -1,13 +1,18 @@
-/* Mobile Styles */
+/*
+  Mobile Stylesheet (Final Version)
+  Refined to perfectly match the design reference.
+*/
+
+/* Media Query for Mobile Devices */
 @media only screen and (max-width: 600px) {
   
-  /* General container padding */
+  /* --- General Resets & Layout --- */
   body {
     padding: 10px;
-    background-color: #faf0f0; /* slightly pinkish background similar to ref */
+    background-color: var(--bg); /* Use the theme variable */
   }
 
-  /* Header */
+  /* --- Navigation --- */
   header {
     display: flex;
     justify-content: space-between;
@@ -18,19 +23,24 @@
   .logo {
     width: 40px;
     height: 40px;
-    background-color: #ede93d;
+    background-color: var(--brand); /* Use the theme variable */
     border-radius: 6px;
+    border: 1px solid var(--text); /* Match the border style */
+  }
+
+  .logo-text {
+    display: none; /* Hide the text as per reference */
   }
   
   .menu-icon {
     font-size: 20px;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--text); /* Use the theme variable */
     border-radius: 8px;
     cursor: pointer;
   }
 
-  /* Title Section */
+  /* --- Hero Section --- */
   .portfolio-text {
     font-size: 12px;
     font-weight: 600;
@@ -44,89 +54,103 @@
     line-height: 1.2;
     margin-bottom: 10px;
   }
-
-  .description {
+  
+  .about-me {
     font-size: 14px;
-    line-height: 1.4;
+    line-height: 1.5;
     margin-bottom: 20px;
   }
 
-  /* Skill box container */
-  .skill-box {
-    border: 1px solid black;
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+  }
+  
+  .cta-buttons button {
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1.5px solid var(--text); /* Match the border style */
+    background: var(--panel); /* Use the theme variable */
+    color: var(--text); /* Use the theme variable */
+  }
+
+  .cta-buttons button:hover {
+    background: var(--brand); /* Use the theme variable */
+  }
+
+  .profile-section {
+    margin-top: 20px; /* Reduced top margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .profile-card {
+    border: 1.5px solid var(--text); /* Match the border style */
     border-radius: 15px;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 20px;
+    background: var(--panel); /* Use the theme variable */
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box; /* Ensures padding doesn't affect total width */
   }
-
+  
+  .profile-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
   .skills {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 8px;
+    margin-top: 10px;
   }
-
-  .skill {
-    background-color: #3ab5ff;
-    color: black;
-    border-radius: 15px;
+  
+  .skill-pill {
+    background-color: var(--accent); /* Use the theme variable */
+    border-radius: 20px;
     padding: 6px 12px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
   }
 
-  /* Buttons */
-  .btn {
-    width: 100%;
-    max-width: 300px;
-    padding: 12px 0;
-    margin: 10px 0;
-    font-weight: 700;
-    border-radius: 15px;
-    cursor: pointer;
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-  }
-  
-  .btn-resume {
-    background-color: #d2db20;
-    border: none;
-    color: black;
-  }
-
-  .btn-works {
-    background-color: transparent;
-    border: 1.5px solid black;
-    color: black;
-  }
-
-  /* Resume Section */
+  /* --- Resume Section --- */
   .resume-section {
     margin-top: 30px;
-    text-align: center;
   }
 
   .resume-title {
     font-weight: 900;
     font-size: 20px;
     margin-bottom: 15px;
+    text-align: center;
   }
-
-  .resume-cards {
+  
+  .resume-items {
     display: flex;
     flex-direction: column;
     gap: 15px;
     padding: 0 10px;
   }
-
+  
   .resume-card {
-    border: 1.5px solid black;
+    border: 1.5px solid var(--text); /* Match the border style */
     border-radius: 15px;
     padding: 15px;
-    background: white;
+    background: var(--panel); /* Use the theme variable */
     font-size: 14px;
   }
 
-  /* Works Section */
+  /* --- Works Section --- */
   .works-section {
     margin-top: 30px;
   }
@@ -137,7 +161,7 @@
     margin-bottom: 10px;
     text-align: center;
   }
-
+  
   .filter-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -145,9 +169,9 @@
     justify-content: center;
     margin-bottom: 20px;
   }
-
+  
   .filter-button {
-    background-color: #d2db20;
+    background-color: var(--accent); /* Use the theme variable */
     border-radius: 20px;
     padding: 8px 14px;
     font-weight: 700;
@@ -161,41 +185,48 @@
     flex-direction: column;
     gap: 20px;
   }
-
-  .work-item {
-    border: 1.5px solid black;
+  
+  .work-card {
+    border: 1.5px solid var(--text); /* Match the border style */
     border-radius: 15px;
-    height: 150px; /* adjust as needed */
-    background: white;
+    background: var(--panel); /* Use the theme variable */
   }
-
-  /* Contact Section */
-  .contact-section {
-    margin-top: 40px;
-    text-align: center;
-    font-weight: 700;
+  
+  .work-image {
+    width: 100%;
+    height: auto;
+    border-radius: 13px 13px 0 0;
   }
-
-  .contact-text {
-    margin: 10px 15px;
+  
+  .work-caption {
+    padding: 10px;
     font-size: 14px;
   }
 
-  .contact-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 0 20px;
-    margin-top: 20px;
+  /* --- Footer --- */
+  footer {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
   }
-
-  .contact-btn {
-    padding: 12px 0;
-    font-weight: 700;
+  
+  .contact-title {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+  
+  .contact-card {
+    border: 1.5px solid var(--text); /* Match the border style */
     border-radius: 15px;
-    background-color: #d2db20;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
+    padding: 20px;
+    background: var(--panel); /* Use the theme variable */
+    margin: 15px auto;
+    max-width: 300px;
+  }
+  
+  .copyright-text {
+    font-size: 12px;
+    color: var(--muted); /* Use the theme variable */
   }
 }
