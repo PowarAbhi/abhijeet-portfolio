@@ -14,7 +14,7 @@
   
   /* --- Navigation --- */
   nav {
-    padding: 0.5rem 0;
+    padding: 0.5rem 1rem; /* Added padding here for better spacing */
     box-shadow: none;
     background: var(--bg);
     position: relative;
@@ -22,7 +22,7 @@
   }
   
   nav .container {
-    padding: 0 1rem;
+    padding: 0; /* Remove padding here as it's now on the nav element */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -90,10 +90,12 @@
     flex-direction: column;
     gap: 0.75rem;
     margin-top: 1rem;
+    align-items: center; /* Center buttons horizontally */
   }
 
   .cta button {
-    width: 100%;
+    width: 80%; /* Reduced width to prevent overlap on small screens */
+    max-width: 300px;
     padding: 0.75rem;
     font-size: 1rem;
   }
@@ -107,8 +109,8 @@
   }
 
   .skill-card {
-    padding: 0.5rem 1rem;
-    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem; /* Made skills cards smaller */
+    font-size: 0.6rem; /* Reduced font size for skills */
     flex: 0 1 auto;
   }
   
