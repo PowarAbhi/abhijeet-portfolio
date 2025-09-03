@@ -1019,153 +1019,123 @@
 
       // fallback: if nothing happens, hide in MAX_WAIT
     })();
+/* ------- WORKS: load data/works.json and render masonry ------- */
+const state = { all: [], filter: 'All' };
+const masonry = document.getElementById('masonry');
+const emptyMsg = document.getElementById('emptyMsg');
 
+fetch('data/works.json', {cache: 'no-store'})
+  .then(r => r.ok ? r.json() : Promise.reject('Missing data/works.json'))
+  .then(json => {
+    state.all = json.works || [];
+    render();
+    // signal preloader that data is ready
+    if (window.__worksDataReady) window.__worksDataReady();
+  })
+  .catch(err => {
+    masonry.innerHTML = `<div class="muted">${err}. Add data/works.json to the repo.</div>`;
+    if (window.__worksDataReady) window.__worksDataReady();
+  });
 
-    /* ------- WORKS: load data/works.json and render masonry ------- */
-    const state = { all: [], filter: 'All' };
-    const masonry = document.getElementById('masonry');
-    const emptyMsg = document.getElementById('emptyMsg');
+function toCard(w){
+  const alt = (w.alt || w.title || 'Portfolio image').replace(/"/g,'&quot;');
+  const caption = w.title ? `<figcaption class="work-caption">${w.title}</figcaption>` : '';
+  const imgId = `work-img-${Math.random().toString(36).substr(2, 9)}`; // Unique ID for each image
 
-    fetch('data/works.json', {cache: 'no-store'})
-      .then(r => r.ok ? r.json() : Promise.reject('Missing data/works.json'))
-      .then(json => {
-        state.all = json.works || [];
-        render();
-        // signal preloader that data is ready
-        if (window.__worksDataReady) window.__worksDataReady();
-      })
-      .catch(err => {
-        masonry.innerHTML = `<div class="muted">${err}. Add data/works.json to the repo.</div>`;
-        if (window.__worksDataReady) window.__worksDataReady();
-      });
-
-    function toCard(w){
-      const alt = (w.alt || w.title || 'Portfolio image').replace(/"/g,'&quot;');
-      const caption = w.title ? `<figcaption class="work-caption">${w.title}</figcaption>` : '';
-      const imgId = `work-img-${Math.random().toString(36).substr(2, 9)}`; // Unique ID for each image
-
-      return `
-        <div class="masonry-item">
-          <a class="work-card" href="${w.href || '#'}" ${w.href ? 'target="_blank" rel="noopener"' : ''}>
-            <div class="image-wrapper">
-              <div class="loading-spinner"></div>
-              <img
-                loading="lazy"
-                class="work-img"
-                id="${imgId}"
-                src="${w.src}"
-                alt="${alt}"
-              />
-            </div>
-            ${caption}
-          </a>
+  return `
+    <div class="masonry-item">
+      <a class="work-card" href="${w.href || '#'}" ${w.href ? 'target="_blank" rel="noopener"' : ''}>
+        <div class="image-wrapper">
+          <div class="loading-spinner"></div>
+          <img
+            loading="lazy"
+            class="work-img"
+            id="${imgId}"
+            src="${w.src}"
+            alt="${alt}"
+          />
         </div>
-      `;
-    }
+        ${caption}
+      </a>
+    </div>
+  `;
+}
 
-    function render(){
-      const list = state.filter === 'All' ? state.all : state.all.filter(w => (w.tags || []).includes(state.filter));
-      masonry.innerHTML = list.map(toCard).join('');
+function render(){
+  const list = state.filter === 'All' ? state.all : state.all.filter(w => (w.tags || []).includes(state.filter));
+  masonry.innerHTML = list.map(toCard).join('');
 
-      // Attach loading event listeners after rendering HTML
-      document.querySelectorAll('.work-img').forEach(imgElement => {
-        const imageWrapper = imgElement.closest('.image-wrapper');
-        if (imageWrapper) {
-          const startTime = Date.now();
-          const MIN_SPINNER_DISPLAY_TIME = 1500; // Minimum 1.5 seconds for the spinner
+  // Attach loading event listeners after rendering HTML
+  document.querySelectorAll('.work-img').forEach(imgElement => {
+    // Add the click listener here
+    imgElement.addEventListener('click', () => {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+      modal.style.display = 'flex'; // Use 'flex' for centering
+      modalImg.src = imgElement.src;
+    });
 
-          const hideSpinner = () => {
-            const elapsedTime = Date.now() - startTime;
-            const remainingTime = MIN_SPINNER_DISPLAY_TIME - elapsedTime;
+    const imageWrapper = imgElement.closest('.image-wrapper');
+    if (imageWrapper) {
+      const startTime = Date.now();
+      const MIN_SPINNER_DISPLAY_TIME = 1500; // Minimum 1.5 seconds for the spinner
 
-            if (remainingTime > 0) {
-              setTimeout(() => {
-                imageWrapper.classList.add('loaded');
-              }, remainingTime);
-            } else {
-              imageWrapper.classList.add('loaded');
-            }
-          };
+      const hideSpinner = () => {
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = MIN_SPINNER_DISPLAY_TIME - elapsedTime;
 
-          if (imgElement.complete && imgElement.naturalWidth > 0) {
-            // Image already loaded (e.g., from cache), apply minimum spinner display time
-            hideSpinner();
-          } else {
-            imgElement.onload = () => {
-              // Image just loaded, apply minimum spinner display time
-              hideSpinner();
-            };
-            imgElement.onerror = () => {
-              // On error, still hide the spinner after min display time, but also show error state
-              imageWrapper.classList.add('error');
-              hideSpinner();
-            };
-          }
+        if (remainingTime > 0) {
+          setTimeout(() => {
+            imageWrapper.classList.add('loaded');
+          }, remainingTime);
+        } else {
+          imageWrapper.classList.add('loaded');
         }
-      });
-      emptyMsg.style.display = list.length ? 'none' : 'block';
-    }
+      };
 
-    // filter chips
-    document.querySelector('.filters').addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-filter]');
-      if(!btn) return;
-      state.filter = btn.getAttribute('data-filter');
-      for(const el of e.currentTarget.querySelectorAll('[data-filter]')){
-        el.setAttribute('aria-pressed', el === btn ? 'true' : 'false');
+      if (imgElement.complete && imgElement.naturalWidth > 0) {
+        // Image already loaded (e.g., from cache), apply minimum spinner display time
+        hideSpinner();
+      } else {
+        imgElement.onload = () => {
+          // Image just loaded, apply minimum spinner display time
+          hideSpinner();
+        };
+        imgElement.onerror = () => {
+          // On error, still hide the spinner after min display time, but also show error state
+          imageWrapper.classList.add('error');
+          hideSpinner();
+        };
       }
-      render();
-      // scroll into view so user sees results on mobile
-      document.getElementById('masonry').scrollIntoView({behavior:'smooth', block:'start'});
-    });
-
-    // keyboard support for chips
-    document.querySelectorAll('.chip').forEach(chip => {
-      chip.tabIndex = 0;
-      chip.addEventListener('keyup', (e) => { if(e.key === 'Enter' || e.key === ' ') chip.click(); });
-    });
-
-    // ensure preloader hides also if window already loaded (rare)
-    if (document.readyState === 'complete') {
-      // give a tick for event listeners to attach
-      setTimeout(() => { window.dispatchEvent(new Event('load')); }, 50);
     }
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    const closeModalBtn = document.getElementById('closeModal');
-    const worksGallery = document.querySelector('.works-gallery');
+  });
+  emptyMsg.style.display = list.length ? 'none' : 'block';
+}
 
-    // This code now listens for clicks on the correct gallery container
-    if (worksGallery) {
-        worksGallery.addEventListener('click', function(e) {
-            const clickedImage = e.target.closest('img');
-            if (clickedImage) {
-                modal.style.display = 'block';
-                modalImg.src = clickedImage.src;
-            }
-        });
-    }
-
-    // Closes the modal when the close button is clicked
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-    }
-
-    if (modal) {
-        modal.addEventListener('click', function(e) {
-            if (e.target === modalImg) {
-                // If user clicks on the image itself, do nothing
-                e.stopPropagation();
-            } else if (e.target === modal) {
-                // If user clicks on the background, close the modal
-                modal.style.display = 'none';
-            }
-        });
-    }
+// filter chips
+document.querySelector('.filters').addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-filter]');
+  if(!btn) return;
+  state.filter = btn.getAttribute('data-filter');
+  for(const el of e.currentTarget.querySelectorAll('[data-filter]')){
+    el.setAttribute('aria-pressed', el === btn ? 'true' : 'false');
+  }
+  render();
+  // scroll into view so user sees results on mobile
+  document.getElementById('masonry').scrollIntoView({behavior:'smooth', block:'start'});
 });
+
+// keyboard support for chips
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.tabIndex = 0;
+  chip.addEventListener('keyup', (e) => { if(e.key === 'Enter' || e.key === ' ') chip.click(); });
+});
+
+// ensure preloader hides also if window already loaded (rare)
+if (document.readyState === 'complete') {
+  // give a tick for event listeners to attach
+  setTimeout(() => { window.dispatchEvent(new Event('load')); }, 50);
+}
   </script>
 </body>
 </html>
