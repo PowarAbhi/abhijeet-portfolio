@@ -1,6 +1,6 @@
 /*
-  Mobile Stylesheet (Final Version)
-  Optimized for precise mobile layout and to disable zoom.
+  This stylesheet is for mobile devices and is designed to match the provided reference image.
+  It overrides the desktop styles and ensures a pixel-perfect, mobile-first experience.
 */
 
 @media only screen and (max-width: 980px) {
@@ -14,7 +14,7 @@
   
   /* --- Navigation --- */
   nav {
-    padding: 0.5rem 1rem; /* Added padding here for better spacing */
+    padding: 1rem;
     box-shadow: none;
     background: var(--bg);
     position: relative;
@@ -22,16 +22,40 @@
   }
   
   nav .container {
-    padding: 0; /* Remove padding here as it's now on the nav element */
+    padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
-  .logo h1 {
-    font-size: 1.2rem;
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-box {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--brand);
+    border: 2px solid var(--text);
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+  }
+
+  .logo-text {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
   }
   
+  .logo h1 {
+    display: none; /* Hide the full name for mobile */
+  }
+
   nav ul, .theme-toggle {
     display: none;
   }
@@ -47,20 +71,20 @@
   
   /* --- Hero Section --- */
   .hero {
-    padding: 2rem 0;
+    padding: 3rem 0;
     text-align: center;
   }
   
   .hero .container {
     display: flex;
     flex-direction: column-reverse;
-    gap: 1.5rem;
-    padding: 0 1rem;
+    gap: 2rem;
+    padding: 0 1.5rem;
   }
   
   .hero-image {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
   
   .hero-content {
@@ -69,71 +93,78 @@
   }
 
   .kicker {
-    font-size: 0.7rem;
-    margin-bottom: 0.25rem;
-  }
-  
-  .title {
-    font-size: 1.8rem;
-    line-height: 1.2;
+    font-size: 0.8rem;
     margin-bottom: 0.5rem;
   }
   
-  .lead {
-    font-size: 0.9rem;
-    line-height: 1.4;
+  .title {
+    font-size: 2.2rem;
+    line-height: 1.2;
     margin-bottom: 1rem;
+  }
+  
+  .lead {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
   }
 
   .cta {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 1rem;
-    align-items: center; /* Center buttons horizontally */
+    gap: 1rem;
+    margin-top: 1.5rem;
+    align-items: center;
   }
 
   .cta button {
-    width: 80%; /* Reduced width to prevent overlap on small screens */
+    width: 100%;
     max-width: 300px;
-    padding: 0.75rem;
-    font-size: 1rem;
+    padding: 1rem 0;
+    font-size: 1.1rem;
+    text-align: center;
   }
   
   .skills-grid {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
     gap: 0.5rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+    -webkit-overflow-scrolling: touch;
   }
 
   .skill-card {
-    padding: 0.3rem 0.6rem; /* Made skills cards smaller */
-    font-size: 0.6rem; /* Reduced font size for skills */
-    flex: 0 1 auto;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    flex-shrink: 0;
   }
   
   /* --- Resume Section --- */
   .resume-section {
-    padding: 2rem 1rem;
+    padding: 3rem 1.5rem;
     text-align: center;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
   }
   
   .resume-items {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 1.5rem;
   }
   
   .resume-item {
-    padding: 1rem;
+    padding: 1.5rem;
   }
   
   /* --- Works Section --- */
   .works-section {
-    padding: 2rem 1rem;
+    padding: 3rem 1.5rem;
     text-align: center;
   }
 
@@ -143,14 +174,14 @@
     overflow-x: auto;
     justify-content: flex-start;
     gap: 0.5rem;
-    margin: 1rem 0 1.5rem;
+    margin: 1.5rem 0;
     -webkit-overflow-scrolling: touch;
     white-space: nowrap;
   }
 
   .filter-btn {
     padding: 0.5rem 1rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     flex-shrink: 0;
   }
 
@@ -158,12 +189,11 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin-top: 1rem;
   }
   
   /* --- Footer --- */
   footer {
-    padding: 1rem 1rem 2rem;
+    padding: 2rem 1.5rem 4rem;
     text-align: center;
   }
 
@@ -174,7 +204,7 @@
     gap: 1rem;
   }
   
-  .contact-card {
+  .card {
     width: 100%;
     padding: 1.5rem;
   }
