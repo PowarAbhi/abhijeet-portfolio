@@ -929,7 +929,10 @@
       <p class="muted" style="margin-top:25px;">© <span id="y"></span> Abhijeet Powar • Designed with ❤️</p>
     </div>
   </footer>
-
+<div id="imageModal" style="display: none; position: fixed; z-index: 10000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9);">
+    <span id="closeModal" style="position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer;">&times;</span>
+    <img id="modalImage" style="margin: auto; display: block; width: 80%; max-width: 700px;">
+</div>
   <script>
     // footer year
     document.getElementById('y').textContent = new Date().getFullYear();
@@ -975,7 +978,7 @@
       let hidden = false;
 
       // safety timeout: remove preloader after 4s max
-      const MAX_WAIT = 4000;
+      const MAX_WAIT = 6000;
       const timer = setTimeout(() => {
         hidePreloader('timeout');
       }, MAX_WAIT);
@@ -1127,6 +1130,36 @@
       // give a tick for event listeners to attach
       setTimeout(() => { window.dispatchEvent(new Event('load')); }, 50);
     }
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const closeBtn = document.getElementById('closeModal');
+    const worksGrid = document.querySelector('.works-grid');
+
+    if (worksGrid) {
+        worksGrid.addEventListener('click', function(e) {
+            const clickedImage = e.target.closest('img');
+            if (clickedImage) {
+                modal.style.display = 'block';
+                modalImg.src = clickedImage.src;
+            }
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    }
+
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
+});
   </script>
 </body>
 </html>
