@@ -14,7 +14,7 @@
   
   /* --- Navigation --- */
   nav {
-    padding: 1rem;
+    padding: 1rem 1.5rem; /* Adjusted padding to be more generous */
     box-shadow: none;
     background: var(--bg);
     position: relative;
