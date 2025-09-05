@@ -358,6 +358,7 @@
       text-transform: uppercase;
       font-size: 14px;
       transition: color 0.3s ease;
+      text-align: center;
     }
     .title {
       font-family: var(--heading-font);
@@ -1154,31 +1155,164 @@
     </section>
   </main>
 
- <!-- FOOTER -->
-<footer id="contact">
-<div class="connect-wrapper">
-<h3 class="section-title">Let's Connect</h3>
-<p class="muted">Ready to collaborate? Reach out for freelance & projects.</p>
+ <style>
+  /* Footer (mobile-focused) - paste this right before the footer HTML you replace */
+  #contact {
+    background: #FFFBF0;
+    padding: 34px 16px 42px;
+    font-family: 'Kufam', sans-serif;
+    color: #333;
+  }
 
+  #contact .connect {
+    max-width: 520px;         /* keeps layout narrow on larger phones */
+    margin: 0 auto;
+    text-align: center;
+  }
 
-<div class="connect-actions">
-<a class="btn" href="mailto:abhipowar2400@gmail.com">Email</a>
-<a class="btn ghost" href="tel:+919422733472">+91-94227-33472</a>
-<a class="btn ghost" href="https://instagram.com/abhi._powar._" target="_blank" rel="noopener">Instagram</a>
-</div>
+  /* Title */
+  #contact .section-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 34px;
+    line-height: 1;
+    margin: 0 0 8px;
+    color: #333;
+    font-weight: 900;
+  }
 
+  #contact .sub {
+    color: #8b8b8b;
+    margin: 0 0 14px;
+    font-size: 15px;
+  }
 
-<div class="card">
-<div class="connect-info">
-<span class="pill">Gadhinglaj, Maharashtra</span>
-<span class="pill">IST (UTC+5:30)</span>
-<span class="pill">Remote / On-site</span>
-</div>
-</div>
-</div>
+  /* Top action buttons (Email / Phone / Instagram) */
+  #contact .connect-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: nowrap;          /* try to keep in a single row on wide phones */
+    overflow-x: auto;           /* allows slight horizontal scroll rather than overflow */
+    padding: 6px 6px 0 6px;     /* small padding so edges don't touch */
+    margin-bottom: 18px;
+  }
 
+  /* Shared button style */
+  #contact .connect-actions .btn {
+    -webkit-tap-highlight-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 110px;          /* small & consistent size */
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 2px solid #222;
+    background: #fff;
+    font-weight: 800;
+    color: #222;
+    box-shadow:
+      0 8px 0 rgba(0,0,0,0.06),   /* subtle drop shadow below to mimic stacked look */
+      0 2px 8px rgba(0,0,0,0.08);
+    white-space: nowrap;
+    flex-shrink: 0;             /* prevents shrinking too much */
+  }
 
-<p class="muted" style="margin-top:25px;text-align:center">© <span id="y"></span> Abhijeet Powar • Designed with ❤️</p>
+  /* Filled yellow primary button */
+  #contact .connect-actions .btn.primary {
+    background: #FFD700;
+    color: #111;
+    box-shadow:
+      0 8px 0 rgba(0,0,0,0.07),
+      inset 0 -6px 0 rgba(0,0,0,0.03);
+  }
+
+  /* Slight rounded inner border effect like your ref */
+  #contact .connect-actions .btn::after {
+    content: '';
+    display: block;
+    position: relative;
+    top: 0;
+  }
+
+  /* Big rounded outer card that contains the info pills */
+  #contact .info-outer {
+    background: #fff;
+    border-radius: 18px;
+    padding: 10px;
+    border: 2px solid #222;
+    box-shadow: 0 10px 0 rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06);
+    margin: 0 auto;
+    max-width: 520px;
+  }
+
+  /* Inner row of blue pills */
+  #contact .info-inner {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 8px;
+    flex-wrap: nowrap;
+    overflow-x: auto;         /* allow horizontal scroll if too many pills */
+  }
+
+  #contact .info-inner .pill {
+    background: #80DEEA;
+    color: #0e2a2b;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    border: 2px solid rgba(0,0,0,0.12);
+    box-shadow: 0 6px 0 rgba(0,0,0,0.05), inset 0 -3px 0 rgba(0,0,0,0.06);
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  /* Copyright */
+  #contact .copyright {
+    margin-top: 18px;
+    color: #8b8b8b;
+    font-size: 15px;
+  }
+
+  /* Mobile tweaks: stack buttons & pills on very narrow screens */
+  @media (max-width: 420px) {
+    #contact .connect-actions { flex-wrap: wrap; gap: 10px; }
+    #contact .connect-actions .btn { min-width: 100%; max-width: 360px; flex-shrink: 1; }
+    #contact .info-inner { flex-wrap: wrap; gap: 10px; padding: 10px; }
+    #contact .info-inner .pill { min-width: 120px; width: auto; }
+    #contact .section-title { font-size: 30px; }
+  }
+</style>
+
+<!-- Replace your old footer with exactly this block -->
+<footer id="contact" aria-labelledby="connect-heading">
+  <div class="connect" role="region" aria-label="Let's Connect">
+    <h3 id="connect-heading" class="section-title">Let's Connect</h3>
+    <p class="sub muted">Ready to collaborate? Reach out for freelance & projects.</p>
+
+    <div class="connect-actions" role="toolbar" aria-label="Contact actions">
+      <a class="btn primary" href="mailto:abhipowar2400@gmail.com" aria-label="Email">Email</a>
+      <a class="btn" href="tel:+919422733472" aria-label="Phone">+91-94227-33472</a>
+      <a class="btn" href="https://instagram.com/abhi._powar._" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+    </div>
+
+    <div class="info-outer" role="group" aria-label="Location and availability">
+      <div class="info-inner">
+        <span class="pill" aria-hidden="false">Gadhinglaj, Maharashtra</span>
+        <span class="pill">IST (UTC+5:30)</span>
+        <span class="pill">Remote / On-site</span>
+      </div>
+    </div>
+
+    <div class="copyright" aria-hidden="false">© <span id="y"></span> Abhijeet Powar • Designed with ❤️</div>
+  </div>
+
+  <script>
+    // keep the year dynamic like your site
+    (function(){ document.getElementById('y').textContent = new Date().getFullYear(); })();
+  </script>
 </footer>
 
   <script>
