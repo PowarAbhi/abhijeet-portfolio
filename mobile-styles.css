@@ -858,7 +858,7 @@
         padding: 60px 0;
       }
       .masonry {
-        column-count: 2; /* Already there for tablets */
+        column-count: 1; /* Already there for tablets */
         column-gap: 20px;
       }
       .masonry-item {
