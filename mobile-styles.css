@@ -2,339 +2,110 @@
 <html lang="en" data-theme="theme-1">
 <head>
   <meta charset="utf-8" />
-  <!-- Prevent aggressive browser caching -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Abhijeet Powar – Portfolio</title>
   <meta name="description" content="Portfolio of Abhijeet Powar – Graphic Designer, Video Editor & AI Creative." />
   <link href="https://fonts.googleapis.com/css2?family=Kufam:wght@400;500;600;700&family=DM+Sans:wght@700;800;900&family=Gochi+Hand&display=swap" rel="stylesheet">
-
   <style>
-    /* ===== Global CSS Variables and Themes ===== */
-    html[data-theme="theme-1"] {
-      --bg: #FFFBF0;
-      --panel: #FFFFFF;
-      --muted: #7A7A7A;
-      --text: #333333;
-      --brand: #FFD700;
-      --accent: #80DEEA;
-      --secondary-red: #FF6666;
-      --secondary-green: #66BB6A;
-      --card-bg: var(--panel);
-      --border-color: var(--text);
-      --shadow-color: rgba(51, 51, 51, 0.2);
-    }
-    html[data-theme="theme-2"] {
-      --bg: #E6FFCC;
-      --panel: #FFFFFF;
-      --muted: #777777;
-      --text: #333333;
-      --brand: #D4FF00;
-      --accent: #B0E6F7;
-      --card-bg: var(--panel);
-      --border-color: var(--text);
-      --shadow-color: rgba(0, 0, 0, 0.1);
-      --border-radius-sm: 8px;
-      --border-radius-md: 12px;
-      --border-radius-lg: 16px;
-    }
-    :root{ --primary-font:'Kufam',sans-serif; --heading-font:'DM Sans',sans-serif; --decorative-font:'Gochi Hand',cursive; }
+    body {font-family: 'Kufam', sans-serif; margin:0; background:#FFFBF0; color:#333;}
+    h1,h2,h3,h4,h5,h6,.section-title,.kicker,.muted,.lead {text-align:center;}
+    .kicker {color:#7A7A7A;font-weight:700;letter-spacing:.3em;text-transform:uppercase;font-size:14px;}
+    .title {font-family:'DM Sans',sans-serif;font-size:clamp(36px,6vw,64px);font-weight:900;margin:15px 0;color:#333;}
+    .lead {color:#7A7A7A;font-size:17px;line-height:1.7;}
+    .section-title {font-family:'DM Sans',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:900;color:#FFD700;}
+    .muted {color:#7A7A7A;}
+    .btn {display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;border-radius:18px;font-weight:800;border:2px solid #333;box-shadow:0 4px 10px rgba(0,0,0,.2);margin:6px auto;text-decoration:none;}
+    .btn.primary {background:#FFD700;color:#111;}
+    .btn.ghost {background:#fff;color:#333;}
+    .pill {display:inline-block;padding:10px 18px;border-radius:999px;background:#80DEEA;color:#0e2a2b;font-weight:700;font-size:14px;border:2px solid rgba(0,0,0,0.12);margin:4px;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+    /* Footer */
+    #contact {padding:34px 16px 42px;background:#FFFBF0;}
+    #contact .connect {max-width:520px;margin:0 auto;text-align:center;}
+    #contact .connect-actions {display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+    #contact .connect-actions .btn {width:100%;max-width:360px;margin:0 auto;}
+    #contact .info-outer {background:#fff;border-radius:18px;padding:12px;border:2px solid #222;box-shadow:0 6px 12px rgba(0,0,0,0.08);margin:0 auto;max-width:520px;}
+    #contact .info-inner {display:flex;flex-direction:column;gap:10px;align-items:center;}
+    #contact .copyright {margin-top:18px;color:#8b8b8b;font-size:15px;}
 
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:var(--primary-font);color:var(--text);background-color:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background-color .3s ease,color .3s ease}
-
-    /* center main heading, kicker, and section titles/descriptions */
-    .kicker{color:var(--muted);font-weight:700;letter-spacing:.3em;text-transform:uppercase;font-size:14px;text-align:center}
-    .title{font-family:var(--heading-font);font-size:clamp(38px,6vw,64px);line-height:1.1;margin:15px 0 20px;font-weight:900;color:var(--text);text-align:center}
-    .title b{background:linear-gradient(135deg,var(--brand),var(--accent));-webkit-background-clip:text;color:transparent}
-    .lead{color:var(--muted);font-size:clamp(17px,2.2vw,20px);line-height:1.7;text-align:center}
-    .section-title{font-family:var(--heading-font);font-size:clamp(32px,4vw,48px);margin:0 0 15px;font-weight:900;color:var(--brand);text-align:center}
-    section p.muted, section .muted{color:var(--muted);text-align:center}
-
-    /* rest of CSS (kept as in your original site) */
-    .container{width:min(1100px,94vw);margin-inline:auto}
-    .preloader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--bg),var(--panel));z-index:9999;transition:opacity .45s ease,visibility .45s ease;opacity:1;visibility:visible;flex-direction:column;gap:18px}
-    .preloader.hide{opacity:0;visibility:hidden;pointer-events:none}
-    .preloader__avatar{width:140px;height:140px;border-radius:999px;overflow:hidden;display:grid;place-items:center;box-shadow:0 10px 20px var(--shadow-color);border:3px solid var(--border-color);transform:scale(1);animation:pulse 1500ms infinite ease-in-out;background:linear-gradient(135deg,var(--brand),var(--accent))}
-    .preloader__avatar img{width:100%;height:100%;object-fit:cover;display:block}
-    .preloader__caption{color:var(--muted);font-weight:600;font-size:14px;opacity:.95}
-    @keyframes pulse{0%{transform:scale(.98);filter:saturate(.98)}50%{transform:scale(1.04);filter:saturate(1.05)}100%{transform:scale(.98);filter:saturate(.98)}}
-
-    .nav{position:sticky;top:0;z-index:60;background:var(--panel);backdrop-filter:blur(6px);border:2px solid var(--border-color);border-top:none;box-shadow:0 4px 10px var(--shadow-color);border-bottom-left-radius:20px;border-bottom-right-radius:20px;padding:5px 0;transition:background-color .3s ease,border-color .3s ease,box-shadow .3s ease}
-    html[data-theme="theme-2"] .nav{border-radius:0;border-width:1px;box-shadow:0 1px 5px var(--shadow-color);background:var(--panel)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--text);font-family:var(--decorative-font);font-size:1.6em}
-    .badge{width:44px;height:44px;border-radius:12px;background:var(--brand);display:grid;place-items:center;font-weight:800;color:var(--text);border:2px solid var(--border-color);box-shadow:0 3px 8px var(--shadow-color)}
-    .links{display:flex;gap:18px;align-items:center}
-    .links a{padding:10px 15px;border-radius:12px;font-weight:700;color:var(--text);transition:all .2s ease;border:2px solid transparent;position:relative}
-    .links a::before{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background-color:var(--brand);transition:all .3s ease;transform:translateX(-50%)}
-    .links a:hover::before{width:80%}
-    .nav-toggle{display:none;background:transparent;border:0;color:var(--text);font-size:32px;padding:8px;border-radius:10px;cursor:pointer}
-
-    .hero{padding:80px 0}
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-    .cta{display:flex;gap:20px;margin-top:30px;flex-wrap:wrap;justify-content:center}
-    .btn{display:inline-flex;align-items:center;gap:12px;padding:14px 28px;border-radius:18px;background:var(--brand);border:2px solid var(--border-color);font-weight:800;color:var(--text);box-shadow:0 4px 10px var(--shadow-color);justify-content:center}
-    .btn.ghost{background:var(--panel);border:2px solid var(--border-color);color:var(--text)}
-
-    .card{border-radius:20px;padding:20px;background:var(--panel);border:2px solid var(--border-color);box-shadow:0 8px 20px var(--shadow-color)}
-    .thumb{border-radius:15px;overflow:hidden;background:var(--panel);display:block;border:2px solid var(--border-color)}
-    .thumb img{display:block;width:100%;height:auto;object-fit:cover}
-
-    .grid{display:grid;gap:25px}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-    .resume-item{padding:25px;border-radius:20px;background:var(--panel);border:2px solid var(--border-color);box-shadow:0 4px 10px var(--shadow-color)}
-    .pill{display:inline-block;padding:10px 18px;border-radius:999px;background:var(--accent);color:var(--text);font-weight:700;font-size:14px;border:2px solid var(--border-color);box-shadow:0 2px 5px var(--shadow-color)}
-
-    .masonry{column-count:3;column-gap:25px;margin-top:25px;padding-inline:0}
-    @media (max-width:980px){.masonry{column-count:2;column-gap:20px}}
-    @media (max-width:520px){.masonry{column-count:1;column-gap:15px}}
-    .masonry-item{break-inside:avoid;width:100%;margin-bottom:25px}
-    .work-card{display:block;border-radius:20px;overflow:hidden;border:2px solid var(--border-color);background:var(--panel);box-shadow:0 8px 20px var(--shadow-color)}
-
-    .image-wrapper{position:relative;background-color:#f0f0f0;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .image-wrapper:not(.loaded){min-height:100px}
-    .loading-spinner{border:4px solid var(--accent);border-top:4px solid var(--brand);border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite;position:absolute;opacity:1;transition:opacity .3s ease}
-    .image-wrapper.loaded .loading-spinner,.image-wrapper.error .loading-spinner{opacity:0}
-    .work-img{width:100%;height:auto;display:block;object-fit:cover;transition:opacity .3s ease;opacity:0}
-    .image-wrapper.loaded .work-img{opacity:1}
-
-    footer{padding:50px 0;color:var(--muted);border-top:2px solid var(--border-color);background-color:var(--panel);margin-top:80px;transition:background-color .3s ease,border-color .3s ease}
-    footer .section-title{color:var(--text);font-family:var(--heading-font);font-size:clamp(28px,3.5vw,42px);transition:color .3s ease}
-    footer p.muted{text-align:center;margin-top:25px;font-size:1.1em}
-
-    /* Mobile responsive tweaks */
-    @media (max-width:980px){
-      .hero-grid{grid-template-columns:1fr;gap:40px;padding:0}
-      .links{display:none}
-      .nav-toggle{display:inline-flex}
-      .container{width:94vw}
-      .grid.cols-3,.grid.cols-2{grid-template-columns:1fr;gap:20px}
-      .section-title{font-size:clamp(30px,4.5vw,42px);color:var(--text)}
-      .title{font-size:clamp(36px,7vw,56px);color:var(--text)}
-      section{padding:60px 0}
-      .hero{padding:60px 0}
-      .masonry{column-count:2;column-gap:20px}
-    }
-    @media (max-width:520px){
-      .title{font-size:32px;margin-bottom:15px;text-align:center}
-      .cta .btn{padding:10px 18px;font-size:15px;width:100%;justify-content:center;align-items:center}
-      .section-title{font-size:28px}
-      .chip{padding:10px 16px;font-size:14px}
-      .mobile-menu{top:64px;padding:12px;border-radius:0 0 10px 10px;background:var(--panel);border-color:var(--border-color);box-shadow:0 2px 5px var(--shadow-color)}
-      .container{width:96vw}
-      .filters{gap:8px}
-      .masonry{column-count:1;column-gap:0}
-      .masonry-item{margin-bottom:15px}
-      .work-card{border-radius:15px}
-      .work-caption{padding:15px}
-      .hero-grid aside.card{padding:12px}
-    }
-
-    .mobile-menu{display:none;position:absolute;inset-inline:0;top:64px;background:var(--panel);padding:15px;border-bottom:2px solid var(--border-color);box-shadow:0 5px 15px var(--shadow-color);border-bottom-left-radius:20px;border-bottom-right-radius:20px}
-    .mobile-menu a{display:block;padding:12px 18px;border-radius:15px;margin-bottom:10px;transition:all .2s ease;color:var(--text);border:1px solid transparent;font-weight:600}
-    .mobile-menu.show{display:block}
-
-    html.loading{overflow:hidden}
-
+    /* Ensure Resume subtitles centered */
+    #resume h3, #resume h4 { text-align: center; }
   </style>
 </head>
-<body id="top" class="loading">
-  <div class="bg-doodle-shapes"></div>
-
-  <!-- PRELOADER -->
-  <div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading portfolio">
-    <div class="preloader__avatar" aria-hidden="true">
-      <img id="preloaderImg" src="assets/uploads/profile.jpg" alt="Abhijeet Powar">
-    </div>
-    <div class="preloader__caption">Abhijeet Powar — Loading…</div>
-  </div>
-
-  <!-- NAV -->
-  <header class="nav" role="banner">
-    <div class="container nav-inner">
-      <a class="brand" href="#top" aria-label="Home">
-        <span class="badge" aria-hidden="true">AP</span>
-        <span style="font-weight:800">Abhijeet Powar</span>
-      </a>
-
-      <nav class="links" aria-label="Primary">
-        <a href="#resume">Resume</a>
-        <a href="#works">Works</a>
-        <a href="#contact">Contact</a>
-        <button id="themeToggleBtn" class="chip" title="Toggle theme" aria-pressed="false">Theme</button>
-      </nav>
-
-      <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
-    </div>
-
-    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
-      <a href="#resume">Resume</a>
-      <a href="#works">Works</a>
-      <a href="#contact">Contact</a>
-      <a href="mailto:abhipowar2400@gmail.com">Email</a>
-    </div>
-  </header>
-
-  <!-- MAIN -->
-  <main id="main">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="kicker">My Portfolio — Design</div>
-          <h1 class="title">Hi, I'm <b>Abhijeet Powar</b> — Graphic Designer, Video Editor & <b>AI Creative</b>.</h1>
-          <p class="lead">I craft visuals that captivate — vector art, logos, photo manipulation, posters, digital painting, motion graphics and video edits.</p>
-          <div class="cta">
-            <a class="btn" href="#resume">View Resume</a>
-            <a class="btn ghost" href="#works">View Works</a>
-          </div>
-          <p class="muted" style="margin-top:18px;text-align:center">Based in Gadhinglaj, Maharashtra • Available for freelance & collaborations</p>
+<body>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <!-- Image first -->
+      <aside class="card" style="text-align:center;">
+        <img src="your-hero-image.jpg" alt="Abhijeet Powar" style="max-width:220px;border-radius:50%;box-shadow:0 4px 10px rgba(0,0,0,.2);">
+      </aside>
+      <!-- Then intro text -->
+      <div>
+        <div class="kicker">My Portfolio — Design</div>
+        <h1 class="title">Hi, I'm <b>Abhijeet Powar</b> — Graphic Designer, Video Editor & <b>AI Creative</b>.</h1>
+        <p class="lead">I craft visuals that captivate — vector art, logos, photo manipulation, posters, digital painting, motion graphics and video edits.</p>
+        <div class="cta" style="text-align:center;">
+          <a class="btn primary" href="#resume">View Resume</a>
+          <a class="btn ghost" href="#works">View Works</a>
         </div>
-
-        <aside class="card" aria-hidden="false">
-          <div class="thumb">
-            <img id="heroImage" src="assets/uploads/cover.jpg" alt="Portfolio cover">
-          </div>
-          <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
-            <span class="pill">Illustrator</span>
-            <span class="pill">Photoshop</span>
-            <span class="pill">Video Editing</span>
-            <span class="pill">AI Tools</span>
-          </div>
-        </aside>
+        <p class="muted" style="margin-top:18px">Based in Gadhinglaj, Maharashtra • Available for freelance & collaborations</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- RESUME -->
-    <section id="resume" class="container">
-      <h2 class="section-title">Resume</h2>
-      <p class="muted">A quick view of my background, experience and skills.</p>
+  <!-- RESUME -->
+  <section id="resume">
+    <h2 class="section-title">Resume</h2>
+    <p class="muted">A quick view of my background, experience and skills.</p>
 
-      <div class="grid cols-2" style="margin-top:30px">
-        <article class="resume-item">
-          <h4>Senior Computer Trainer</h4>
-          <small class="muted">Hitech Computer Education Institute • 2022–2025</small>
-          <p>Trained students in CCC, Tally, Graphic Designing, Video Editing and more.</p>
-        </article>
+    <h3>Education</h3>
+    <p class="muted">Details about education go here.</p>
 
-        <article class="resume-item">
-          <h4>Marketing & Graphic Designer</h4>
-          <small class="muted">Marketing Department • 2022–2025</small>
-          <p>Designed posters, ads and digital graphics; managed social presence.</p>
-        </article>
-      </div>
+    <h3>Software Skills</h3>
+    <p class="muted">Details about software skills go here.</p>
 
-      <div class="grid cols-3" style="margin-top:25px">
-        <article class="resume-item"><h4>Education</h4><small class="muted">2022–2025</small><p>B.Com — Sadhana College of Commerce.</p></article>
-        <article class="resume-item"><h4>Software Skills</h4><p>Illustrator, Photoshop, Premiere/After Effects, AI tools.</p></article>
-        <article class="resume-item"><h4>Personal Skills</h4><p>Adaptable • Communication • Teamwork • Learning mindset</p></article>
-      </div>
-    </section>
+    <h3>Experience</h3>
+    <p class="muted">Details about experience go here.</p>
+  </section>
 
-    <!-- WORKS -->
-    <section id="works" class="container">
-      <h2 class="section-title">Works</h2>
-      <p class="muted">One gallery for everything. Use the filters to view specific categories.</p>
+  <!-- WORKS -->
+  <section id="works">
+    <h2 class="section-title">Works</h2>
+    <p class="muted">One gallery for everything. Use the filters to view specific categories.</p>
+  </section>
 
-      <div class="filters" role="toolbar" aria-label="Work Filters">
-        <button class="chip" data-filter="All" aria-pressed="true">All</button>
-        <button class="chip" data-filter="Illustrator">Illustrator</button>
-        <button class="chip" data-filter="Photoshop">Photoshop</button>
-        <button class="chip" data-filter="Video">Video</button>
-        <button class="chip" data-filter="Blender">Blender</button>
-      </div>
-
-      <div id="masonry" class="masonry" aria-live="polite" tabindex="0" aria-label="Portfolio gallery"></div>
-      <div id="emptyMsg" class="muted" style="display:none;margin-top:8px">No items match this filter yet.</div>
-    </section>
-  </main>
-
-  <!-- NEW FOOTER (matches your reference: stacked actions + stacked pills inside a rounded card) -->
-  <footer id="contact" aria-labelledby="connect-heading">
-    <div class="connect" role="region" aria-label="Let's Connect">
-      <h3 id="connect-heading" class="section-title">Let's Connect</h3>
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="connect">
+      <h3 class="section-title">Let's Connect</h3>
       <p class="sub muted">Ready to collaborate? Reach out for freelance & projects.</p>
-
-      <!-- STACKED ACTIONS (vertical) -->
-      <div class="connect-actions" role="toolbar" aria-label="Contact actions">
-        <a class="btn primary" href="mailto:abhipowar2400@gmail.com" aria-label="Email">Email</a>
-        <a class="btn" href="tel:+919422733472" aria-label="Phone">+91-94227-33472</a>
-        <a class="btn" href="https://instagram.com/abhi._powar._" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+      <div class="connect-actions">
+        <a class="btn primary" href="mailto:abhipowar2400@gmail.com">Email</a>
+        <a class="btn ghost" href="tel:+919422733472">+91-94227-33472</a>
+        <a class="btn ghost" href="https://instagram.com/abhi._powar._" target="_blank" rel="noopener">Instagram</a>
       </div>
-
-      <!-- Blue pills inside a rounded card -- stacked vertically to match screenshot -->
-      <div class="info-outer" role="group" aria-label="Location and availability" style="margin-top:18px;">
-        <div class="info-inner" style="display:flex;flex-direction:column;gap:12px;align-items:center;padding:12px;">
+      <div class="info-outer">
+        <div class="info-inner">
           <span class="pill">Gadhinglaj, Maharashtra</span>
           <span class="pill">IST (UTC+5:30)</span>
           <span class="pill">Remote / On-site</span>
         </div>
       </div>
-
-      <div class="copyright" style="margin-top:18px;color:var(--muted);font-size:15px">© <span id="y"></span> Abhijeet Powar • Designed with ❤️</div>
+      <div class="copyright">© <span id="y"></span> Abhijeet Powar • Designed with ❤️</div>
     </div>
   </footer>
 
   <script>
-    // ===== FOOTER YEAR =====
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // ===== MOBILE NAV TOGGLE =====
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if(navToggle) navToggle.addEventListener('click', () => {
-      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', String(!expanded));
-      mobileMenu.classList.toggle('show');
-      mobileMenu.setAttribute('aria-hidden', String(expanded));
-    });
-
-    // ===== THEME TOGGLE (simple) =====
-    const themeBtn = document.getElementById('themeToggleBtn');
-    const root = document.documentElement;
-    function setTheme(themeName){ root.setAttribute('data-theme',themeName); localStorage.setItem('theme',themeName); if(themeBtn) themeBtn.setAttribute('aria-pressed', themeName==='theme-2'?'true':'false'); }
-    const savedTheme = localStorage.getItem('theme') || 'theme-1'; setTheme(savedTheme);
-    if(themeBtn) themeBtn.addEventListener('click', ()=>{ const currentTheme = root.getAttribute('data-theme'); setTheme(currentTheme==='theme-1'?'theme-2':'theme-1'); });
-
-    /* ---------- PRELOADER LOGIC ---------- */
-    (function(){
-      const preloader = document.getElementById('preloader');
-      const body = document.documentElement;
-      let pageLoaded=false, dataLoaded=false, hidden=false;
-      const MAX_WAIT = 4000;
-      const timer = setTimeout(()=>{ hidePreloader('timeout'); }, MAX_WAIT);
-      function tryHide(){ if((pageLoaded && dataLoaded) && !hidden) hidePreloader('ok'); }
-      function hidePreloader(reason){ if(hidden) return; hidden=true; clearTimeout(timer); preloader.classList.add('hide'); body.classList.remove('loading'); setTimeout(()=>{ preloader.style.display='none'; },500); console.log('Preloader hidden:', reason); }
-      window.addEventListener('load', ()=>{ pageLoaded=true; tryHide(); });
-      window.__worksDataReady = function(){ dataLoaded=true; tryHide(); };
-    })();
-
-    /* ------- WORKS: load data/works.json and render masonry ------- */
-    const state = { all: [], filter: 'All' };
-    const masonry = document.getElementById('masonry');
-    const emptyMsg = document.getElementById('emptyMsg');
-    fetch('data/works.json',{cache:'no-store'}).then(r=>r.ok? r.json(): Promise.reject('Missing data/works.json')).then(json=>{ state.all = json.works || []; render(); if(window.__worksDataReady) window.__worksDataReady(); }).catch(err=>{ if(masonry) masonry.innerHTML = `<div class="muted">${err}. Add data/works.json to the repo.</div>`; if(window.__worksDataReady) window.__worksDataReady(); });
-    function toCard(w){ const alt=(w.alt||w.title||'Portfolio image').replace(/"/g,'&quot;'); const caption = w.title? `<figcaption class="work-caption">${w.title}</figcaption>` : ''; const imgId = `work-img-${Math.random().toString(36).substr(2,9)}`; return `\n  <div class="masonry-item">\n    <a class="work-card" href="${w.href || '#'}" ${w.href? 'target="_blank" rel="noopener"' : ''}>\n      <div class="image-wrapper">\n        <div class="loading-spinner"></div>\n        <img loading="lazy" class="work-img" id="${imgId}" src="${w.src}" alt="${alt}"/>\n      </div>\n      ${caption}\n    </a>\n  </div>`; }
-    function render(){ if(!masonry) return; const list = state.filter==='All'? state.all : state.all.filter(w => (w.tags||[]).includes(state.filter)); masonry.innerHTML = list.map(toCard).join(''); document.querySelectorAll('.work-img').forEach(imgElement=>{ const imageWrapper = imgElement.closest('.image-wrapper'); if(imageWrapper){ const startTime = Date.now(); const MIN_SPINNER_DISPLAY_TIME = 1500; const hideSpinner = ()=>{ const elapsedTime = Date.now() - startTime; const remainingTime = MIN_SPINNER_DISPLAY_TIME - elapsedTime; if(remainingTime>0){ setTimeout(()=>{ imageWrapper.classList.add('loaded'); }, remainingTime); } else { imageWrapper.classList.add('loaded'); } }; if(imgElement.complete && imgElement.naturalWidth>0){ hideSpinner(); } else { imgElement.onload = ()=>hideSpinner(); imgElement.onerror = ()=>{ imageWrapper.classList.add('error'); hideSpinner(); }; } } }); emptyMsg.style.display = list.length ? 'none' : 'block'; }
-
-    // filter chip clicks
-    const filtersRow = document.querySelector('.filters');
-    if(filtersRow){ filtersRow.addEventListener('click',(e)=>{ const btn = e.target.closest('[data-filter]'); if(!btn) return; state.filter = btn.getAttribute('data-filter'); for(const el of e.currentTarget.querySelectorAll('[data-filter]')) el.setAttribute('aria-pressed', el===btn ? 'true' : 'false'); render(); document.getElementById('masonry').scrollIntoView({behavior:'smooth', block:'start'}); }); }
-    document.querySelectorAll('.chip').forEach(chip=>{ chip.tabIndex=0; chip.addEventListener('keyup',(e)=>{ if(e.key==='Enter' || e.key===' ') chip.click(); }); });
-
-    // ensure preloader hides if already loaded
-    if(document.readyState === 'complete'){ setTimeout(()=>{ window.dispatchEvent(new Event('load')); },50); }
-
-    // Unregister any service workers (helps with aggressive caching)
-    if('serviceWorker' in navigator){ navigator.serviceWorker.getRegistrations().then(regs=>{ for(const r of regs) r.unregister(); }).catch(()=>{}); }
-
-    // Add a small cache-busting header for assets fetched inside JS (works.json already uses no-store)
-    // Note: server CDN headers are authoritative; for a permanent fix set Cache-Control on the server.
-
+    // prevent caching issues
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let reg of registrations) {reg.unregister();}
+      });
+    }
+    if (window.location.href.indexOf('no-cache') === -1) {
+      window.location.href = window.location.href + (window.location.href.includes('?') ? '&' : '?') + 'no-cache=' + new Date().getTime();
+    }
   </script>
 </body>
 </html>
