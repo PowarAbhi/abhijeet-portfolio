@@ -1,1517 +1,333 @@
-<!doctype html>
-<html lang="en" data-theme="theme-1"> <!-- Default theme is theme-1 -->
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Abhijeet Powar – Portfolio</title>
-  <meta name="description" content="Portfolio of Abhijeet Powar – Graphic Designer, Video Editor & AI Creative." />
-  <!-- Updated Google Fonts: Kufam for body, DM Sans for headings, and Gochi Hand for decorative text -->
-  <link href="https://fonts.googleapis.com/css2?family=Kufam:wght@400;500;600;700&family=DM+Sans:wght@700;800;900&family=Gochi+Hand&display=swap" rel="stylesheet">
-  <style>
-    /* Base Theme 1 (Current Doodle Theme) Colors */
-    html[data-theme="theme-1"] {
-      --bg: #FFFBF0; /* Very light creamy yellow background */
-      --panel: #FFFFFF; /* Pure white for nav and card backgrounds */
-      --muted: #7A7A7A; /* Medium grey for secondary text */
-      --text: #333333; /* Dark grey for primary text and borders */
-      --brand: #FFD700; /* Vibrant yellow for main highlights (like the 'I'm Done!' button) */
-      --accent: #80DEEA; /* Light blue for secondary accents */
-      --secondary-red: #FF6666; /* Red accent color from shapes */
-      --secondary-green: #66BB6A; /* Green accent color from shapes */
-      --card-bg: var(--panel); /* Cards are pure white */
-      --border-color: var(--text); /* Dark grey for all borders */
-      --shadow-color: rgba(51, 51, 51, 0.2); /* Dark grey shadow */
-    }
+/* Mobile-specific styles (max-width: 980px) */
 
-    /* New Theme 2 (Vibrant Lime/White Theme) Colors */
-    html[data-theme="theme-2"] {
-      --bg: #E6FFCC; /* Bright, vibrant lime green background */
-      --panel: #FFFFFF; /* Pure white for cards, nav, and other elements */
-      --muted: #777777; /* Medium grey for muted text */
-      --text: #333333; /* Dark grey for primary text and borders */
-      --brand: #D4FF00; /* Vibrant yellow-green for main highlights/buttons */
-      --accent: #B0E6F7; /* Soft light blue for secondary accents */
-      --card-bg: var(--panel);
-      --border-color: var(--text); /* Dark grey for distinct borders */
-      --shadow-color: rgba(0, 0, 0, 0.1); /* Soft, subtle shadow */
-      --border-radius-sm: 8px; /* Smaller, more consistent border radius */
-      --border-radius-md: 12px;
-      --border-radius-lg: 16px;
-    }
-
-    /* Fonts (shared across themes) */
-    :root {
-      --primary-font: 'Kufam', sans-serif; /* For general text */
-      --heading-font: 'DM Sans', sans-serif; /* For big headings/titles */
-      --decorative-font: 'Gochi Hand', cursive; /* For the brand name */
-    }
-
-    /* General styling */
-    * {
-      box-sizing: border-box;
-    }
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: var(--primary-font);
-      color: var(--text);
-      background-color: var(--bg);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden; /* Prevent horizontal scrolling */
-      -webkit-text-size-adjust: 100%;
-      text-size-adjust: 100%;
-      position: relative;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
-    }
-
-    /* Background doodle shapes and pen tool (Theme 1 specific) */
-    html[data-theme="theme-1"] body::before,
-    html[data-theme="theme-1"] body::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    html[data-theme="theme-1"] body::before { /* Pen tool */
-      top: 10%;
-      left: 10%;
-      width: 100px;
-      height: 100px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFD700' d='M19.78 2.06a.75.75 0 0 0-1.06 0L4.31 16.47a.75.75 0 0 0 0 1.06l2.12 2.12a.75.75 0 0 0 1.06 0L21.78 3.12a.75.75 0 0 0 0-1.06l-2.12-2.12zM15.5 5L17 6.5L6.5 17L5 15.5z'/%3E%3C/svg%3E");
-      background-size: contain;
-      background-repeat: no-repeat;
-      transform: rotate(-30deg);
-      opacity: var(--theme-1-bg-opacity, 0.6); /* Controlled by JS/CSS */
-    }
-
-    html[data-theme="theme-1"] body::after { /* Shapes */
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3C!-- Circle --%3E%3Ccircle cx='120' cy='120' r='60' fill='%23FFD700' opacity='0.7'/%3E%3C!-- Rectangle --%3E%3Crect x='850' y='70' width='120' height='120' fill='%2380DEEA' opacity='0.7'/%3E%3C!-- Triangle --%3E%3Cpolygon points='180,850 300,950 60,950' fill='%23FF6666' opacity='0.7'/%3E%3C!-- Square 2 --%3E%3Crect x='300' y='500' width='80' height='80' fill='%2366BB6A' opacity='0.7'/%3E%3C!-- Plus Sign --%3E%3Cpath d='M700 300 H720 V280 H700 V260 H680 V280 H660 V300 H680 V320 H700 Z' fill='%23FFD700' opacity='0.7'/%3E%3C!-- Squiggly Line --%3E%3Cpath d='M50 400 Q150 350 250 400 T450 400' stroke='%23FF6666' stroke-width='10' fill='none' opacity='0.7'/%3E%3C!-- Dashed Line --%3E%3Cline x1='800' y1='700' x2='900' y2='600' stroke='%2380DEEA' stroke-width='8' stroke-dasharray='15 15' opacity='0.7'/%3E%3C/svg%3E");
-      background-size: cover;
-      background-repeat: no-repeat;
-      opacity: var(--theme-1-bg-opacity, 0.2); /* Controlled by JS/CSS */
-      transform: rotate(5deg);
-    }
-
-    /* Theme 2 specific background elements (Graphic Design Icons) */
-    html[data-theme="theme-2"] body::before,
-    html[data-theme="theme-2"] body::after,
-    html[data-theme="theme-2"] .bg-doodle-shapes {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      opacity: var(--theme-2-bg-opacity, 0); /* Controlled by JS/CSS */
-    }
-
-    html[data-theme="theme-2"] body::before { /* Top left pen tool */
-        top: 8%;
-        left: 5%;
-        width: 100px;
-        height: 100px;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFFFFF' d='M22.5 7.5L16.5 1.5L9 9L15 15L22.5 7.5ZM2 22L7 20L4 17L2 22Z'/%3E%3C/svg%3E");
-        background-size: contain;
-        background-repeat: no-repeat;
-        transform: rotate(-20deg);
-        opacity: var(--theme-2-bg-opacity, 0); /* Controlled by JS/CSS */
-    }
-
-    html[data-theme="theme-2"] body::after { /* Bottom right color palette */
-        bottom: 10%;
-        right: 8%;
-        width: 120px;
-        height: 120px;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFFFFF' d='M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 4A8 8 0 0 1 20 12A8 8 0 0 1 12 20A8 8 0 0 1 4 12A8 8 0 0 1 12 4M15.5 14L12 7V12.5L15.5 14Z'/%3E%3C/svg%3E");
-        background-size: contain;
-        background-repeat: no-repeat;
-        transform: rotate(15deg);
-        opacity: var(--theme-2-bg-opacity, 0); /* Controlled by JS/CSS */
-    }
-
-    /* Additional background elements for Theme 2 (more complex, spread out) */
-    .bg-doodle-shapes {
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        pointer-events: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3C!-- Lightbulb --%3E%3Cpath d='M300 150 Q300 100 350 100 Q400 100 400 150 L400 250 Q400 300 350 300 Q300 300 300 250 Z M350 300 L350 320 M330 320 L370 320' fill='%23FFFFFF' opacity='0.7'/%3E%3C!-- Scissors --%3E%3Cpath d='M750 200 A50 50 0 0 1 700 250 A50 50 0 0 1 750 300 A50 50 0 0 1 800 250 A50 50 0 0 1 750 200 Z M850 200 A50 50 0 0 1 800 250 A50 50 0 0 1 850 300 A50 50 0 0 1 900 250 A50 50 0 0 1 850 200 Z M800 250 L750 300 L780 330 L830 280 Z' fill='%23FFFFFF' opacity='0.7'/%3E%3C!-- Ruler & Pencil --%3E%3Cpath d='M100 400 L200 400 L200 420 L100 420 Z M150 400 L150 350 L170 350 L170 400 Z' fill='%23FFFFFF' opacity='0.7'/%3E%3C!-- Dropper --%3E%3Cpath d='M800 700 L820 650 L840 700 Z M810 680 L810 750 Q810 780 780 780 Q750 780 750 750 L750 680 L760 660 Z' fill='%23FFFFFF' opacity='0.7'/%3E%3C!-- AI Text Icon --%3E%3Cpath d='M400 600 H450 L425 550 Z M480 600 V550 H500 V600' fill='%23FFFFFF' opacity='0.7'/%3E%3C/svg%3E");
-        background-size: cover;
-        background-repeat: no-repeat;
-        transform: rotate(5deg);
-        opacity: var(--theme-2-bg-opacity, 0); /* Controlled by JS/CSS */
-    }
-
-    /* Global opacity for theme backgrounds */
-    html[data-theme="theme-1"] {
-      --theme-1-bg-opacity: 1;
-      --theme-2-bg-opacity: 0;
-    }
-    html[data-theme="theme-2"] {
-      --theme-1-bg-opacity: 0;
-      --theme-2-bg-opacity: 1;
-    }
-
-    a {
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    /* ---------- PRELOADER ---------- */
-    .preloader {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(180deg, var(--bg), var(--panel));
-      z-index: 9999;
-      transition: opacity .45s ease, visibility .45s ease;
-      opacity: 1;
-      visibility: visible;
-      flex-direction: column;
-      gap: 18px;
-    }
-    .preloader.hide {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-    .preloader__avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 999px;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 10px 20px var(--shadow-color);
-      border: 3px solid var(--border-color);
-      transform: scale(1);
-      animation: pulse 1500ms infinite ease-in-out;
-      background: linear-gradient(135deg, var(--brand), var(--accent));
-    }
-    .preloader__avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .preloader__caption {
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 14px;
-      opacity: .95;
-    }
-    @keyframes pulse {
-      0% {
-        transform: scale(0.98);
-        filter: saturate(.98);
-      }
-      50% {
-        transform: scale(1.04);
-        filter: saturate(1.05);
-      }
-      100% {
-        transform: scale(0.98);
-        filter: saturate(.98);
-      }
-    }
-
-    /* ---------- NAV & LAYOUT ---------- */
-    .container {
-      width: min(1100px, 94vw);
-      margin-inline: auto;
-    }
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 60;
-      background: var(--panel);
-      backdrop-filter: blur(6px);
-      border: 2px solid var(--border-color);
-      border-top: none;
-      box-shadow: 0 4px 10px var(--shadow-color);
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      padding: 5px 0;
-      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    html[data-theme="theme-2"] .nav {
-      border-radius: 0;
-      border-width: 1px;
-      box-shadow: 0 1px 5px var(--shadow-color);
-      background: var(--panel);
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 0;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      color: var(--text);
-      font-family: var(--decorative-font);
-      font-size: 1.6em;
-      transition: color 0.3s ease;
-    }
-    html[data-theme="theme-2"] .brand {
-      font-family: var(--primary-font);
-      font-weight: 700;
-      font-size: 1.3em;
-      color: var(--text);
-    }
-    .badge {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--brand);
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      color: var(--text);
-      border: 2px solid var(--border-color);
-      box-shadow: 0 3px 8px var(--shadow-color);
-      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
-    }
-    html[data-theme="theme-2"] .badge {
-        background: var(--brand);
-        color: var(--text);
-        border: 1px solid var(--border-color);
-        box-shadow: 0 1px 4px var(--shadow-color);
-        border-radius: var(--border-radius-sm);
-    }
-    .links {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-    }
-    .links a {
-      padding: 10px 15px;
-      border-radius: 12px;
-      font-weight: 700;
-      color: var(--text);
-      transition: all 0.2s ease;
-      border: 2px solid transparent;
-      position: relative;
-    }
-    .links a::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background-color: var(--brand);
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
-    html[data-theme="theme-2"] .links a::before {
-        background-color: var(--brand);
-    }
-    .links a:hover::before {
-      width: 80%;
-    }
-    .links a:hover {
-      background-color: var(--panel);
-      color: var(--text);
-      border-color: var(--accent);
-      box-shadow: 0 2px 5px var(--shadow-color);
-    }
-    .nav-toggle {
-      display: none;
-      background: transparent;
-      border: 0;
-      color: var(--text);
-      font-size: 32px;
-      padding: 8px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .nav-toggle:hover {
-      background-color: var(--panel);
-      box-shadow: 0 2px 5px var(--shadow-color);
-    }
-
-    .hero {
-      padding: 80px 0;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 40px;
-      align-items: center;
-    }
-    .kicker {
-      color: var(--muted);
-      font-weight: 700;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      font-size: 14px;
-      transition: color 0.3s ease;
-      text-align: center;
-    }
-    .title {
-      font-family: var(--heading-font);
-      font-size: clamp(38px, 6vw, 64px);
-      line-height: 1.1;
-      margin: 15px 0 20px;
-      font-weight: 900;
-      color: var(--text); /* Ensure dark text for title */
-      transition: color 0.3s ease;
-      text-align: center; /* <-- CHANGED: center-align hero title */
-    }
-    html[data-theme="theme-2"] .title {
-      font-weight: 900;
-      font-size: clamp(34px, 5vw, 56px);
-      color: var(--text); /* Ensure good contrast in theme-2 */
-      text-align: center; /* keep centered in theme 2 too */
-    }
-    .title b {
-      background: linear-gradient(135deg, var(--brand), var(--accent));
-      -webkit-background-clip: text;
-      color: transparent;
-      transition: background 0.3s ease;
-    }
-    .lead {
-      color: var(--muted);
-      font-size: clamp(17px, 2.2vw, 20px);
-      line-height: 1.7;
-      transition: color 0.3s ease;
-    }
-    .cta {
-      display: flex;
-      gap: 20px;
-      margin-top: 30px;
-      flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 28px;
-      border-radius: 18px;
-      background: var(--brand);
-      border: 2px solid var(--border-color);
-      font-weight: 800;
-      color: var(--text);
-      box-shadow: 0 4px 10px var(--shadow-color);
-      justify-content: center;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
-    }
-    html[data-theme="theme-2"] .btn {
-      border-width: 1px;
-      border-radius: var(--border-radius-sm);
-      background-color: var(--brand);
-      box-shadow: 2px 2px 5px var(--shadow-color);
-    }
-    .btn:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 6px 15px var(--shadow-color);
-      background: var(--accent);
-    }
-    html[data-theme="theme-2"] .btn:hover {
-      background-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 1px 1px 3px var(--shadow-color);
-    }
-    .ghost {
-      background: var(--panel);
-      border: 2px solid var(--border-color);
-      color: var(--text);
-      box-shadow: 0 4px 10px var(--shadow-color);
-    }
-    html[data-theme="theme-2"] .ghost {
-      border-width: 1px;
-      border-radius: var(--border-radius-sm);
-      background-color: var(--panel);
-      box-shadow: 2px 2px 5px var(--shadow-color);
-    }
-    html[data-theme="theme-2"] .ghost:hover {
-      background-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 1px 1px 3px var(--shadow-color);
-    }
-
-    .card {
-      border-radius: 20px;
-      padding: 20px;
-      background: var(--panel);
-      border: 2px solid var(--border-color);
-      box-shadow: 0 8px 20px var(--shadow-color);
-      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    html[data-theme="theme-2"] .card {
-      border-width: 1px;
-      border-radius: var(--border-radius-lg);
-      box-shadow: 3px 3px 8px var(--shadow-color);
-    }
-    .thumb {
-      border-radius: 15px;
-      overflow: hidden;
-      background: var(--panel);
-      display: block;
-      border: 2px solid var(--border-color);
-      transition: border-color 0.3s ease;
-    }
-    html[data-theme="theme-2"] .thumb {
-      border-width: 1px;
-      border-radius: var(--border-radius-md);
-    }
-    .thumb img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-
-    section {
-      padding: 80px 0;
-    }
-    .section-title {
-      font-family: var(--heading-font);
-      font-size: clamp(32px, 4vw, 48px);
-      margin: 0 0 15px;
-      font-weight: 900;
-      color: var(--brand);
-      transition: color 0.3s ease;
-    }
-    html[data-theme="theme-2"] .section-title {
-      font-weight: 900;
-      color: var(--text);
-      font-size: clamp(28px, 4vw, 42px);
-    }
-    .muted {
-      color: var(--muted);
-      transition: color 0.3s ease;
-    }
-    .grid {
-      display: grid;
-      gap: 25px;
-    }
-    .grid.cols-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .grid.cols-2 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .resume-item {
-      padding: 25px;
-      border-radius: 20px;
-      background: var(--panel);
-      border: 2px solid var(--border-color);
-      box-shadow: 0 4px 10px var(--shadow-color);
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    html[data-theme="theme-2"] .resume-item {
-      border-width: 1px;
-      border-radius: var(--border-radius-md);
-      box-shadow: 2px 2px 5px var(--shadow-color);
-    }
-    .resume-item:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px var(--shadow-color);
-    }
-    .resume-item h4 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      color: var(--text);
-      font-size: 1.3em;
-      transition: color 0.3s ease;
-    }
-    .resume-item small {
-      font-size: 0.9em;
-      display: block;
-      margin-bottom: 8px;
-      transition: color 0.3s ease;
-    }
-    .resume-item p {
-      font-size: 1em;
-      line-height: 1.6;
-      transition: color 0.3s ease;
-    }
-    .pill {
-      display: inline-block;
-      padding: 10px 18px;
-      border-radius: 999px;
-      background: var(--accent);
-      color: var(--text);
-      font-weight: 700;
-      font-size: 14px;
-      border: 2px solid var(--border-color);
-      box-shadow: 0 2px 5px var(--shadow-color);
-      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
-    }
-    html[data-theme="theme-2"] .pill {
-      border-width: 1px;
-      background-color: var(--accent);
-      color: var(--text);
-      box-shadow: none;
-    }
-
-    .filters {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin: 20px 0 30px;
-    }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 20px;
-      border-radius: 999px;
-      background: var(--panel);
-      border: 2px solid var(--border-color);
-      color: var(--text);
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 16px;
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
-      box-shadow: 0 3px 8px var(--shadow-color);
-    }
-    html[data-theme="theme-2"] .chip {
-      border-width: 1px;
-      border-radius: var(--border-radius-sm);
-      box-shadow: 1px 1px 3px var(--shadow-color);
-      background-color: var(--panel);
-    }
-    .chip:hover {
-      background-color: var(--accent);
-      color: var(--text);
-      border-color: var(--brand);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 12px var(--shadow-color);
-    }
-    html[data-theme="theme-2"] .chip:hover {
-      background-color: var(--accent);
-      box-shadow: 0 1px 3px var(--shadow-color);
-      transform: translateY(-1px);
-    }
-    .chip[aria-pressed="true"] {
-      background: var(--brand);
-      color: var(--text);
-      border-color: var(--border-color);
-      box-shadow: 0 4px 10px var(--shadow-color);
-      transform: translateY(-1px);
-    }
-    html[data-theme="theme-2"] .chip[aria-pressed="true"] {
-      background-color: var(--brand);
-      border-color: var(--border-color);
-      box-shadow: 1px 1px 3px var(--shadow-color);
-    }
-
-    /* Pinterest-style masonry layout for all screen sizes */
-    .masonry {
-      column-count: 3; /* Default to 3 columns on larger screens */
-      column-gap: 25px; /* Spacing between columns */
-      margin-top: 25px; /* Added spacing */
-      padding-inline: 0; /* Ensure no extra horizontal padding by default */
-    }
-    /* Mobile adjustments for masonry columns */
-    @media (max-width: 980px) {
-      .masonry {
-        column-count: 2; /* 2 columns on tablets */
-        column-gap: 20px;
-      }
-    }
-    @media (max-width: 520px) {
-      .masonry {
-        column-count: 1; /* Single column on small mobile */
-        column-gap: 15px; /* Adjust gap for single column if needed */
-      }
-    }
-
-
-    .masonry-item {
-      /* This is key for column-based masonry: ensure items don't break across columns */
-      break-inside: avoid;
-      width: 100%; /* Important for items to take full width of their column */
-      margin-bottom: 25px; /* Vertical spacing between items within a column */
-      box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    }
-
-    .work-card {
-      display: block; /* Ensure it's a block element within the column */
-      border-radius: 20px;
-      overflow: hidden;
-      border: 2px solid var(--border-color);
-      background: var(--panel);
-      box-shadow: 0 8px 20px var(--shadow-color);
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    html[data-theme="theme-2"] .work-card {
-      border-width: 1px;
-      border-radius: var(--border-radius-md);
-      box-shadow: 3px 3px 8px var(--shadow-color);
-    }
-    .work-card:hover {
-      transform: translateY(-4px) scale(1.01);
-      box-shadow: 0 10px 25px var(--shadow-color);
-    }
-    html[data-theme="theme-2"] .work-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 2px 2px 5px var(--shadow-color);
-    }
-    .image-wrapper { /* New wrapper for image loading animation */
-      position: relative;
-      background-color: #f0f0f0; /* Placeholder background */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden; /* Ensure spinner doesn't overflow */
-    }
-
-    .image-wrapper:not(.loaded) { /* Apply min-height only when not loaded */
-      min-height: 100px; /* Placeholder height for spinner */
-    }
-
-    .loading-spinner {
-      border: 4px solid var(--accent);
-      border-top: 4px solid var(--brand);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      position: absolute;
-      opacity: 1;
-      transition: opacity 0.3s ease;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .image-wrapper.loaded .loading-spinner,
-    .image-wrapper.error .loading-spinner {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .work-img {
-      width: 100%;
-      height: auto; /* Allow image to define its height */
-      display: block;
-      object-fit: cover; /* Cover the available width, maintaining aspect ratio */
-      transition: opacity 0.3s ease; /* Smooth image fade-in */
-      opacity: 0; /* Initially hidden */
-    }
-    .image-wrapper.loaded .work-img {
-      opacity: 1; /* Show image when loaded */
-    }
-
-    .work-caption {
-      padding: 18px;
-      color: var(--muted);
-      font-size: 16px;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      border-top: 1px solid var(--border-color); /* Separator between image and caption */
-    }
-
-    footer {
-      padding: 50px 0;
-      color: var(--muted);
-      border-top: 2px solid var(--border-color);
-      background-color: var(--panel);
-      margin-top: 80px;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-    html[data-theme="theme-2"] footer {
-      border-top-width: 1px;
-      background-color: var(--panel);
-    }
-    footer .section-title {
-      color: var(--text);
-      font-family: var(--heading-font);
-      font-size: clamp(28px, 3.5vw, 42px);
-      transition: color 0.3s ease;
-    }
-    html[data-theme="theme-2"] footer .section-title {
-      color: var(--text);
-    }
-    footer .card {
-      background: var(--bg);
-      box-shadow: 0 4px 10px var(--shadow-color);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    html[data-theme="theme-2"] footer .card {
-      border-width: 1px;
-      border-radius: var(--border-radius-lg);
-      box-shadow: 3px 3px 8px var(--shadow-color);
-    }
-    footer p.muted {
-      text-align: center;
-      margin-top: 25px;
-      font-size: 1.1em;
-      transition: color 0.3s ease;
-    }
-
-    /* ===== NEW: Let's Connect layout tweaks (only these new rules) ===== */
-    footer .connect-wrapper {
-      display: flex;
-      gap: 25px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center; /* center both columns horizontally */
-    }
-    footer .connect-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center; /* center the buttons */
-      margin-top: 18px;
-    }
-    footer .connect-info {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center; /* center the pills */
-    }
-    @media (max-width: 600px) {
-      footer .connect-wrapper {
-        flex-direction: column; /* stack on small screens */
-        align-items: center;
-      }
-      footer .connect-actions, footer .connect-info {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 980px) {
-      body {
-        background-color: var(--bg); /* Ensure theme background is applied */
-      }
-      .nav {
-        background: var(--panel); /* Ensure theme nav background */
-        border-color: var(--border-color); /* Ensure theme nav border */
-        box-shadow: 0 2px 8px var(--shadow-color); /* Adjust shadow for mobile nav */
-      }
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 0;
-      }
-      .nav-inner {
-        padding: 10px 4vw;
-      }
-      .links {
-        display: none;
-      }
-      .nav-toggle {
-        display: inline-flex;
-        color: var(--text); /* Ensure mobile toggle color */
-      }
-      .container {
-        width: 94vw; /* Consistent container width */
-      }
-      .grid.cols-3, .grid.cols-2 {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .section-title {
-        font-size: clamp(30px, 4.5vw, 42px);
-        color: var(--text); /* Ensure section title color */
-      }
-      .title {
-        font-size: clamp(36px, 7vw, 56px);
-        color: var(--text); /* Ensure hero title color */
-        text-align: center; /* ensure mobile view keeps it centered */
-      }
-      /* Adjust pen tool position for mobile for Theme 1 */
-      html[data-theme="theme-1"] body::before {
-        top: 5vh;
-        left: 5vw;
-        width: 60px;
-        height: 60px;
-      }
-      html[data-theme="theme-2"] body::before { /* Adjust theme 2 pen tool for mobile */
-        top: 5%;
-        left: 3%;
-        width: 80px;
-        height: 80px;
-      }
-      html[data-theme="theme-2"] body::after { /* Adjust theme 2 color palette for mobile */
-        bottom: 5%;
-        right: 3%;
-        width: 100px;
-        height: 100px;
-      }
-
-      /* Adjust section padding for mobile */
-      section {
-        padding: 60px 0;
-      }
-      .hero {
-        padding: 60px 0;
-      }
-      .masonry {
-        column-count: 1; /* Already there for tablets */
-        column-gap: 20px;
-      }
-      .masonry-item {
-        margin-bottom: 20px; /* Adjust vertical gap for tablet */
-      }
-      .resume-item {
-        background: var(--panel); /* Ensure theme resume item background */
-        border-color: var(--border-color); /* Ensure theme resume item border */
-        box-shadow: 0 2px 5px var(--shadow-color); /* Adjust shadow for mobile resume items */
-      }
-      .work-card {
-        background: var(--panel); /* Ensure theme work card background */
-        border-color: var(--border-color); /* Ensure theme work card border */
-        box-shadow: 0 2px 5px var(--shadow-color); /* Adjust shadow for mobile work cards */
-      }
-      .filters .chip {
-        background: var(--panel); /* Ensure theme chip background */
-        border-color: var(--border-color); /* Ensure theme chip border */
-        color: var(--text); /* Ensure theme chip text color */
-        box-shadow: 0 1px 3px var(--shadow-color); /* Adjust shadow */
-      }
-      .filters .chip[aria-pressed="true"] {
-        background: var(--brand); /* Ensure theme chip pressed background */
-        color: var(--text); /* Ensure theme chip pressed text color */
-        border-color: var(--border-color);
-        box-shadow: 0 1px 3px var(--shadow-color);
-      }
-      footer {
-        background-color: var(--panel); /* Ensure footer background */
-        border-color: var(--border-color); /* Ensure footer border */
-      }
-      footer .section-title {
-        color: var(--text); /* Ensure footer title color */
-      }
-      footer .card {
-        background: var(--bg); /* Ensure footer card background */
-        border-color: var(--border-color); /* Ensure footer card border */
-        box-shadow: 0 2px 5px var(--shadow-color);
-      }
-    }
-
-    @media (max-width: 768px) {
-      /* Further refinements for smaller tablets/larger phones */
-      .cta .btn {
-        padding: 12px 24px;
-        font-size: 16px;
-      }
-      .pill {
-        padding: 9px 16px;
-        font-size: 13px;
-      }
-      /* Ensure hero image scales well */
-      .hero-grid aside.card {
-        padding: 15px; /* Slightly reduce card padding */
-      }
-      /* More explicit styling for nested elements if needed */
-      .resume-item h4, .resume-item p, .resume-item small {
-        color: var(--text);
-      }
-      .work-caption {
-        color: var(--muted);
-      }
-    }
-
-    @media (max-width: 520px) {
-      .hero {
-        padding: 40px 0;
-      }
-      .title {
-        font-size: 32px;
-        margin-bottom: 15px;
-        text-align: center; /* ensure small mobile keeps title centered */
-      }
-      .cta .btn {
-        padding: 10px 18px;
-        font-size: 15px;
-        width: 100%; /* Make CTA buttons full width */
-        justify-content: center; /* <-- keep text centered */
-        align-items: center;
-      }
-      .section-title {
-        font-size: 28px;
-      }
-      .chip {
-        padding: 10px 16px;
-        font-size: 14px;
-      }
-      .mobile-menu {
-        top: 64px; /* Ensure it's below the fixed header */
-        padding: 12px;
-        border-radius: 0 0 10px 10px; /* Slightly rounded bottom corners for mobile menu */
-        background: var(--panel); /* Ensure theme mobile menu background */
-        border-color: var(--border-color); /* Ensure theme mobile menu border */
-        box-shadow: 0 2px 5px var(--shadow-color);
-      }
-       /* Ensure container padding for very small screens */
-      .container {
-        width: 96vw; /* Slightly more padding on very small screens */
-      }
-      .filters {
-        gap: 8px; /* Reduce gap for filter chips */
-      }
-      .nav-inner {
-        padding: 10px 3vw;
-      }
-      .masonry {
-        column-count: 1; /* Single column on small mobile */
-        column-gap: 0; /* No horizontal gap for single column */
-      }
-      .masonry-item {
-        margin-bottom: 15px; /* Adjust vertical gap for single column */
-      }
-      .work-card {
-        border-radius: 15px; /* Slightly smaller border radius for mobile cards */
-      }
-      .work-caption {
-        padding: 15px; /* Adjust caption padding */
-      }
-      .hero-grid aside.card {
-        padding: 12px; /* Further reduce card padding */
-      }
-      .pill {
-        font-size: 12px; /* Smaller pills */
-        padding: 8px 14px;
-      }
-      .hero-grid aside.card .thumb {
-          border-radius: 10px; /* Adjust thumb border radius */
-      }
-      .mobile-menu a {
-        color: var(--text); /* Ensure mobile menu link text color */
-      }
-      .mobile-menu a:hover {
-        background-color: var(--accent); /* Ensure mobile menu link hover background */
-        color: var(--text); /* Ensure mobile menu link hover text color */
-        border-color: var(--brand);
-      }
-    }
-    .mobile-menu {
-      display: none;
-      position: absolute;
-      inset-inline: 0;
-      top: 64px;
-      background: var(--panel);
-      padding: 15px;
-      border-bottom: 2px solid var(--border-color);
-      box-shadow: 0 5px 15px var(--shadow-color);
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    html[data-theme="theme-2"] .mobile-menu {
-      border-radius: 0;
-      border-bottom-width: 1px;
-      box-shadow: 0 1px 5px var(--shadow-color);
-    }
-    .mobile-menu a {
-      display: block;
-      padding: 12px 18px;
-      border-radius: 15px;
-      margin-bottom: 10px;
-      transition: all 0.2s ease;
-      color: var(--text);
-      border: 1px solid transparent;
-      font-weight: 600;
-    }
-    html[data-theme="theme-2"] .mobile-menu a {
-      border-radius: var(--border-radius-sm);
-      border-width: 1px;
-    }
-    .mobile-menu a:hover {
-      background-color: var(--accent);
-      color: var(--text);
-      border-color: var(--brand);
-    }
-    .mobile-menu.show {
-      display: block;
-    }
-
-    html.loading {
-      overflow: hidden;
-    }
-  </style>
-</head>
-<body id="top" class="loading">
-  <!-- Additional container for complex background shapes in Theme 2 -->
-  <div class="bg-doodle-shapes"></div>
-
-  <!-- PRELOADER -->
-  <div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading portfolio">
-    <div class="preloader__avatar" aria-hidden="true">
-      <!-- Replace with your instagram/profile image file (recommended: assets/uploads/profile.jpg) -->
-      <img id="preloaderImg" src="assets/uploads/profile.jpg" alt="Abhijeet Powar">
-    </div>
-    <div class="preloader__caption">Abhijeet Powar — Loading…</div>
-  </div>
-
-  <!-- NAV -->
-  <header class="nav" role="banner">
-    <div class="container nav-inner">
-      <a class="brand" href="#top" aria-label="Home">
-        <span class="badge" aria-hidden="true">AP</span>
-        <span style="font-weight:800">Abhijeet Powar</span>
-      </a>
-
-      <nav class="links" aria-label="Primary">
-        <a href="#resume">Resume</a>
-        <a href="#works">Works</a>
-        <a href="#contact">Contact</a>
-        <button id="themeToggleBtn" class="chip" title="Toggle theme" aria-pressed="false">Theme</button>
-      </nav>
-
-      <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
-    </div>
-
-    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
-      <a href="#resume">Resume</a>
-      <a href="#works">Works</a>
-      <a href="#contact">Contact</a>
-      <a href="mailto:abhipowar2400@gmail.com">Email</a>
-    </div>
-  </header>
-
-  <!-- MAIN -->
-  <main id="main">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="kicker">My Portfolio — Design</div>
-          <h1 class="title">Hi, I'm <b>Abhijeet Powar</b> — Graphic Designer, Video Editor & <b>AI Creative</b>.</h1>
-          <p class="lead">I craft visuals that captivate — vector art, logos, photo manipulation, posters, digital painting, motion graphics and video edits.</p>
-          <div class="cta">
-            <a class="btn" href="#resume">View Resume</a>
-            <a class="btn ghost" href="#works">View Works</a>
-          </div>
-          <p class="muted" style="margin-top:18px">Based in Gadhinglaj, Maharashtra • Available for freelance & collaborations</p>
-        </div>
-
-        <aside class="card" aria-hidden="false">
-          <div class="thumb">
-            <img id="heroImage" src="assets/uploads/cover.jpg" alt="Portfolio cover">
-          </div>
-          <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
-            <span class="pill">Illustrator</span>
-            <span class="pill">Photoshop</span>
-            <span class="pill">Video Editing</span>
-            <span class="pill">AI Tools</span>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- RESUME -->
-    <section id="resume" class="container">
-      <h2 class="section-title">Resume</h2>
-      <p class="muted">A quick view of my background, experience and skills.</p>
-
-      <div class="grid cols-2" style="margin-top:30px">
-        <article class="resume-item">
-          <h4>Senior Computer Trainer</h4>
-          <small class="muted">Hitech Computer Education Institute • 2022–2025</small>
-          <p>Trained students in CCC, Tally, Graphic Designing, Video Editing and more.</p>
-        </article>
-
-        <article class="resume-item">
-          <h4>Marketing & Graphic Designer</h4>
-          <small class="muted">Marketing Department • 2022–2025</small>
-          <p>Designed posters, ads and digital graphics; managed social presence.</p>
-        </article>
-      </div>
-
-      <div class="grid cols-3" style="margin-top:25px">
-        <article class="resume-item"><h4>Education</h4><small class="muted">2022–2025</small><p>B.Com — Sadhana College of Commerce.</p></article>
-        <article class="resume-item"><h4>Software Skills</h4><p>Illustrator, Photoshop, Premiere/After Effects, AI tools.</p></article>
-        <article class="resume-item"><h4>Personal Skills</h4><p>Adaptable • Communication • Teamwork • Learning mindset</p></article>
-      </div>
-    </section>
-
-    <!-- WORKS -->
-    <section id="works" class="container">
-      <h2 class="section-title">Works</h2>
-      <p class="muted">One gallery for everything. Use the filters to view specific categories.</p>
-
-      <div class="filters" role="toolbar" aria-label="Work Filters">
-        <button class="chip" data-filter="All" aria-pressed="true">All</button>
-        <button class="chip" data-filter="Illustrator">Illustrator</button>
-        <button class="chip" data-filter="Photoshop">Photoshop</button>
-        <button class="chip" data-filter="Video">Video</button>
-        <button class="chip" data-filter="Blender">Blender</button>
-      </div>
-
-      <div id="masonry" class="masonry" aria-live="polite" tabindex="0" aria-label="Portfolio gallery"></div>
-      <div id="emptyMsg" class="muted" style="display:none;margin-top:8px">No items match this filter yet.</div>
-    </section>
-  </main>
-
- <style>
-  /* Footer (mobile-focused) - paste this right before the footer HTML you replace */
-  #contact {
-    background: #FFFBF0;
-    padding: 34px 16px 42px;
-    font-family: 'Kufam', sans-serif;
-    color: #333;
+/* Override masonry layout for mobile - use 2-column grid instead */
+@media screen and (max-width: 980px) {
+  .masonry {
+    column-count: unset; /* Disable CSS columns */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 equal columns */
+    gap: 15px; /* Reduced gap for mobile */
+    margin-top: 20px;
+    padding-inline: 0;
   }
 
-  #contact .connect {
-    max-width: 520px;         /* keeps layout narrow on larger phones */
-    margin: 0 auto;
+  .masonry-item {
+    break-inside: unset; /* Not needed for grid */
+    width: 100%;
+    margin-bottom: 0; /* Grid gap handles spacing */
+    box-sizing: border-box;
+  }
+
+  /* Ensure work cards fit properly in grid */
+  .work-card {
+    display: block;
+    border-radius: 15px; /* Slightly smaller radius for mobile */
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    background: var(--panel);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  html[data-theme="theme-2"] .work-card {
+    border-width: 1px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 6px var(--shadow-color);
+  }
+
+  .work-card:hover {
+    transform: translateY(-2px) scale(1.01); /* Reduced hover effect for mobile */
+    box-shadow: 0 6px 15px var(--shadow-color);
+  }
+
+  html[data-theme="theme-2"] .work-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 1px 1px 4px var(--shadow-color);
+  }
+
+  /* Image wrapper adjustments for mobile */
+  .image-wrapper {
+    position: relative;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .image-wrapper:not(.loaded) {
+    min-height: 120px; /* Adjusted for mobile */
+  }
+
+  .work-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  .image-wrapper.loaded .work-img {
+    opacity: 1;
+  }
+
+  .work-caption {
+    padding: 12px; /* Reduced padding for mobile */
+    color: var(--muted);
+    font-size: 14px; /* Slightly smaller font */
+    font-weight: 500;
+    transition: color 0.3s ease;
+    border-top: 1px solid var(--border-color);
     text-align: center;
   }
 
-  /* Title */
-  #contact .section-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 34px;
-    line-height: 1;
-    margin: 0 0 8px;
-    color: #333;
-    font-weight: 900;
+  /* Loading spinner adjustments */
+  .loading-spinner {
+    border: 3px solid var(--accent);
+    border-top: 3px solid var(--brand);
+    border-radius: 50%;
+    width: 30px; /* Smaller spinner for mobile */
+    height: 30px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    opacity: 1;
+    transition: opacity 0.3s ease;
   }
 
-  #contact .sub {
-    color: #8b8b8b;
-    margin: 0 0 14px;
-    font-size: 15px;
+  /* Mobile navigation adjustments */
+  .nav-toggle {
+    display: block; /* Show hamburger menu on mobile */
   }
 
-  /* Top action buttons (Email / Phone / Instagram) */
-  #contact .connect-actions {
-    display: flex;
-    gap: 12px;
+  .links {
+    display: none; /* Hide desktop navigation */
+  }
+
+  /* Hero section adjustments */
+  .hero-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 30px;
+    text-align: center;
+  }
+
+  .title {
+    font-size: clamp(28px, 8vw, 42px); /* Adjusted for mobile */
+  }
+
+  .lead {
+    font-size: clamp(16px, 4vw, 18px);
+  }
+
+  .cta {
     justify-content: center;
-    flex-wrap: nowrap;          /* try to keep in a single row on wide phones */
-    overflow-x: auto;           /* allows slight horizontal scroll rather than overflow */
-    padding: 6px 6px 0 6px;     /* small padding so edges don't touch */
-    margin-bottom: 18px;
+    gap: 15px;
   }
 
-  /* Shared button style */
-  #contact .connect-actions .btn {
-    -webkit-tap-highlight-color: transparent;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 110px;          /* small & consistent size */
-    padding: 10px 14px;
-    border-radius: 12px;
-    border: 2px solid #222;
-    background: #fff;
-    font-weight: 800;
-    color: #222;
-    box-shadow:
-      0 8px 0 rgba(0,0,0,0.06),   /* subtle drop shadow below to mimic stacked look */
-      0 2px 8px rgba(0,0,0,0.08);
-    white-space: nowrap;
-    flex-shrink: 0;             /* prevents shrinking too much */
-  }
-
-  /* Filled yellow primary button */
-  #contact .connect-actions .btn.primary {
-    background: #FFD700;
-    color: #111;
-    box-shadow:
-      0 8px 0 rgba(0,0,0,0.07),
-      inset 0 -6px 0 rgba(0,0,0,0.03);
-  }
-
-  /* Slight rounded inner border effect like your ref */
-  #contact .connect-actions .btn::after {
-    content: '';
-    display: block;
-    position: relative;
-    top: 0;
-  }
-
-  /* Big rounded outer card that contains the info pills */
-  #contact .info-outer {
-    background: #fff;
-    border-radius: 18px;
-    padding: 10px;
-    border: 2px solid #222;
-    box-shadow: 0 10px 0 rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06);
-    margin: 0 auto;
-    max-width: 520px;
-  }
-
-  /* Inner row of blue pills */
-  #contact .info-inner {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 8px;
-    flex-wrap: nowrap;
-    overflow-x: auto;         /* allow horizontal scroll if too many pills */
-  }
-
-  #contact .info-inner .pill {
-    background: #80DEEA;
-    color: #0e2a2b;
-    padding: 10px 14px;
-    border-radius: 999px;
-    font-weight: 700;
-    border: 2px solid rgba(0,0,0,0.12);
-    box-shadow: 0 6px 0 rgba(0,0,0,0.05), inset 0 -3px 0 rgba(0,0,0,0.06);
-    white-space: nowrap;
-    flex-shrink: 0;
+  .btn {
+    padding: 12px 24px; /* Slightly smaller buttons */
     font-size: 14px;
   }
 
-  /* Copyright */
-  #contact .copyright {
-    margin-top: 18px;
-    color: #8b8b8b;
-    font-size: 15px;
+  /* Resume section - stack cards vertically */
+  .grid.cols-2,
+  .grid.cols-3 {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 20px;
   }
 
-  /* Mobile tweaks: stack buttons & pills on very narrow screens */
-  @media (max-width: 420px) {
-    #contact .connect-actions { flex-wrap: wrap; gap: 10px; }
-    #contact .connect-actions .btn { min-width: 100%; max-width: 360px; flex-shrink: 1; }
-    #contact .info-inner { flex-wrap: wrap; gap: 10px; padding: 10px; }
-    #contact .info-inner .pill { min-width: 120px; width: auto; }
-    #contact .section-title { font-size: 30px; }
+  .resume-item {
+    padding: 20px;
+    border-radius: 15px;
   }
-</style>
 
-<!-- Replace your old footer with exactly this block -->
-<footer id="contact" aria-labelledby="connect-heading">
-  <div class="connect" role="region" aria-label="Let's Connect">
-    <h3 id="connect-heading" class="section-title">Let's Connect</h3>
-    <p class="sub muted">Ready to collaborate? Reach out for freelance & projects.</p>
+  /* Works section title and filters */
+  .section-title {
+    font-size: clamp(24px, 6vw, 36px);
+    text-align: center;
+  }
 
-    <div class="connect-actions" role="toolbar" aria-label="Contact actions">
-      <a class="btn primary" href="mailto:abhipowar2400@gmail.com" aria-label="Email">Email</a>
-      <a class="btn" href="tel:+919422733472" aria-label="Phone">+91-94227-33472</a>
-      <a class="btn" href="https://instagram.com/abhi._powar._" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-    </div>
+  .filters {
+    justify-content: center;
+    gap: 8px;
+    margin: 15px 0 25px;
+  }
 
-    <div class="info-outer" role="group" aria-label="Location and availability">
-      <div class="info-inner">
-        <span class="pill" aria-hidden="false">Gadhinglaj, Maharashtra</span>
-        <span class="pill">IST (UTC+5:30)</span>
-        <span class="pill">Remote / On-site</span>
-      </div>
-    </div>
+  .chip {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 20px;
+  }
 
-    <div class="copyright" aria-hidden="false">© <span id="y"></span> Abhijeet Powar • Designed with ❤️</div>
-  </div>
+  html[data-theme="theme-2"] .chip {
+    border-radius: 6px;
+  }
 
-  <script>
-    // keep the year dynamic like your site
-    (function(){ document.getElementById('y').textContent = new Date().getFullYear(); })();
-  </script>
-</footer>
+  /* Footer - Let's Connect section redesign */
+  footer {
+    padding: 40px 0;
+    margin-top: 60px;
+  }
 
-  <script>
-    // footer year
-    document.getElementById('y').textContent = new Date().getFullYear();
+  footer .container {
+    padding: 20px 0;
+  }
 
-    // mobile nav toggle
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    navToggle.addEventListener('click', () => {
-      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', String(!expanded));
-      mobileMenu.classList.toggle('show');
-      mobileMenu.setAttribute('aria-hidden', String(expanded));
-    });
+  footer .section-title {
+    font-size: clamp(24px, 6vw, 32px);
+    margin-bottom: 8px;
+    text-align: center;
+  }
 
-    // theme toggle (simple)
-    const themeBtn = document.getElementById('themeToggleBtn');
-    const root = document.documentElement;
+  footer .muted {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
 
-    // Function to set theme
-    function setTheme(themeName) {
-      root.setAttribute('data-theme', themeName);
-      localStorage.setItem('theme', themeName);
-      themeBtn.setAttribute('aria-pressed', themeName === 'theme-2' ? 'true' : 'false');
-    }
+  /* Redesign footer layout to match reference */
+  footer > .container > div:first-child {
+    display: block !important; /* Override flex */
+    text-align: center;
+  }
 
-    // Load saved theme on page load
-    const savedTheme = localStorage.getItem('theme') || 'theme-1'; // Default to theme-1
-    setTheme(savedTheme);
+  footer > .container > div:first-child > div:first-child {
+    margin-bottom: 25px;
+  }
 
-    themeBtn.addEventListener('click', () => {
-      const currentTheme = root.getAttribute('data-theme');
-      const nextTheme = currentTheme === 'theme-1' ? 'theme-2' : 'theme-1';
-      setTheme(nextTheme);
-    });
+  /* Contact buttons - horizontal layout */
+  footer > .container > div:first-child > div:first-child > div {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 
+  footer .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 25px;
+  }
 
-    /* ---------- Preloader logic ---------- */
-    (function() {
-      const preloader = document.getElementById('preloader');
-      const body = document.documentElement;
-      let pageLoaded = false;
-      let dataLoaded = false;
-      let hidden = false;
+  html[data-theme="theme-2"] footer .btn {
+    border-radius: 6px;
+  }
 
-      // safety timeout: remove preloader after 4s max
-      const MAX_WAIT = 4000;
-      const timer = setTimeout(() => {
-        hidePreloader('timeout');
-      }, MAX_WAIT);
+  /* Location/info pills - redesign to match reference */
+  footer .card {
+    min-width: unset;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 15px;
+    background: var(--panel);
+    border: 2px solid var(--border-color);
+  }
 
-      function tryHide() {
-        // hide only after both are loaded OR timeout triggered
-        if ((pageLoaded && dataLoaded) && !hidden) {
-          hidePreloader('ok');
-        }
-      }
+  html[data-theme="theme-2"] footer .card {
+    border-width: 1px;
+    border-radius: 12px;
+  }
 
-      function hidePreloader(reason) {
-        if (hidden) return;
-        hidden = true;
-        clearTimeout(timer);
-        preloader.classList.add('hide');
-        // remove body lock
-        body.classList.remove('loading');
-        // slight delay so CSS transition can complete
-        setTimeout(() => {
-          preloader.style.display = 'none';
-        }, 500);
-        // console for debugging
-        console.log('Preloader hidden:', reason);
-      }
+  footer .card > div {
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
 
-      // when window fully loaded (images, fonts, etc)
-      window.addEventListener('load', () => {
-        pageLoaded = true;
-        tryHide();
-      });
+  footer .pill {
+    padding: 8px 16px;
+    font-size: 12px;
+    border-radius: 20px;
+  }
 
-      // expose function for when your JSON gallery finishes rendering
-      window.__worksDataReady = function() {
-        dataLoaded = true;
-        tryHide();
-      };
+  html[data-theme="theme-2"] footer .pill {
+    border-radius: 6px;
+  }
 
-      // fallback: if nothing happens, hide in MAX_WAIT
-    })();
+  /* Copyright text */
+  footer p.muted:last-child {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+  }
 
+  /* Modal adjustments for mobile */
+  #imageModal {
+    padding-top: 20px;
+  }
 
-    /* ------- WORKS: load data/works.json and render masonry ------- */
-    const state = { all: [], filter: 'All' };
-    const masonry = document.getElementById('masonry');
-    const emptyMsg = document.getElementById('emptyMsg');
+  #modalImage {
+    width: 95%;
+    max-width: none;
+    max-height: 85vh;
+  }
 
-    fetch('data/works.json', {cache: 'no-store'})
-      .then(r => r.ok ? r.json() : Promise.reject('Missing data/works.json'))
-      .then(json => {
-        state.all = json.works || [];
-        render();
-        // signal preloader that data is ready
-        if (window.__worksDataReady) window.__worksDataReady();
-      })
-      .catch(err => {
-        masonry.innerHTML = `<div class="muted">${err}. Add data/works.json to the repo.</div>`;
-        if (window.__worksDataReady) window.__worksDataReady();
-      });
+  #closeModal {
+    top: 10px;
+    right: 20px;
+    font-size: 35px;
+  }
 
-    function toCard(w){
-      const alt = (w.alt || w.title || 'Portfolio image').replace(/"/g,'&quot;');
-      const caption = w.title ? `<figcaption class="work-caption">${w.title}</figcaption>` : '';
-      const imgId = `work-img-${Math.random().toString(36).substr(2, 9)}`; // Unique ID for each image
+  /* Container adjustments */
+  .container {
+    width: min(100%, 94vw);
+    padding-inline: 3vw;
+  }
 
-      return `
-        <div class="masonry-item">
-          <a class="work-card" href="${w.href || '#'}" ${w.href ? 'target="_blank" rel="noopener"' : ''}>
-            <div class="image-wrapper">
-              <div class="loading-spinner"></div>
-              <img
-                loading="lazy"
-                class="work-img"
-                id="${imgId}"
-                src="${w.src}"
-                alt="${alt}"
-              />
-            </div>
-            ${caption}
-          </a>
-        </div>
-      `;
-    }
+  /* Section spacing adjustments */
+  section {
+    padding: 60px 0;
+  }
 
-    function render(){
-      const list = state.filter === 'All' ? state.all : state.all.filter(w => (w.tags || []).includes(state.filter));
-      masonry.innerHTML = list.map(toCard).join('');
+  .hero {
+    padding: 60px 0;
+  }
 
-      // Attach loading event listeners after rendering HTML
-      document.querySelectorAll('.work-img').forEach(imgElement => {
-        const imageWrapper = imgElement.closest('.image-wrapper');
-        if (imageWrapper) {
-          const startTime = Date.now();
-          const MIN_SPINNER_DISPLAY_TIME = 1500; // Minimum 1.5 seconds for the spinner
+  /* Preloader adjustments */
+  .preloader__avatar {
+    width: 120px;
+    height: 120px;
+  }
 
-          const hideSpinner = () => {
-            const elapsedTime = Date.now() - startTime;
-            const remainingTime = MIN_SPINNER_DISPLAY_TIME - elapsedTime;
+  .preloader__caption {
+    font-size: 13px;
+  }
+}
 
-            if (remainingTime > 0) {
-              setTimeout(() => {
-                imageWrapper.classList.add('loaded');
-              }, remainingTime);
-            } else {
-              imageWrapper.classList.add('loaded');
-            }
-          };
+/* Extra small screens (phones in portrait) */
+@media screen and (max-width: 480px) {
+  .masonry {
+    gap: 12px;
+  }
 
-          if (imgElement.complete && imgElement.naturalWidth > 0) {
-            // Image already loaded (e.g., from cache), apply minimum spinner display time
-            hideSpinner();
-          } else {
-            imgElement.onload = () => {
-              // Image just loaded, apply minimum spinner display time
-              hideSpinner();
-            };
-            imgElement.onerror = () => {
-              // On error, still hide the spinner after min display time, but also show error state
-              imageWrapper.classList.add('error');
-              hideSpinner();
-            };
-          }
-        }
-      });
-      emptyMsg.style.display = list.length ? 'none' : 'block';
-    }
+  .work-card {
+    border-radius: 12px;
+  }
 
-    // filter chips
-    document.querySelector('.filters').addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-filter]');
-      if(!btn) return;
-      state.filter = btn.getAttribute('data-filter');
-      for(const el of e.currentTarget.querySelectorAll('[data-filter]')){
-        el.setAttribute('aria-pressed', el === btn ? 'true' : 'false');
-      }
-      render();
-      // scroll into view so user sees results on mobile
-      document.getElementById('masonry').scrollIntoView({behavior:'smooth', block:'start'});
-    });
+  .work-caption {
+    padding: 10px;
+    font-size: 13px;
+  }
 
-    // keyboard support for chips
-    document.querySelectorAll('.chip').forEach(chip => {
-      chip.tabIndex = 0;
-      chip.addEventListener('keyup', (e) => { if(e.key === 'Enter' || e.key === ' ') chip.click(); });
-    });
+  .btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
 
-    // ensure preloader hides also if window already loaded (rare)
-    if (document.readyState === 'complete') {
-      // give a tick for event listeners to attach
-      setTimeout(() => { window.dispatchEvent(new Event('load')); }, 50);
-    }
-  </script>
-</body>
-</html>
+  .chip {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+
+  footer .pill {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .container {
+    width: min(100%, 96vw);
+    padding-inline: 2vw;
+  }
+}
