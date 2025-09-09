@@ -1045,6 +1045,57 @@ fetch('data/works.json', {cache: 'no-store'})
     if (window.__worksDataReady) window.__worksDataReady();
   });
 
+// Pinterest-style masonry layout function
+function createMasonryLayout() {
+  const container = document.getElementById('masonry');
+  const items = container.querySelectorAll('.masonry-item');
+  
+  if (items.length === 0) return;
+  
+  // Check if we're on mobile
+  const isMobile = window.innerWidth <= 980;
+  const columns = isMobile ? 2 : 3;
+  const gap = isMobile ? 15 : 25;
+  
+  // Reset container styles
+  container.style.position = 'relative';
+  container.style.height = 'auto';
+  
+  // Create column arrays to track heights
+  const columnHeights = new Array(columns).fill(0);
+  const columnWidth = (container.offsetWidth - (gap * (columns - 1))) / columns;
+  
+  items.forEach((item, index) => {
+    // Find the shortest column
+    const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+    
+    // Position the item
+    item.style.position = 'absolute';
+    item.style.width = `${columnWidth}px`;
+    item.style.left = `${shortestColumnIndex * (columnWidth + gap)}px`;
+    item.style.top = `${columnHeights[shortestColumnIndex]}px`;
+    
+    // Update column height
+    columnHeights[shortestColumnIndex] += item.offsetHeight + gap;
+  });
+  
+  // Set container height to the tallest column
+  const maxHeight = Math.max(...columnHeights) - gap;
+  container.style.height = `${maxHeight}px`;
+}
+
+// Debounce function for resize events
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
 function toCard(w){
   const alt = (w.alt || w.title || 'Portfolio image').replace(/"/g,'&quot;');
   const caption = w.title ? `<figcaption class="work-caption">${w.title}</figcaption>` : '';
@@ -1096,6 +1147,13 @@ function render(){
   const list = state.filter === 'All' ? state.all : state.all.filter(w => (w.tags || []).includes(state.filter));
   masonry.innerHTML = list.map(toCard).join('');
 
+  let loadedImages = 0;
+  const totalImages = document.querySelectorAll('.work-img:not(video)').length;
+  
+  if (totalImages === 0) {
+    // No images to load, apply masonry immediately
+    setTimeout(createMasonryLayout, 100);
+  }
   // Attach loading event listeners after rendering HTML
   document.querySelectorAll('.work-img:not(video)').forEach(imgElement => {
     // Add the click listener here
@@ -1122,9 +1180,19 @@ function render(){
         if (remainingTime > 0) {
           setTimeout(() => {
             imageWrapper.classList.add('loaded');
+            loadedImages++;
+            if (loadedImages === totalImages) {
+              // All images loaded, apply masonry layout
+              setTimeout(createMasonryLayout, 100);
+            }
           }, remainingTime);
         } else {
           imageWrapper.classList.add('loaded');
+          loadedImages++;
+          if (loadedImages === totalImages) {
+            // All images loaded, apply masonry layout
+            setTimeout(createMasonryLayout, 100);
+          }
         }
       };
 
@@ -1160,6 +1228,12 @@ document.querySelector('.filters').addEventListener('click', (e) => {
   document.getElementById('masonry').scrollIntoView({behavior:'smooth', block:'start'});
 });
 
+// Add resize event listener with debounce
+window.addEventListener('resize', debounce(() => {
+  if (document.querySelectorAll('.masonry-item').length > 0) {
+    createMasonryLayout();
+  }
+}, 250));
 // keyboard support for chips
 document.querySelectorAll('.chip').forEach(chip => {
   chip.tabIndex = 0;
