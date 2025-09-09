@@ -3,30 +3,25 @@
 /* Override masonry layout for mobile - use 2-column grid instead */
 @media screen and (max-width: 980px) {
   .masonry {
-    column-count: unset; /* Disable CSS columns */
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important; /* 2 equal columns */
-    gap: 15px; /* Reduced gap for mobile */
+    column-count: 2 !important; /* Use CSS columns for true masonry */
+    column-gap: 15px !important; /* Gap between columns */
+    display: block !important; /* Reset to block for column layout */
     margin-top: 20px;
     padding-inline: 0;
-    grid-auto-rows: max-content; /* Let rows size to content */
-    align-items: start; /* Align items to start of grid cells */
   }
 
   .masonry-item {
-    break-inside: unset; /* Not needed for grid */
+    break-inside: avoid !important; /* Prevent items from breaking across columns */
     width: 100% !important;
-    margin-bottom: 0; /* Grid gap handles spacing */
+    margin-bottom: 15px !important; /* Vertical spacing between items */
     box-sizing: border-box;
-    display: flex; /* Make item a flex container */
-    flex-direction: column; /* Stack content vertically */
+    display: block !important; /* Block display for column layout */
   }
 
   /* Ensure work cards fit properly in grid */
   .work-card {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100%; /* Take full height of grid cell */
+    display: block !important;
+    width: 100%;
     border-radius: 15px; /* Slightly smaller radius for mobile */
     overflow: hidden;
     border: 2px solid var(--border-color);
@@ -34,7 +29,6 @@
     box-shadow: 0 4px 12px var(--shadow-color);
     transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    flex: 1; /* Allow card to grow and fill available space */
   }
 
   html[data-theme="theme-2"] .work-card {
