@@ -1167,6 +1167,152 @@ if (document.readyState === 'complete') {
   // give a tick for event listeners to attach
   setTimeout(() => { window.dispatchEvent(new Event('load')); }, 50);
 }
+
+    // Signal that works data is ready (for preloader)
+    if (window.__worksDataReady) {
+      window.__worksDataReady();
+    }
+  })
+  .catch(err => {
+    console.error('Failed to load works:', err);
+    masonry.innerHTML = '<p class="muted">Failed to load portfolio items.</p>';
+    emptyMsg.style.display = 'none';
+    // Still signal ready even on error
+    if (window.__worksDataReady) {
+      window.__worksDataReady();
+    }
+  });
+
+function toCard(w){
+  const alt = (w.alt || w.title || 'Portfolio image').replace(/"/g,'"');
+  const caption = w.title ? `<figcaption class="work-caption">${w.title}</figcaption>` : '';
+  const imgId = `work-img-${Math.random().toString(36).substr(2, 9)}`; // Unique ID for each image
+  
+  // Handle video files differently
+  if (w.src && w.src.toLowerCase().includes('.mp4')) {
+    return `
+      <div class="masonry-item">
+        <div class="work-card">
+          <div class="image-wrapper loaded">
+            <video
+              class="work-img"
+              id="${imgId}"
+              src="${w.src}"
+              controls
+              preload="metadata"
+              style="width: 100%; height: auto; display: block;"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          ${caption}
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="masonry-item">
+      <div class="work-card" ${w.href ? `onclick="window.open('${w.href}', '_blank')"` : ''}>
+        <div class="image-wrapper">
+          <div class="loading-spinner"></div>
+          <img
+            loading="lazy"
+            class="work-img"
+            id="${imgId}"
+            src="${w.src}"
+            alt="${alt}"
+          />
+        </div>
+        ${caption}
+      </div>
+    </div>
+  `;
+}
+
+function render(){
+  const list = state.filter === 'All' ? state.all : state.all.filter(w => (w.tags || []).includes(state.filter));
+  masonry.innerHTML = list.map(toCard).join('');
+
+  let loadedImages = 0;
+  const totalImages = document.querySelectorAll('.work-img:not(video)').length;
+  
+  // Attach loading event listeners after rendering HTML
+  document.querySelectorAll('.work-img:not(video)').forEach(imgElement => {
+    // Add the click listener here
+    imgElement.addEventListener('click', (event) => {
+      // Prevent navigation if this is inside a link
+      event.preventDefault();
+      event.stopPropagation();
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+      modal.style.display = 'block';
+      modalImg.src = imgElement.src;
+      modalImg.alt = imgElement.alt;
+    });
+
+    const imageWrapper = imgElement.closest('.image-wrapper');
+    if (imageWrapper) {
+      const startTime = Date.now();
+      const MIN_SPINNER_DISPLAY_TIME = 1500; // Minimum 1.5 seconds for the spinner
+
+      const hideSpinner = () => {
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = MIN_SPINNER_DISPLAY_TIME - elapsedTime;
+
+        if (remainingTime > 0) {
+          setTimeout(() => {
+            imageWrapper.classList.add('loaded');
+            loadedImages++;
+          }, remainingTime);
+        } else {
+          imageWrapper.classList.add('loaded');
+          loadedImages++;
+        }
+      };
+
+      if (imgElement.complete && imgElement.naturalWidth > 0) {
+        // Image already loaded (e.g., from cache), apply minimum spinner display time
+        hideSpinner();
+      } else {
+        imgElement.onload = () => {
+          // Image just loaded, apply minimum spinner display time
+          hideSpinner();
+        };
+        imgElement.onerror = () => {
+          // On error, still hide the spinner after min display time, but also show error state
+          imageWrapper.classList.add('error');
+          hideSpinner();
+        };
+      }
+    }
+  });
+  emptyMsg.style.display = list.length ? 'none' : 'block';
+}
+
+// filter chips
+document.querySelector('.filters').addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-filter]');
+  if(!btn) return;
+  state.filter = btn.getAttribute('data-filter');
+  for(const el of e.currentTarget.querySelectorAll('[data-filter]')){
+    el.setAttribute('aria-pressed', el === btn ? 'true' : 'false');
+  }
+  render();
+  // scroll into view so user sees results on mobile
+  document.getElementById('masonry').scrollIntoView({behavior:'smooth', block:'start'});
+});
+// keyboard support for chips
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.tabIndex = 0;
+  chip.addEventListener('keyup', (e) => { if(e.key === 'Enter' || e.key === ' ') chip.click(); });
+});
+
+// ensure preloader hides also if window already loaded (rare)
+if (document.readyState === 'complete') {
+  // give a tick for event listeners to attach
+  setTimeout(() => { window.dispatchEvent(new Event('load')); }, 50);
+}
    // Full-screen modal close logic
 const modal = document.getElementById('imageModal');
 const closeModalBtn = document.getElementById('closeModal');
