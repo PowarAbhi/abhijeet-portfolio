@@ -1,21 +1,19 @@
 /* Mobile-specific styles (max-width: 980px) */
 
-/* Override masonry layout for mobile - use JavaScript masonry instead */
+/* Simple single column layout for mobile */
 @media screen and (max-width: 980px) {
   .masonry {
-    position: relative !important; /* Required for absolute positioning */
-    width: 100% !important;
+    column-count: 1 !important; /* Single column only */
+    column-gap: 0 !important;
     margin-top: 20px;
-    padding-inline: 0;
-    /* Height will be set by JavaScript */
+    padding-inline: 10px;
   }
 
   .masonry-item {
-    position: absolute !important; /* Will be positioned by JavaScript */
-    width: 100% !important;
-    margin-bottom: 0;
+    break-inside: avoid;
+    width: 100%;
+    margin-bottom: 20px;
     box-sizing: border-box;
-    /* Width and position will be set by JavaScript */
   }
 
   /* Ensure work cards fit properly in masonry */
