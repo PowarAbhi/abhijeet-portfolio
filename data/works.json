@@ -124,6 +124,61 @@
       "title": "Album Design 2",
       "src": "assets/uploads/photoshop14.jpg",
       "tags": ["Photoshop"]
-    }
+    },
+    {
+		"title": "Simple Illustration-Commission",
+		"src": "assets/uploads/illustration12.jpg",
+		"tags": ["Illustrator"]
+	},
+{
+		"title": "Illustration",
+		"src": "assets/uploads/illustration13.jpg",
+		"tags": ["Illustrator"]
+	},
+{
+		"title": "Illustration2",
+		"src": "assets/uploads/illustration14.jpg",
+		"tags": ["Illustrator"]
+	},
+{
+		"title": "Logo Design-ab",
+		"src": "assets/uploads/illustration15.jpg",
+		"tags": ["Illustrator"]
+	},
+{
+		"title": "Commission Logo Design",
+		"src": "assets/uploads/illustration16.jpg",
+		"tags": ["Illustrator"]
+	},
+{
+		"title": "Mahakhumb Illustration",
+		"src": "assets/uploads/illustration17.jpg",
+		"tags": ["Illustrator"]
+	},
+{
+		"title": "Magzine Design 1",
+		"src": "assets/uploads/Magzine Design1.jpg",
+		"tags": ["Illustrator"]
+	},
+{
+		"title": "Magzine Design 2",
+		"src": "assets/uploads/Magzine Design2.jpg",
+		"tags": ["Illustrator"]
+	},
+{
+		"title": "Magzine Design 3",
+		"src": "assets/uploads/Magzine Design3.jpg",
+		"tags": ["Illustrator"]
+	},
+{
+		"title": "Magzine Design 4",
+		"src": "assets/uploads/Magzine Design4.jpg",
+		"tags": ["Illustrator"]
+	},
+{
+		"title": "Magzine Design 5",
+		"src": "assets/uploads/Magzine Design5.jpg",
+		"tags": ["Illustrator"]
+	}
   ]
 }
