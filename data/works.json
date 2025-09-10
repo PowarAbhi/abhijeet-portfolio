@@ -179,6 +179,26 @@
 		"title": "Magzine Design 5",
 		"src": "assets/uploads/Magzine Design5.jpg",
 		"tags": ["Illustrator"]
-	}
+	},
+	     {
+      "title": "3D Blender Greasepencil-Cafe",
+      "src": "assets/uploads/cafe.mkv",
+      "tags": ["Video"]
+    },
+   {
+      "title": "3D Blender Greasepencil-CocaCola",
+      "src": "assets/uploads/cocacola.mp4",
+      "tags": ["Video"]
+    },
+{
+      "title": "3D Blender Greasepencil-House",
+      "src": "assets/uploads/myhouse.mp4",
+      "tags": ["Video"]
+    },
+{
+      "title": "3D Blender",
+      "src": "assets/uploads/Homerender.png",
+      "tags": ["Blender"]
+    }
   ]
 }
