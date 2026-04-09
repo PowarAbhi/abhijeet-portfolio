@@ -1,356 +1,316 @@
-/* Mobile-specific styles (max-width: 980px) */
+/* ========================================
+   MOBILE RESPONSIVE STYLES (max-width: 980px)
+   ======================================== */
 
-/* Simple single column layout for mobile */
 @media screen and (max-width: 980px) {
-  .masonry {
-    column-count: 1 !important; /* Single column only */
-    column-gap: 0 !important;
-    margin-top: 20px;
-    padding-inline: 10px;
+  
+  /* ========== TYPOGRAPHY ADJUSTMENTS ========== */
+  .hero-title {
+    font-size: clamp(28px, 7vw, 42px);
   }
 
-  .masonry-item {
-    break-inside: avoid;
-    width: 100%;
-    margin-bottom: 20px;
-    box-sizing: border-box;
+  .section-title {
+    font-size: clamp(32px, 8vw, 48px);
   }
 
-  /* Ensure work cards fit properly in masonry */
-  .work-card {
-    display: block !important;
-    width: 100%;
-    border-radius: 15px; /* Slightly smaller radius for mobile */
-    overflow: hidden;
-    border: 2px solid var(--border-color);
-    background: var(--panel);
-    box-shadow: 0 4px 12px var(--shadow-color);
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+  /* ========== RESPONSIVE NODE SIZING ========== */
+  :root {
+    --node-size: clamp(5px, 1.2vw, 8px);
   }
 
-  html[data-theme="theme-2"] .work-card {
-    border-width: 1px;
-    border-radius: 12px;
-    box-shadow: 2px 2px 6px var(--shadow-color);
+  /* ========== CONTAINER ========== */
+  .container {
+    width: min(100%, 94vw);
+    padding: 0 var(--spacing-sm);
   }
 
-  .work-card:hover {
-    transform: translateY(-2px) scale(1.01); /* Reduced hover effect for mobile */
-    box-shadow: 0 6px 15px var(--shadow-color);
+  /* ========== MARQUEE ========== */
+  .marquee {
+    padding: 10px 0;
   }
 
-  html[data-theme="theme-2"] .work-card:hover {
-    transform: translateY(-1px);
-    box-shadow: 1px 1px 4px var(--shadow-color);
+  .marquee-text {
+    font-size: clamp(12px, 3vw, 16px);
+    padding: 0 20px;
   }
 
-  /* Image wrapper adjustments for mobile */
-  .image-wrapper {
-    position: relative;
-    background-color: #f0f0f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+  .marquee-separator {
+    width: 15px;
+    height: 15px;
+    margin: 0 20px;
   }
 
-  .image-wrapper:not(.loaded) {
-    min-height: 120px; /* Adjusted for mobile */
+  /* ========== HERO SECTION ========== */
+  .hero {
+    padding: var(--spacing-lg) 0;
   }
 
-  .work-img {
-    width: 100%;
-    height: auto; /* Let images maintain natural aspect ratio */
-    display: block;
-    object-fit: cover;
-    transition: opacity 0.3s ease;
-    opacity: 0;
+  .hero-bento {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
   }
 
-  .image-wrapper.loaded .work-img {
-    opacity: 1;
+  .hero-intro {
+    padding: var(--spacing-md);
   }
 
-  .work-caption {
-    padding: 12px; /* Reduced padding for mobile */
-    color: var(--muted);
-    font-size: 14px; /* Slightly smaller font */
-    font-weight: 500;
-    transition: color 0.3s ease;
-    border-top: 1px solid var(--border-color);
-    text-align: center;
+  .hero-label {
+    font-size: clamp(10px, 2vw, 14px);
+    padding: 6px 12px;
+    margin-bottom: var(--spacing-sm);
   }
 
-  /* Loading spinner adjustments */
-  .loading-spinner {
-    border: 3px solid var(--accent);
-    border-top: 3px solid var(--brand);
-    border-radius: 50%;
-    width: 30px; /* Smaller spinner for mobile */
-    height: 30px;
-    animation: spin 1s linear infinite;
-    position: absolute;
-    opacity: 1;
-    transition: opacity 0.3s ease;
+  .hero-description {
+    font-size: clamp(14px, 3vw, 16px);
   }
 
-  /* Mobile navigation adjustments */
-  .nav-toggle {
-    display: block; /* Show hamburger menu on mobile */
-  }
-
-  .links {
-    display: none; /* Hide desktop navigation */
-  }
-
-  /* Hero section adjustments */
-  .hero-grid {
-    grid-template-columns: 1fr; /* Single column on mobile */
-    gap: 30px;
-    text-align: center;
-  }
-
-  /* Skills pills - make them smaller and fit better */
-  .hero .card div[style*="margin-top:18px"] {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    margin-top: 15px !important;
-  }
-
-  .pill {
-    padding: 6px 12px !important; /* Smaller padding */
-    font-size: 11px !important; /* Smaller font */
-    font-weight: 600 !important;
-    border-radius: 15px !important; /* Smaller border radius */
-    white-space: nowrap; /* Prevent text wrapping */
-    flex-shrink: 0; /* Prevent shrinking */
-  }
-
-  html[data-theme="theme-2"] .pill {
-    padding: 6px 12px !important;
-    font-size: 11px !important;
-    border-radius: 8px !important;
-  }
-
-  .title {
-    font-size: clamp(28px, 8vw, 42px); /* Adjusted for mobile */
-  }
-
-  .lead {
-    font-size: clamp(16px, 4vw, 18px);
-  }
-
-  .cta {
-    justify-content: center;
-    gap: 15px;
+  .hero-buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
   }
 
   .btn {
-    padding: 12px 24px; /* Slightly smaller buttons */
-    font-size: 14px;
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: clamp(12px, 2.5vw, 14px);
   }
 
-  /* Resume section - stack cards vertically */
-  .grid.cols-2,
-  .grid.cols-3 {
-    grid-template-columns: 1fr; /* Single column on mobile */
-    gap: 20px;
+  .hero-profile {
+    padding: var(--spacing-sm);
   }
 
-  .resume-item {
-    padding: 20px;
-    border-radius: 15px;
+  .hero-profile-label {
+    font-size: clamp(12px, 3vw, 16px);
+    padding: 6px;
   }
 
-  /* Works section title and filters */
-  .section-title {
-    font-size: clamp(24px, 6vw, 36px);
-    text-align: center;
+  /* ========== ABOUT SECTION ========== */
+  .about {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .about-bento {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .about-card {
+    padding: var(--spacing-md);
+  }
+
+  .about-card-title {
+    font-size: clamp(14px, 3vw, 18px);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .about-card-content {
+    font-size: clamp(13px, 2.5vw, 15px);
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xs);
+  }
+
+  .skill-badge {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* ========== WORKS SECTION ========== */
+  .works {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .works-header {
+    margin-bottom: var(--spacing-md);
   }
 
   .filters {
-    justify-content: center;
     gap: 8px;
-    margin: 15px 0 25px;
+    margin-bottom: var(--spacing-md);
   }
 
   .chip {
-    padding: 8px 16px;
-    font-size: 14px;
-    border-radius: 20px;
+    font-size: clamp(10px, 2vw, 12px);
+    padding: 8px 14px;
   }
 
-  html[data-theme="theme-2"] .chip {
-    border-radius: 6px;
+  /* Masonry Gallery - Single Column */
+  .masonry {
+    column-count: 1;
+    column-gap: 0;
+    padding-inline: 0;
   }
 
-  /* Footer - Let's Connect section redesign */
+  .masonry-item {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .work-card {
+    transition: all 0.2s ease;
+  }
+
+  .work-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 3px 3px 0 var(--border-primary);
+  }
+
+  .image-wrapper {
+    min-height: 150px;
+  }
+
+  .loading-spinner {
+    width: 30px;
+    height: 30px;
+    border-width: 3px;
+  }
+
+  .work-caption {
+    padding: var(--spacing-sm);
+    font-size: 13px;
+  }
+
+  /* ========== FOOTER ========== */
   footer {
-    padding: 40px 0;
-    margin-top: 60px;
+    padding: var(--spacing-lg) 0;
   }
 
-  footer .container {
-    padding: 20px 0;
+  .footer-content {
+    padding: var(--spacing-md);
   }
 
-  footer .section-title {
-    font-size: clamp(24px, 6vw, 32px);
-    margin-bottom: 8px;
-    text-align: center;
+  .footer-title {
+    font-size: clamp(24px, 6vw, 36px);
+    margin-bottom: var(--spacing-sm);
   }
 
-  footer .muted {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 16px;
+  .footer-subtitle {
+    font-size: clamp(14px, 3vw, 16px);
+    margin-bottom: var(--spacing-md);
   }
 
-  /* Redesign footer layout to match reference */
-  footer > .container > div:first-child {
-    display: block !important; /* Override flex */
-    text-align: center;
+  .footer-buttons {
+    flex-direction: column;
+    gap: var(--spacing-xs);
   }
 
-  footer > .container > div:first-child > div:first-child {
-    margin-bottom: 25px;
-  }
-
-  /* Contact buttons - horizontal layout */
-  footer > .container > div:first-child > div:first-child > div {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  footer .btn {
-    padding: 10px 20px;
-    font-size: 14px;
-    border-radius: 25px;
-  }
-
-  html[data-theme="theme-2"] footer .btn {
-    border-radius: 6px;
-  }
-
-  /* Location/info pills - redesign to match reference */
-  footer .card {
-    min-width: unset;
+  .footer-buttons .btn {
     width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 15px;
-    border-radius: 15px;
-    background: var(--panel);
-    border: 2px solid var(--border-color);
   }
 
-  html[data-theme="theme-2"] footer .card {
-    border-width: 1px;
-    border-radius: 12px;
+  .footer-info {
+    flex-direction: column;
+    gap: var(--spacing-xs);
   }
 
-  footer .card > div {
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  footer .pill {
-    padding: 8px 16px;
+  .info-pill {
     font-size: 12px;
-    border-radius: 20px;
+    padding: 6px 12px;
   }
 
-  html[data-theme="theme-2"] footer .pill {
-    border-radius: 6px;
+  .copyright {
+    margin-top: var(--spacing-md);
+    font-size: 12px;
   }
 
-  /* Copyright text */
-  footer p.muted:last-child {
-    margin-top: 20px;
+  /* ========== PRELOADER ========== */
+  .preloader-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .preloader-caption {
     font-size: 14px;
-    text-align: center;
   }
 
-  /* Modal adjustments for mobile */
+  /* ========== MODAL ========== */
   #imageModal {
-    padding-top: 20px;
+    padding-top: 30px;
   }
 
   #modalImage {
-    width: 95%;
+    width: 90%;
     max-width: none;
-    max-height: 85vh;
+    max-height: 75vh;
   }
 
   #closeModal {
     top: 10px;
     right: 20px;
-    font-size: 35px;
+    font-size: 32px;
   }
 
-  /* Container adjustments */
-  .container {
-    width: min(100%, 94vw);
-    padding-inline: 3vw;
-  }
+  /* ========== FRAME NODES VISIBILITY ========== */
+  /* On very small screens, optionally hide midpoint nodes */
+  @media screen and (max-width: 480px) {
+    .frame-node.mid-top,
+    .frame-node.mid-right,
+    .frame-node.mid-bottom,
+    .frame-node.mid-left {
+      display: none;
+    }
 
-  /* Section spacing adjustments */
-  section {
-    padding: 60px 0;
-  }
+    :root {
+      --node-size: 6px;
+    }
 
-  .hero {
-    padding: 60px 0;
-  }
+    .marquee-text {
+      font-size: 12px;
+      padding: 0 15px;
+    }
 
-  /* Preloader adjustments */
-  .preloader__avatar {
-    width: 120px;
-    height: 120px;
-  }
+    .marquee-separator {
+      width: 12px;
+      height: 12px;
+      margin: 0 15px;
+    }
 
-  .preloader__caption {
-    font-size: 13px;
+    .hero-intro,
+    .about-card,
+    .hero-profile,
+    .footer-content {
+      padding: var(--spacing-sm);
+    }
+
+    .btn {
+      padding: 10px 16px;
+      font-size: 12px;
+    }
+
+    .chip {
+      padding: 6px 10px;
+      font-size: 10px;
+    }
+
+    .work-caption {
+      padding: 10px;
+      font-size: 12px;
+    }
+
+    .masonry-item {
+      margin-bottom: var(--spacing-sm);
+    }
   }
 }
 
-/* Extra small screens (phones in portrait) */
-@media screen and (max-width: 480px) {
+/* ========== TABLET LANDSCAPE (768px - 980px) ========== */
+@media screen and (min-width: 768px) and (max-width: 980px) {
   .masonry {
-    gap: 12px;
+    column-count: 2;
+    column-gap: var(--spacing-md);
   }
 
-  .work-card {
-    border-radius: 12px;
+  .hero-bento {
+    grid-template-columns: 1fr;
   }
 
-  .work-caption {
-    padding: 10px;
-    font-size: 13px;
+  .about-bento {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .btn {
-    padding: 10px 20px;
-    font-size: 13px;
-  }
-
-  .chip {
-    padding: 6px 14px;
-    font-size: 13px;
-  }
-
-  footer .pill {
-    padding: 6px 12px;
-    font-size: 11px;
-  }
-
-  .container {
-    width: min(100%, 96vw);
-    padding-inline: 2vw;
+  .about-card:last-child {
+    grid-column: 1 / -1;
   }
 }
