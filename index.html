@@ -369,81 +369,329 @@
     <img id="modalImage" alt="Portfolio item">
   </div>
 
-  <!-- MOUSE KEYCHAIN -->
+  <!-- INTERACTIVE PERSONA CURSOR SYSTEM -->
+  <!-- SVG Canvas for Stretching Thread -->
+  <svg id="thread-canvas">
+    <line id="thread-line" x1="0" y1="0" x2="0" y2="0" stroke="#000" stroke-width="2" opacity="0.5"/>
+  </svg>
+
+  <!-- Mouse Keychain -->
   <div id="mouse-keychain">
-    <img src="assets/uploads/profile.jpg" alt="Profile">
+    <img src="assets/uploads/profile.jpg" alt="Abhijeet">
   </div>
+
+  <!-- Chat Bubble -->
+  <div id="chat-bubble">
+    <div id="chat-bubble-tail"></div>
+    <span id="chat-text"></span>
+  </div>
+
+  <!-- Dizzy Message Overlay -->
+  <div id="dizzy-message">Don't move too fast; I feel dizzy! 😵</div>
 
   <script>
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* ---------- Mouse Keychain Effect ---------- */
+    /* ========== INTERACTIVE PERSONA CURSOR SYSTEM ========== */
     (function() {
+      // Elements
       const keychain = document.getElementById('mouse-keychain');
-      if (!keychain) return;
+      const threadLine = document.getElementById('thread-line');
+      const chatBubble = document.getElementById('chat-bubble');
+      const chatText = document.getElementById('chat-text');
+      const dizzyMessage = document.getElementById('dizzy-message');
 
-      let mouseX = 0;
-      let mouseY = 0;
-      let keychainX = 0;
-      let keychainY = 0;
+      if (!keychain || !threadLine || !chatBubble) return;
+
+      // State
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let keychainX = mouseX;
+      let keychainY = mouseY;
       let velocityX = 0;
       let velocityY = 0;
-      let lastMouseX = 0;
-      let lastMouseY = 0;
+      let lastMouseX = mouseX;
+      let lastMouseY = mouseY;
+      let isActive = false;
 
-      // Hide initially
+      // Section detection
+      let currentSection = 'hero';
+      let sectionMessages = {};
+      let messageIndex = 0;
+      let messageTimer = null;
+      let hideTimer = null;
+      let delayTimer = null;
+
+      // Speed detection
+      let speedCheckInterval = null;
+      const SPEED_THRESHOLD = 25;
+      const DIZZY_DURATION = 2000;
+      let isDizzy = false;
+
+      // Spring physics constants
+      const SPRING_STRENGTH = 0.08;
+      const DAMPING = 0.85;
+      const DISTANCE_THRESHOLD = 5;
+
+      // Initialize - hide elements
       keychain.style.opacity = '0';
-      keychain.style.transform = 'translate(-50%, -50%)';
+      chatBubble.classList.remove('visible');
 
+      /* ========== PHASE 1: STRETCHING KEYCHAIN WITH SPRING PHYSICS ========== */
+      
       // Track mouse position
       document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
 
         // Show keychain on first move
-        if (keychain.style.opacity === '0') {
+        if (!isActive) {
+          isActive = true;
           keychain.style.opacity = '1';
           keychain.classList.add('active');
+          startSpeedDetection();
         }
 
-        // Calculate velocity for swing effect
+        // Calculate velocity
         velocityX = mouseX - lastMouseX;
         velocityY = mouseY - lastMouseY;
         lastMouseX = mouseX;
         lastMouseY = mouseY;
       });
 
-      // Hide when mouse leaves window
+      // Hide when mouse leaves
       document.addEventListener('mouseleave', () => {
+        isActive = false;
         keychain.style.opacity = '0';
         keychain.classList.remove('active');
+        chatBubble.classList.remove('visible');
+        stopSpeedDetection();
+        clearAllTimers();
       });
 
-      // Smooth follow animation
+      // Spring physics animation loop
       function animate() {
-        // Smooth interpolation
-        const easing = 0.15;
-        keychainX += (mouseX - keychainX) * easing;
-        keychainY += (mouseY - keychainY) * easing;
+        if (isActive) {
+          // Calculate distance to mouse
+          const dx = mouseX - keychainX;
+          const dy = mouseY - keychainY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Calculate swing angle based on velocity
-        const swingAngle = Math.atan2(velocityY, velocityX) * (180 / Math.PI);
-        const swingIntensity = Math.min(Math.abs(velocityX) + Math.abs(velocityY), 30) / 30;
-        const rotation = swingAngle * swingIntensity * 0.3;
+          // Apply spring force
+          const springForceX = dx * SPRING_STRENGTH;
+          const springForceY = dy * SPRING_STRENGTH;
 
-        // Apply position and rotation
-        keychain.style.left = keychainX + 'px';
-        keychain.style.top = (keychainY + 40) + 'px'; // Offset below cursor
-        keychain.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+          // Update velocity with spring force and damping
+          velocityX = velocityX * DAMPING + springForceX;
+          velocityY = velocityY * DAMPING + springForceY;
 
-        // Dampen velocity
-        velocityX *= 0.9;
-        velocityY *= 0.9;
+          // Update position
+          keychainX += velocityX;
+          keychainY += velocityY;
+
+          // Calculate rotation based on velocity
+          const angle = Math.atan2(velocityY, velocityX) * (180 / Math.PI);
+          const swingIntensity = Math.min(distance / 50, 1);
+          const rotation = angle * swingIntensity * 0.2;
+
+          // Apply position and rotation
+          keychain.style.left = keychainX + 'px';
+          keychain.style.top = keychainY + 'px';
+          keychain.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+
+          // Update stretching thread
+          updateThread();
+
+          // Update chat bubble position
+          updateChatBubblePosition();
+        }
 
         requestAnimationFrame(animate);
       }
 
+      // Update SVG thread with stretch effect
+      function updateThread() {
+        const distance = Math.sqrt((mouseX - keychainX) ** 2 + (mouseY - keychainY) ** 2);
+        const opacity = Math.min(distance / 100, 0.6);
+        const strokeWidth = Math.max(1, 3 - distance / 100);
+
+        threadLine.setAttribute('x1', mouseX);
+        threadLine.setAttribute('y1', mouseY);
+        threadLine.setAttribute('x2', keychainX);
+        threadLine.setAttribute('y2', keychainY);
+        threadLine.setAttribute('opacity', opacity);
+        threadLine.setAttribute('stroke-width', strokeWidth);
+      }
+
+      /* ========== PHASE 2: CONTEXTUAL CHAT SYSTEM ========== */
+
+      // Load messages from files
+      async function loadMessages() {
+        try {
+          const files = [
+            { section: 'hero', file: 'INTROMESSAGE.txt' },
+            { section: 'about', file: 'ABOUTMEMESSAGE.txt' },
+            { section: 'works', file: 'WORKSMESSAGE.txt' },
+            { section: 'contact', file: 'LETSCONNECTMESSAGE.txt' }
+          ];
+
+          for (const { section, file } of files) {
+            const response = await fetch(`assets/uploads/${file}`);
+            const text = await response.text();
+            // Split by newlines and filter empty lines
+            sectionMessages[section] = text.split('\n').filter(line => line.trim());
+          }
+
+          startMessageCycle();
+        } catch (error) {
+          console.error('Failed to load messages:', error);
+        }
+      }
+
+      // Detect current section
+      function detectSection() {
+        const scrollY = window.scrollY;
+        const sections = [
+          { id: 'hero', element: document.querySelector('.hero'), name: 'hero' },
+          { id: 'about', element: document.getElementById('about'), name: 'about' },
+          { id: 'works', element: document.getElementById('works'), name: 'works' },
+          { id: 'contact', element: document.getElementById('contact'), name: 'contact' }
+        ];
+
+        let newSection = 'hero';
+
+        for (const section of sections) {
+          if (section.element) {
+            const rect = section.element.getBoundingClientRect();
+            const elementTop = rect.top + scrollY;
+            const elementBottom = elementTop + rect.height;
+
+            if (scrollY >= elementTop - 200 && scrollY < elementBottom) {
+              newSection = section.name;
+              break;
+            }
+          }
+        }
+
+        if (newSection !== currentSection) {
+          currentSection = newSection;
+          messageIndex = 0;
+          clearAllTimers();
+          if (isActive) {
+            startMessageCycle();
+          }
+        }
+      }
+
+      // Message cycle: 3s delay → show 5s → hide 4s → next
+      function startMessageCycle() {
+        if (!sectionMessages[currentSection]) return;
+
+        clearAllTimers();
+
+        // 3s delay before showing
+        delayTimer = setTimeout(() => {
+          showMessage();
+
+          // Show for 5s
+          messageTimer = setTimeout(() => {
+            hideMessage();
+
+            // Hide for 4s, then show next
+            hideTimer = setTimeout(() => {
+              messageIndex = (messageIndex + 1) % sectionMessages[currentSection].length;
+              startMessageCycle();
+            }, 4000);
+          }, 5000);
+        }, 3000);
+      }
+
+      function showMessage() {
+        if (!sectionMessages[currentSection] || !isActive) return;
+
+        const messages = sectionMessages[currentSection];
+        chatText.textContent = messages[messageIndex];
+        chatBubble.classList.add('visible');
+      }
+
+      function hideMessage() {
+        chatBubble.classList.remove('visible');
+      }
+
+      function clearAllTimers() {
+        clearTimeout(messageTimer);
+        clearTimeout(hideTimer);
+        clearTimeout(delayTimer);
+      }
+
+      // Listen for scroll to detect section changes
+      window.addEventListener('scroll', detectSection);
+
+      /* ========== PHASE 3: CHAT BUBBLE UI WITH COLLISION DETECTION ========== */
+
+      function updateChatBubblePosition() {
+        if (!chatBubble.classList.contains('visible')) return;
+
+        const bubbleRect = chatBubble.getBoundingClientRect();
+        const bubbleWidth = bubbleRect.width || 280;
+        const bubbleHeight = bubbleRect.height || 100;
+        const margin = 20;
+
+        // Position above keychain by default
+        let bubbleX = keychainX;
+        let bubbleY = keychainY - bubbleHeight - 80;
+
+        // Collision detection with viewport bounds
+        if (bubbleX - bubbleWidth / 2 < margin) {
+          bubbleX = margin + bubbleWidth / 2;
+        }
+        if (bubbleX + bubbleWidth / 2 > window.innerWidth - margin) {
+          bubbleX = window.innerWidth - margin - bubbleWidth / 2;
+        }
+        if (bubbleY < margin) {
+          bubbleY = keychainY + 80; // Show below if no space above
+        }
+        if (bubbleY + bubbleHeight > window.innerHeight - margin) {
+          bubbleY = window.innerHeight - margin - bubbleHeight;
+        }
+
+        chatBubble.style.left = bubbleX + 'px';
+        chatBubble.style.top = bubbleY + 'px';
+        chatBubble.style.transform = 'translateX(-50%)';
+      }
+
+      /* ========== PHASE 4: SPEED DETECTION ========== */
+
+      function startSpeedDetection() {
+        speedCheckInterval = setInterval(() => {
+          const speed = Math.sqrt(velocityX ** 2 + velocityY ** 2);
+
+          if (speed > SPEED_THRESHOLD && !isDizzy) {
+            showDizzyMessage();
+          }
+        }, 100);
+      }
+
+      function stopSpeedDetection() {
+        clearInterval(speedCheckInterval);
+      }
+
+      function showDizzyMessage() {
+        isDizzy = true;
+        dizzyMessage.classList.add('visible', 'spinning');
+        hideMessage(); // Hide chat bubble when dizzy
+
+        setTimeout(() => {
+          dizzyMessage.classList.remove('visible', 'spinning');
+          setTimeout(() => {
+            isDizzy = false;
+          }, 300);
+        }, DIZZY_DURATION);
+      }
+
+      // Initialize
+      loadMessages();
       animate();
     })();
 
