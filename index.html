@@ -11,6 +11,9 @@
   
   <!-- Mobile Stylesheet -->
   <link rel="stylesheet" href="mobile-styles.css" media="screen and (max-width: 980px)">
+  
+  <!-- Lottie Player CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 </head>
 <body class="loading">
 
@@ -25,6 +28,7 @@
   <!-- TOP MARQUEE -->
   <div class="marquee">
     <div class="marquee-content">
+      <!-- First set of content -->
       <span class="marquee-text">PORTFOLIO</span>
       <span class="marquee-separator"></span>
       <span class="marquee-text">PORTFOLIO</span>
@@ -33,6 +37,7 @@
       <span class="marquee-separator"></span>
       <span class="marquee-text">PORTFOLIO</span>
       <span class="marquee-separator"></span>
+      <!-- Duplicate set for seamless loop -->
       <span class="marquee-text">PORTFOLIO</span>
       <span class="marquee-separator"></span>
       <span class="marquee-text">PORTFOLIO</span>
@@ -99,6 +104,7 @@
     <!-- WORKS MARQUEE -->
     <div class="marquee">
       <div class="marquee-content">
+        <!-- First set of content -->
         <span class="marquee-text">WORKS</span>
         <span class="marquee-separator"></span>
         <span class="marquee-text">WORKS</span>
@@ -107,6 +113,7 @@
         <span class="marquee-separator"></span>
         <span class="marquee-text">WORKS</span>
         <span class="marquee-separator"></span>
+        <!-- Duplicate set for seamless loop -->
         <span class="marquee-text">WORKS</span>
         <span class="marquee-separator"></span>
         <span class="marquee-text">WORKS</span>
@@ -136,18 +143,29 @@
             
             <h3 class="about-card-title">CONTACT</h3>
             <div class="about-card-content">
-              <p>
-                <strong>📧 Email:</strong>
-                abhipowar2400@gmail.com
-              </p>
-              <p>
-                <strong>📱 Instagram:</strong>
-                @abhi._powar._
-              </p>
-              <p>
-                <strong>📍 Location:</strong>
-                Pune, India
-              </p>
+              <div class="contact-item">
+                <strong>
+                  <div class="lottie-icon" id="lottie-email"></div>
+                  Email:
+                </strong>
+              </div>
+              <p>abhipowar2400@gmail.com</p>
+              
+              <div class="contact-item" style="margin-top: 12px;">
+                <strong>
+                  <div class="lottie-icon" id="lottie-insta"></div>
+                  Instagram:
+                </strong>
+              </div>
+              <p>@abhi._powar._</p>
+              
+              <div class="contact-item" style="margin-top: 12px;">
+                <strong>
+                  <div class="lottie-icon" id="lottie-location"></div>
+                  Location:
+                </strong>
+              </div>
+              <p>Pune, India</p>
             </div>
           </div>
 
@@ -173,10 +191,24 @@
                 <strong>HARD SKILLS</strong>
               </p>
               <div class="skills-grid">
-                <div class="skill-badge">Ps</div>
-                <div class="skill-badge">Ae</div>
-                <div class="skill-badge">Pr</div>
-                <div class="skill-badge">Ai</div>
+                <div class="skill-badge">
+                  <img src="assets/uploads/ICON__PS.svg" alt="Photoshop" />
+                </div>
+                <div class="skill-badge">
+                  <img src="assets/uploads/ICON__AE.svg" alt="After Effects" />
+                </div>
+                <div class="skill-badge">
+                  <img src="assets/uploads/ICON__PR.svg" alt="Premiere Pro" />
+                </div>
+                <div class="skill-badge">
+                  <img src="assets/uploads/ICON__AI.svg" alt="Illustrator" />
+                </div>
+                <div class="skill-badge">
+                  <img src="assets/uploads/ICON__BL.svg" alt="Blender" />
+                </div>
+                <div class="skill-badge">
+                  <img src="assets/uploads/ICON__CR.svg" alt="CorelDraw" />
+                </div>
               </div>
               <p class="mt-md">
                 <strong>SOFT SKILLS</strong>
@@ -253,6 +285,7 @@
     <!-- CONNECT MARQUEE -->
     <div class="marquee">
       <div class="marquee-content">
+        <!-- First set of content -->
         <span class="marquee-text">LET'S CONNECT</span>
         <span class="marquee-separator"></span>
         <span class="marquee-text">LET'S CONNECT</span>
@@ -261,6 +294,7 @@
         <span class="marquee-separator"></span>
         <span class="marquee-text">LET'S CONNECT</span>
         <span class="marquee-separator"></span>
+        <!-- Duplicate set for seamless loop -->
         <span class="marquee-text">LET'S CONNECT</span>
         <span class="marquee-separator"></span>
         <span class="marquee-text">LET'S CONNECT</span>
@@ -311,6 +345,49 @@
   <script>
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Initialize Lottie Animations
+    function initLottieAnimations() {
+      // Email animation
+      if (document.getElementById('lottie-email')) {
+        lottie.loadAnimation({
+          container: document.getElementById('lottie-email'),
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: 'assets/uploads/EMAIL.json'
+        });
+      }
+
+      // Instagram animation
+      if (document.getElementById('lottie-insta')) {
+        lottie.loadAnimation({
+          container: document.getElementById('lottie-insta'),
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: 'assets/uploads/INSTA.json'
+        });
+      }
+
+      // Location animation
+      if (document.getElementById('lottie-location')) {
+        lottie.loadAnimation({
+          container: document.getElementById('lottie-location'),
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: 'assets/uploads/LOCATION.json'
+        });
+      }
+    }
+
+    // Initialize Lottie when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLottieAnimations);
+    } else {
+      initLottieAnimations();
+    }
 
     /* ---------- Preloader logic ---------- */
     (function() {

@@ -109,13 +109,24 @@
   }
 
   .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-xs);
   }
 
   .skill-badge {
-    padding: 6px 10px;
+    padding: 8px;
     font-size: 12px;
+  }
+
+  .skill-badge img,
+  .skill-badge svg {
+    max-width: 40px;
+    max-height: 40px;
+  }
+
+  .lottie-icon {
+    width: 30px;
+    height: 30px;
   }
 
   /* ========== WORKS SECTION ========== */
