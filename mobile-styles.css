@@ -124,9 +124,20 @@
     max-height: 40px;
   }
 
-  .lottie-icon {
-    width: 30px;
-    height: 30px;
+  .contact-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Smaller mouse keychain on mobile */
+  #mouse-keychain {
+    width: 40px;
+    height: 40px;
+  }
+
+  #mouse-keychain::before {
+    height: 20px;
+    top: -20px;
   }
 
   /* ========== WORKS SECTION ========== */

@@ -11,9 +11,6 @@
   
   <!-- Mobile Stylesheet -->
   <link rel="stylesheet" href="mobile-styles.css" media="screen and (max-width: 980px)">
-  
-  <!-- Lottie Player CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 </head>
 <body class="loading">
 
@@ -101,26 +98,26 @@
       </div>
     </section>
 
-    <!-- WORKS MARQUEE -->
+    <!-- ABOUT ME MARQUEE -->
     <div class="marquee">
       <div class="marquee-content">
         <!-- First set of content -->
-        <span class="marquee-text">WORKS</span>
+        <span class="marquee-text">ABOUT ME</span>
         <span class="marquee-separator"></span>
-        <span class="marquee-text">WORKS</span>
+        <span class="marquee-text">ABOUT ME</span>
         <span class="marquee-separator"></span>
-        <span class="marquee-text">WORKS</span>
+        <span class="marquee-text">ABOUT ME</span>
         <span class="marquee-separator"></span>
-        <span class="marquee-text">WORKS</span>
+        <span class="marquee-text">ABOUT ME</span>
         <span class="marquee-separator"></span>
         <!-- Duplicate set for seamless loop -->
-        <span class="marquee-text">WORKS</span>
+        <span class="marquee-text">ABOUT ME</span>
         <span class="marquee-separator"></span>
-        <span class="marquee-text">WORKS</span>
+        <span class="marquee-text">ABOUT ME</span>
         <span class="marquee-separator"></span>
-        <span class="marquee-text">WORKS</span>
+        <span class="marquee-text">ABOUT ME</span>
         <span class="marquee-separator"></span>
-        <span class="marquee-text">WORKS</span>
+        <span class="marquee-text">ABOUT ME</span>
         <span class="marquee-separator"></span>
       </div>
     </div>
@@ -145,27 +142,33 @@
             <div class="about-card-content">
               <div class="contact-item">
                 <strong>
-                  <div class="lottie-icon" id="lottie-email"></div>
+                  <span class="contact-icon">
+                    <img src="assets/uploads/EMAIL.svg" alt="Email" />
+                  </span>
                   Email:
                 </strong>
+                <p>abhipowar2400@gmail.com</p>
               </div>
-              <p>abhipowar2400@gmail.com</p>
               
-              <div class="contact-item" style="margin-top: 12px;">
+              <div class="contact-item">
                 <strong>
-                  <div class="lottie-icon" id="lottie-insta"></div>
+                  <span class="contact-icon">
+                    <img src="assets/uploads/INSTA.svg" alt="Instagram" />
+                  </span>
                   Instagram:
                 </strong>
+                <p>@abhi._powar._</p>
               </div>
-              <p>@abhi._powar._</p>
               
-              <div class="contact-item" style="margin-top: 12px;">
+              <div class="contact-item">
                 <strong>
-                  <div class="lottie-icon" id="lottie-location"></div>
+                  <span class="contact-icon">
+                    <img src="assets/uploads/LOCATION.svg" alt="Location" />
+                  </span>
                   Location:
                 </strong>
+                <p>Pune, India</p>
               </div>
-              <p>Pune, India</p>
             </div>
           </div>
 
@@ -256,6 +259,30 @@
       </div>
     </section>
 
+    <!-- WORKS MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-content">
+        <!-- First set of content -->
+        <span class="marquee-text">WORKS</span>
+        <span class="marquee-separator"></span>
+        <span class="marquee-text">WORKS</span>
+        <span class="marquee-separator"></span>
+        <span class="marquee-text">WORKS</span>
+        <span class="marquee-separator"></span>
+        <span class="marquee-text">WORKS</span>
+        <span class="marquee-separator"></span>
+        <!-- Duplicate set for seamless loop -->
+        <span class="marquee-text">WORKS</span>
+        <span class="marquee-separator"></span>
+        <span class="marquee-text">WORKS</span>
+        <span class="marquee-separator"></span>
+        <span class="marquee-text">WORKS</span>
+        <span class="marquee-separator"></span>
+        <span class="marquee-text">WORKS</span>
+        <span class="marquee-separator"></span>
+      </div>
+    </div>
+
     <!-- WORKS SECTION -->
     <section id="works" class="works">
       <div class="container">
@@ -342,52 +369,83 @@
     <img id="modalImage" alt="Portfolio item">
   </div>
 
+  <!-- MOUSE KEYCHAIN -->
+  <div id="mouse-keychain">
+    <img src="assets/uploads/profile.jpg" alt="Profile">
+  </div>
+
   <script>
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Initialize Lottie Animations
-    function initLottieAnimations() {
-      // Email animation
-      if (document.getElementById('lottie-email')) {
-        lottie.loadAnimation({
-          container: document.getElementById('lottie-email'),
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: 'assets/uploads/EMAIL.json'
-        });
+    /* ---------- Mouse Keychain Effect ---------- */
+    (function() {
+      const keychain = document.getElementById('mouse-keychain');
+      if (!keychain) return;
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let keychainX = 0;
+      let keychainY = 0;
+      let velocityX = 0;
+      let velocityY = 0;
+      let lastMouseX = 0;
+      let lastMouseY = 0;
+
+      // Hide initially
+      keychain.style.opacity = '0';
+      keychain.style.transform = 'translate(-50%, -50%)';
+
+      // Track mouse position
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        // Show keychain on first move
+        if (keychain.style.opacity === '0') {
+          keychain.style.opacity = '1';
+          keychain.classList.add('active');
+        }
+
+        // Calculate velocity for swing effect
+        velocityX = mouseX - lastMouseX;
+        velocityY = mouseY - lastMouseY;
+        lastMouseX = mouseX;
+        lastMouseY = mouseY;
+      });
+
+      // Hide when mouse leaves window
+      document.addEventListener('mouseleave', () => {
+        keychain.style.opacity = '0';
+        keychain.classList.remove('active');
+      });
+
+      // Smooth follow animation
+      function animate() {
+        // Smooth interpolation
+        const easing = 0.15;
+        keychainX += (mouseX - keychainX) * easing;
+        keychainY += (mouseY - keychainY) * easing;
+
+        // Calculate swing angle based on velocity
+        const swingAngle = Math.atan2(velocityY, velocityX) * (180 / Math.PI);
+        const swingIntensity = Math.min(Math.abs(velocityX) + Math.abs(velocityY), 30) / 30;
+        const rotation = swingAngle * swingIntensity * 0.3;
+
+        // Apply position and rotation
+        keychain.style.left = keychainX + 'px';
+        keychain.style.top = (keychainY + 40) + 'px'; // Offset below cursor
+        keychain.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+
+        // Dampen velocity
+        velocityX *= 0.9;
+        velocityY *= 0.9;
+
+        requestAnimationFrame(animate);
       }
 
-      // Instagram animation
-      if (document.getElementById('lottie-insta')) {
-        lottie.loadAnimation({
-          container: document.getElementById('lottie-insta'),
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: 'assets/uploads/INSTA.json'
-        });
-      }
-
-      // Location animation
-      if (document.getElementById('lottie-location')) {
-        lottie.loadAnimation({
-          container: document.getElementById('lottie-location'),
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: 'assets/uploads/LOCATION.json'
-        });
-      }
-    }
-
-    // Initialize Lottie when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initLottieAnimations);
-    } else {
-      initLottieAnimations();
-    }
+      animate();
+    })();
 
     /* ---------- Preloader logic ---------- */
     (function() {
