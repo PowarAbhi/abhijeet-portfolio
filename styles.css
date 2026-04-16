@@ -787,26 +787,15 @@ body.loading {
 
 /* ========== INTERACTIVE PERSONA CURSOR SYSTEM ========== */
 
-/* SVG Canvas for Stretching Thread */
-#thread-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9997;
-}
-
-/* Enhanced Mouse Keychain with Physics */
+/* Enhanced Mouse Keychain - Simple Fixed Offset */
 #mouse-keychain {
   position: fixed;
   width: 60px;
   height: 60px;
   pointer-events: none;
   z-index: 9998;
-  transition: none; /* Remove transition for physics-based movement */
   transform-origin: center center;
+  transition: opacity 0.3s ease;
 }
 
 #mouse-keychain img {
@@ -817,20 +806,7 @@ body.loading {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   background: var(--bg-panel);
   display: block;
-}
-
-/* Bobbing animation */
-@keyframes bobbing {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-#mouse-keychain.active {
-  animation: bobbing 2s ease-in-out infinite;
+  transition: transform 0.1s ease-out;
 }
 
 /* Chat Bubble - Doodle Theme */
@@ -849,7 +825,7 @@ body.loading {
   pointer-events: none;
   opacity: 0;
   transform: scale(0.8);
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), left 0.1s ease-out, top 0.1s ease-out;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   word-wrap: break-word;
 }
@@ -947,38 +923,102 @@ body.loading {
   transform: translateY(50%) rotate(90deg);
 }
 
-/* Dizzy overlay message */
-#dizzy-message {
+
+/* ========== PRELOADER ========== */
+.preloader {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
-  padding: 24px 32px;
-  background: var(--primary-accent);
-  border: 3px solid var(--border-primary);
-  font-family: var(--font-header);
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--text-primary);
-  z-index: 10000;
-  pointer-events: none;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-main);
+  z-index: 9999;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  transition: opacity 0.5s ease;
+}
+
+.preloader.hide {
   opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  visibility: hidden;
+  pointer-events: none;
 }
 
-#dizzy-message.visible {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+.preloader-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: var(--border-width) solid var(--border-primary);
+  animation: pulse 1.5s infinite ease-in-out;
 }
 
-/* Spinning animation for dizzy effect */
-@keyframes spin-dizzy {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
+.preloader-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-#dizzy-message.spinning {
-  animation: spin-dizzy 1s ease-in-out;
+@keyframes pulse {
+  0%, 100% { transform: scale(0.98); }
+  50% { transform: scale(1.04); }
+}
+
+.preloader-caption {
+  font-family: var(--font-header);
+  font-size: 16px;
+  letter-spacing: 0.1em;
+}
+
+/* ========== MODAL ========== */
+#imageModal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+#closeModal {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  font-family: var(--font-header);
+}
+
+#closeModal:hover {
+  color: var(--primary-accent);
+}
+
+#modalImage {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  max-height: 80vh;
+  object-fit: contain;
+  border: var(--border-width) solid var(--bg-panel);
+}
+
+/* ========== UTILITY CLASSES ========== */
+.text-center { text-align: center; }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+body.loading {
+  overflow: hidden;
 }

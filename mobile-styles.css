@@ -134,10 +134,6 @@
     display: none; /* Hide keychain on mobile */
   }
 
-  #thread-canvas {
-    display: none; /* Hide stretching thread on mobile */
-  }
-
   #chat-bubble {
     max-width: calc(100vw - 40px);
     min-width: 200px;
@@ -147,10 +143,6 @@
     right: 20px !important;
     left: auto !important;
     top: auto !important;
-  }
-
-  #dizzy-message {
-    display: none; /* Disable dizzy effect on mobile */
   }
 
   /* ========== WORKS SECTION ========== */

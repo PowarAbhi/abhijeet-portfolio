@@ -370,11 +370,6 @@
   </div>
 
   <!-- INTERACTIVE PERSONA CURSOR SYSTEM -->
-  <!-- SVG Canvas for Stretching Thread -->
-  <svg id="thread-canvas">
-    <line id="thread-line" x1="0" y1="0" x2="0" y2="0" stroke="#000" stroke-width="2" opacity="0.5"/>
-  </svg>
-
   <!-- Mouse Keychain -->
   <div id="mouse-keychain">
     <img src="assets/uploads/profile.jpg" alt="Abhijeet">
@@ -386,38 +381,25 @@
     <span id="chat-text"></span>
   </div>
 
-  <!-- Dizzy Message Overlay -->
-  <div id="dizzy-message">Don't move too fast; I feel dizzy! 😵</div>
-
   <script>
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* ========== INTERACTIVE PERSONA CURSOR SYSTEM (REFACTORED) ========== */
+    /* ========== SIMPLIFIED INTERACTIVE PERSONA CURSOR SYSTEM ========== */
     (function() {
       // Elements
       const keychain = document.getElementById('mouse-keychain');
-      const threadLine = document.getElementById('thread-line');
       const chatBubble = document.getElementById('chat-bubble');
       const chatText = document.getElementById('chat-text');
-      const dizzyMessage = document.getElementById('dizzy-message');
 
-      if (!keychain || !threadLine || !chatBubble) return;
+      if (!keychain || !chatBubble) return;
 
       // Device detection
       const isMobile = window.innerWidth <= 980;
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
       // State
       let mouseX = window.innerWidth / 2;
       let mouseY = window.innerHeight / 2;
-      let keychainX = mouseX;
-      let keychainY = mouseY;
-      let velocityX = 0;
-      let velocityY = 0;
-      let lastMouseX = mouseX;
-      let lastMouseY = mouseY;
-      let lastTime = Date.now();
       let isActive = false;
 
       // Section detection
@@ -428,34 +410,23 @@
       let hideTimer = null;
       let delayTimer = null;
 
-      // Speed detection (desktop only)
-      let speedCheckInterval = null;
-      const SPEED_THRESHOLD = 1500; // pixels per second
-      const DIZZY_DURATION = 2000;
-      let isDizzy = false;
-
-      // Spring physics constants
-      const SPRING_STRENGTH = 0.08;
-      const DAMPING = 0.85;
+      // Fixed offset for keychain (appears slightly below cursor)
+      const KEYCHAIN_OFFSET_Y = 40;
 
       // Initialize responsive mode
       if (isMobile) {
         chatBubble.classList.add('mobile-mode');
         keychain.style.display = 'none';
-        threadLine.style.display = 'none';
       }
 
-      /* ========== PHASE 1: STRETCHING KEYCHAIN (DESKTOP ONLY) ========== */
+      /* ========== SIMPLE 1:1 CURSOR FOLLOW (DESKTOP ONLY) ========== */
       
       if (!isMobile) {
         // Hide initially
         keychain.style.opacity = '0';
 
-        // Track mouse position
+        // Track mouse position with simple 1:1 follow
         document.addEventListener('mousemove', (e) => {
-          const currentTime = Date.now();
-          const deltaTime = (currentTime - lastTime) / 1000; // Convert to seconds
-
           mouseX = e.clientX;
           mouseY = e.clientY;
 
@@ -463,94 +434,30 @@
           if (!isActive) {
             isActive = true;
             keychain.style.opacity = '1';
-            keychain.classList.add('active');
-            if (!isTouchDevice) {
-              startSpeedDetection();
-            }
           }
 
-          // Calculate velocity (pixels per second)
-          const deltaX = mouseX - lastMouseX;
-          const deltaY = mouseY - lastMouseY;
-          velocityX = deltaTime > 0 ? deltaX / deltaTime : 0;
-          velocityY = deltaTime > 0 ? deltaY / deltaTime : 0;
+          // Apply position with fixed offset (1:1 ratio, no lag)
+          keychain.style.left = mouseX + 'px';
+          keychain.style.top = (mouseY + KEYCHAIN_OFFSET_Y) + 'px';
+          keychain.style.transform = 'translate(-50%, -50%)';
 
-          lastMouseX = mouseX;
-          lastMouseY = mouseY;
-          lastTime = currentTime;
+          // Update chat bubble position
+          updateChatBubblePosition();
         });
 
         // Hide when mouse leaves
         document.addEventListener('mouseleave', () => {
           isActive = false;
           keychain.style.opacity = '0';
-          keychain.classList.remove('active');
           chatBubble.classList.remove('visible');
-          stopSpeedDetection();
           clearAllTimers();
         });
-
-        // Spring physics animation loop
-        function animate() {
-          if (isActive) {
-            // Calculate distance to mouse
-            const dx = mouseX - keychainX;
-            const dy = mouseY - keychainY;
-
-            // Apply spring force
-            const springForceX = dx * SPRING_STRENGTH;
-            const springForceY = dy * SPRING_STRENGTH;
-
-            // Update velocity with spring force and damping
-            velocityX = velocityX * DAMPING + springForceX;
-            velocityY = velocityY * DAMPING + springForceY;
-
-            // Update position
-            keychainX += velocityX * 0.1; // Scale down for smooth movement
-            keychainY += velocityY * 0.1;
-
-            // Calculate rotation based on velocity
-            const angle = Math.atan2(velocityY, velocityX) * (180 / Math.PI);
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            const swingIntensity = Math.min(distance / 50, 1);
-            const rotation = angle * swingIntensity * 0.2;
-
-            // Apply position and rotation
-            keychain.style.left = keychainX + 'px';
-            keychain.style.top = keychainY + 'px';
-            keychain.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
-
-            // Update stretching thread
-            updateThread();
-
-            // Update chat bubble position
-            updateChatBubblePosition();
-          }
-
-          requestAnimationFrame(animate);
-        }
-
-        // Update SVG thread with stretch effect
-        function updateThread() {
-          const distance = Math.sqrt((mouseX - keychainX) ** 2 + (mouseY - keychainY) ** 2);
-          const opacity = Math.min(distance / 100, 0.6);
-          const strokeWidth = Math.max(1, 3 - distance / 100);
-
-          threadLine.setAttribute('x1', mouseX);
-          threadLine.setAttribute('y1', mouseY);
-          threadLine.setAttribute('x2', keychainX);
-          threadLine.setAttribute('y2', keychainY);
-          threadLine.setAttribute('opacity', opacity);
-          threadLine.setAttribute('stroke-width', strokeWidth);
-        }
-
-        animate();
       } else {
         // Mobile: Start message cycle immediately
         isActive = true;
       }
 
-      /* ========== PHASE 2: CONTEXTUAL MESSAGE ENGINE (RANDOMIZED) ========== */
+      /* ========== CONTEXTUAL MESSAGE ENGINE (RANDOMIZED) - PRESERVED ========== */
 
       // Load messages from files
       async function loadMessages() {
@@ -640,7 +547,7 @@
         });
       }
 
-      // Message cycle: 3s delay → show 5s → hide 4s → next random
+      // Message cycle: 3s delay → show 5s → hide 4s → next random (PRESERVED)
       function startMessageCycle() {
         if (!sectionMessages[currentSection]) return;
 
@@ -682,7 +589,7 @@
         clearTimeout(delayTimer);
       }
 
-      /* ========== PHASE 3: CHAT BUBBLE UI WITH COLLISION DETECTION ========== */
+      /* ========== CHAT BUBBLE POSITION WITH COLLISION DETECTION ========== */
 
       function updateChatBubblePosition() {
         if (!chatBubble.classList.contains('visible') || isMobile) return;
@@ -695,21 +602,22 @@
         const viewportHeight = window.innerHeight;
 
         // Default position: above keychain
-        let bubbleX = keychainX;
-        let bubbleY = keychainY - bubbleHeight - 80;
+        const keychainY = mouseY + KEYCHAIN_OFFSET_Y;
+        let bubbleX = mouseX;
+        let bubbleY = keychainY - bubbleHeight - 40;
         let tailClass = '';
 
         // Collision detection with flipping
 
         // Check if bubble goes off top -> flip to bottom
         if (bubbleY < margin) {
-          bubbleY = keychainY + 80;
+          bubbleY = keychainY + 40;
           tailClass = 'tail-top';
         }
 
         // Check if bubble goes off bottom -> try top again
         if (bubbleY + bubbleHeight > viewportHeight - margin) {
-          bubbleY = keychainY - bubbleHeight - 80;
+          bubbleY = keychainY - bubbleHeight - 40;
           if (bubbleY < margin) {
             // If still doesn't fit, position beside
             bubbleY = keychainY - bubbleHeight / 2;
@@ -718,13 +626,13 @@
 
         // Check if bubble goes off left -> flip to right
         if (bubbleX - bubbleWidth / 2 < margin) {
-          bubbleX = keychainX + 100;
+          bubbleX = mouseX + 100;
           tailClass = 'tail-left';
         }
 
         // Check if bubble goes off right -> flip to left
         if (bubbleX + bubbleWidth / 2 > viewportWidth - margin) {
-          bubbleX = keychainX - 100;
+          bubbleX = mouseX - 100;
           tailClass = 'tail-right';
         }
 
@@ -742,38 +650,6 @@
         if (tailClass) {
           chatBubble.classList.add(tailClass);
         }
-      }
-
-      /* ========== PHASE 4: SPEED DETECTION (DESKTOP ONLY) ========== */
-
-      function startSpeedDetection() {
-        if (isTouchDevice || isMobile) return;
-
-        speedCheckInterval = setInterval(() => {
-          // Calculate speed in pixels per second
-          const speed = Math.sqrt(velocityX ** 2 + velocityY ** 2);
-
-          if (speed > SPEED_THRESHOLD && !isDizzy && isActive) {
-            showDizzyMessage();
-          }
-        }, 100);
-      }
-
-      function stopSpeedDetection() {
-        clearInterval(speedCheckInterval);
-      }
-
-      function showDizzyMessage() {
-        isDizzy = true;
-        dizzyMessage.classList.add('visible', 'spinning');
-        hideMessage(); // Hide chat bubble when dizzy
-
-        setTimeout(() => {
-          dizzyMessage.classList.remove('visible', 'spinning');
-          setTimeout(() => {
-            isDizzy = false;
-          }, 300);
-        }, DIZZY_DURATION);
       }
 
       // Initialize
