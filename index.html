@@ -22,6 +22,26 @@
     <div class="preloader-caption">Loading Portfolio...</div>
   </div>
 
+  <!-- STICKY NAVIGATION -->
+  <nav class="main-nav">
+    <ul class="nav-links">
+      <li><a href="#home" class="active">HOME</a></li>
+      <li><a href="#about">ABOUT ME</a></li>
+      <li><a href="#works">WORKS</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <!-- HOME SECTION -->
+  <section id="home">
+    <h1 class="home-title">PORTFOLIO</h1>
+    <p class="home-subtitle">GRAPHIC DESIGN</p>
+    <div class="cat-placeholder">🐱</div>
+    <!-- <video class="home-video" autoplay loop muted playsinline>
+      <source src="assets/video/CATLOOP.mp4" type="video/mp4">
+    </video> -->
+  </section>
+
   <!-- TOP MARQUEE -->
   <div class="marquee">
     <div class="marquee-content">
@@ -48,54 +68,8 @@
 
   <main>
     <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-bento">
-          <!-- Left Column: Intro -->
-          <div class="hero-intro">
-            <!-- Frame nodes -->
-            <div class="frame-nodes">
-              <div class="frame-node bottom-left"></div>
-              <div class="frame-node bottom-right"></div>
-              <div class="frame-node mid-top"></div>
-              <div class="frame-node mid-right"></div>
-              <div class="frame-node mid-bottom"></div>
-              <div class="frame-node mid-left"></div>
-            </div>
-            
-            <div class="hero-label">MY PORTFOLIO — DESIGN</div>
-            <h1 class="hero-title">
-              HI, I'm <span class="highlight">Abhijeet Powar</span>
-            </h1>
-            <p class="hero-description">
-              Welcome to the World of an <span class="highlight">Artist</span>, Designer & Editor
-            </p>
-            <p class="hero-description">
-              I blend traditional graphics design with cutting-edge AI and 3D animation to create immersive visual experiences. From brand identities to motion graphics, I turn complex ideas into captivating digital art.
-            </p>
-            <div class="hero-buttons">
-              <button class="btn btn-primary" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">ABOUT ME</button>
-              <button class="btn" onclick="document.getElementById('works').scrollIntoView({behavior: 'smooth'})">WORKS</button>
-            </div>
-          </div>
-
-          <!-- Right Column: Profile -->
-          <div class="hero-profile">
-            <!-- Frame nodes -->
-            <div class="frame-nodes">
-              <div class="frame-node bottom-left"></div>
-              <div class="frame-node bottom-right"></div>
-              <div class="frame-node mid-top"></div>
-              <div class="frame-node mid-right"></div>
-              <div class="frame-node mid-bottom"></div>
-              <div class="frame-node mid-left"></div>
-            </div>
-            
-            <img src="assets/uploads/cover.jpg" alt="Abhijeet Powar - Artist, Designer, Editor">
-            <div class="hero-profile-label">ARTIST_DESIGN_EDIT</div>
-          </div>
-        </div>
-      </div>
+    <section class="hero" style="display: none;">
+      <!-- Hero content moved to #home -->
     </section>
 
     <!-- ABOUT ME MARQUEE -->
@@ -122,137 +96,92 @@
       </div>
     </div>
 
-    <!-- ABOUT SECTION -->
+    <!-- ABOUT SECTION WITH EYE-TRACKING CHARACTER -->
     <section id="about" class="about">
       <div class="container">
         <div class="about-bento">
-          <!-- Contact -->
-          <div class="about-card">
-            <!-- Frame nodes -->
-            <div class="frame-nodes">
-              <div class="frame-node bottom-left"></div>
-              <div class="frame-node bottom-right"></div>
-              <div class="frame-node mid-top"></div>
-              <div class="frame-node mid-right"></div>
-              <div class="frame-node mid-bottom"></div>
-              <div class="frame-node mid-left"></div>
+          <!-- Left Column: Text Content -->
+          <div class="about-left">
+            <!-- About Me -->
+            <div class="about-card">
+              <h3 class="about-card-title">ABOUT ME</h3>
+              <div class="about-card-content">
+                <p>Creative Graphic Designer with 4.5+ years of experience in delivering impactful and visually engaging designs. Skilled in transforming ideas into effective brand visuals with a strong focus on quality and creativity.</p>
+              </div>
             </div>
-            
-            <h3 class="about-card-title">CONTACT</h3>
-            <div class="about-card-content">
-              <div class="contact-item">
-                <strong>
-                  <span class="contact-icon">
-                    <img src="assets/uploads/EMAIL.svg" alt="Email" />
-                  </span>
-                  Email:
-                </strong>
-                <p>abhipowar2400@gmail.com</p>
+
+            <!-- Education -->
+            <div class="about-card">
+              <h3 class="about-card-title">EDUCATION</h3>
+              <div class="about-card-content">
+                <p>
+                  <strong>Bachelor's in Commerce (2023 – 2025)</strong>
+                  Shivaji University-Kolhapur
+                </p>
               </div>
-              
-              <div class="contact-item">
-                <strong>
-                  <span class="contact-icon">
-                    <img src="assets/uploads/INSTA.svg" alt="Instagram" />
-                  </span>
-                  Instagram:
-                </strong>
-                <p>@abhi._powar._</p>
+            </div>
+
+            <!-- Experience -->
+            <div class="about-card">
+              <h3 class="about-card-title">EXPERIENCE</h3>
+              <div class="about-card-content">
+                <p><strong>4+ years of professional design experience</strong></p>
+                <p>
+                  <strong>Design Executive at Hitech Computer (3+ year)</strong><br>
+                  Creating impactful brand visuals and visual storytelling.
+                </p>
+                <p>
+                  <strong>Design Executive at Digital Scope (1 year)</strong><br>
+                  Specializing in branding and creative design solutions.
+                </p>
               </div>
-              
-              <div class="contact-item">
-                <strong>
-                  <span class="contact-icon">
-                    <img src="assets/uploads/LOCATION.svg" alt="Location" />
-                  </span>
-                  Location:
-                </strong>
-                <p>Pune, India</p>
+            </div>
+
+            <!-- Skills -->
+            <div class="about-card">
+              <h3 class="about-card-title">SKILLS</h3>
+              <div class="about-card-content">
+                <p><strong>Branding, Social Media Design, Visual Identity</strong></p>
+                <p><strong>Logo Design, Thumbnail Design, Video Editing</strong></p>
+                <p><strong>Motion Graphics, Illustrations</strong></p>
               </div>
             </div>
           </div>
 
-          <!-- Education & Skills -->
-          <div class="about-card">
-            <!-- Frame nodes -->
-            <div class="frame-nodes">
-              <div class="frame-node bottom-left"></div>
-              <div class="frame-node bottom-right"></div>
-              <div class="frame-node mid-top"></div>
-              <div class="frame-node mid-right"></div>
-              <div class="frame-node mid-bottom"></div>
-              <div class="frame-node mid-left"></div>
-            </div>
-            
-            <h3 class="about-card-title">EDUCATION</h3>
-            <div class="about-card-content">
-              <p>
-                <strong>Bachelor of Commerce</strong>
-                (2022-25)
-              </p>
-              <p class="mt-md">
-                <strong>HARD SKILLS</strong>
-              </p>
-              <div class="skills-grid">
-                <div class="skill-badge">
-                  <img src="assets/uploads/ICON__PS.svg" alt="Photoshop" />
-                </div>
-                <div class="skill-badge">
-                  <img src="assets/uploads/ICON__AE.svg" alt="After Effects" />
-                </div>
-                <div class="skill-badge">
-                  <img src="assets/uploads/ICON__PR.svg" alt="Premiere Pro" />
-                </div>
-                <div class="skill-badge">
-                  <img src="assets/uploads/ICON__AI.svg" alt="Illustrator" />
-                </div>
-                <div class="skill-badge">
-                  <img src="assets/uploads/ICON__BL.svg" alt="Blender" />
-                </div>
-                <div class="skill-badge">
-                  <img src="assets/uploads/ICON__CR.svg" alt="CorelDraw" />
-                </div>
+          <!-- Center: Eye-Tracking Character -->
+          <div class="character" id="character">
+            <div class="character-eyes">
+              <div class="eye" data-eye="left">
+                <div class="pupil" data-pupil="left"></div>
               </div>
-              <p class="mt-md">
-                <strong>SOFT SKILLS</strong>
-              </p>
-              <p style="font-size: 14px; line-height: 1.5;">
-                • Creative Problem Solving<br>
-                • Mentorship & Communication<br>
-                • Adaptability & Fast Learning<br>
-                • AI Generalist
-              </p>
+              <div class="eye" data-eye="right">
+                <div class="pupil" data-pupil="right"></div>
+              </div>
+            </div>
+            <div class="character-mouth">
+              <div class="character-smile"></div>
             </div>
           </div>
 
-          <!-- Experience -->
-          <div class="about-card">
-            <!-- Frame nodes -->
-            <div class="frame-nodes">
-              <div class="frame-node bottom-left"></div>
-              <div class="frame-node bottom-right"></div>
-              <div class="frame-node mid-top"></div>
-              <div class="frame-node mid-right"></div>
-              <div class="frame-node mid-bottom"></div>
-              <div class="frame-node mid-left"></div>
+          <!-- Right Column: Software Icons -->
+          <div class="about-right">
+            <div class="software-icon">
+              <img src="assets/uploads/ICON__PS.svg" alt="Photoshop" />
             </div>
-            
-            <h3 class="about-card-title">EXPERIENCE</h3>
-            <div class="about-card-content">
-              <p>
-                <strong>Hitech Computer Education Institute</strong><br>
-                <em>GRAPHIC DESIGN TRAINER (2022-25)</em>
-              </p>
-              <p style="font-size: 14px; margin-top: 8px;">
-                Leading professional design training for over 150+ students. I specialize in teaching the industry-standard workflow for Graphic Design, Video Editing, and Motion Graphics, helping the next generation of creatives master Adobe Creative Suite and AI tools.
-              </p>
-              <p class="mt-md">
-                <strong>Digital Scope Training Institute</strong><br>
-                <em>DESIGN EXECUTIVE</em>
-              </p>
-              <p style="font-size: 14px; margin-top: 8px;">
-                Developing high-impact visual media for brand marketing campaigns. Most focuses on creating cohesive brand identities, high-converting social media posters, and engaging video content and brand recognition.
-              </p>
+            <div class="software-icon">
+              <img src="assets/uploads/ICON__AE.svg" alt="After Effects" />
+            </div>
+            <div class="software-icon">
+              <img src="assets/uploads/ICON__PR.svg" alt="Premiere Pro" />
+            </div>
+            <div class="software-icon">
+              <img src="assets/uploads/ICON__AI.svg" alt="Illustrator" />
+            </div>
+            <div class="software-icon">
+              <img src="assets/uploads/ICON__BL.svg" alt="Blender" />
+            </div>
+            <div class="software-icon">
+              <img src="assets/uploads/ICON__CR.svg" alt="CorelDraw" />
             </div>
           </div>
         </div>
@@ -385,6 +314,84 @@
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    /* ========== NAVIGATION ACTIVE STATE ========== */
+    (function() {
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const sections = document.querySelectorAll('section[id]');
+
+      function updateActiveNav() {
+        const scrollY = window.scrollY + 100;
+
+        sections.forEach(section => {
+          const sectionHeight = section.offsetHeight;
+          const sectionTop = section.offsetTop;
+          const sectionId = section.getAttribute('id');
+          
+          if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${sectionId}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveNav);
+    })();
+
+    /* ========== EYE-TRACKING SYSTEM ========== */
+    (function() {
+      const character = document.getElementById('character');
+      const pupils = document.querySelectorAll('.pupil');
+      
+      if (!character || pupils.length === 0) return;
+
+      const isMobile = window.innerWidth <= 980;
+
+      // Skip on mobile for performance
+      if (isMobile) return;
+
+      function updateEyes(e) {
+        pupils.forEach(pupil => {
+          const eye = pupil.closest('.eye');
+          const eyeRect = eye.getBoundingClientRect();
+          
+          // Eye center coordinates
+          const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+          const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+
+          // Mouse coordinates
+          const mouseX = e.clientX;
+          const mouseY = e.clientY;
+
+          // Calculate angle between eye and mouse
+          const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
+          
+          // Maximum distance pupil can move from center
+          const maxDistance = 18; // Reduced from 25 for constrained movement
+          
+          // Calculate pupil position
+          let pupilX = Math.cos(angle) * maxDistance;
+          let pupilY = Math.sin(angle) * maxDistance;
+
+          // Constrain pupil within eye boundaries
+          const distance = Math.sqrt(pupilX * pupilX + pupilY * pupilY);
+          if (distance > maxDistance) {
+            pupilX = (pupilX / distance) * maxDistance;
+            pupilY = (pupilY / distance) * maxDistance;
+          }
+
+          // Apply transform
+          pupil.style.transform = `translate(calc(-50% + ${pupilX}px), calc(-50% + ${pupilY}px))`;
+        });
+      }
+
+      // Track mouse movement
+      document.addEventListener('mousemove', updateEyes);
+    })();
+
     /* ========== SIMPLIFIED INTERACTIVE PERSONA CURSOR SYSTEM ========== */
     (function() {
       // Elements
@@ -509,7 +516,7 @@
       // Section detection with IntersectionObserver
       function setupIntersectionObserver() {
         const sections = [
-          { element: document.querySelector('.hero'), name: 'hero' },
+          { element: document.getElementById('home'), name: 'hero' },
           { element: document.getElementById('about'), name: 'about' },
           { element: document.getElementById('works'), name: 'works' },
           { element: document.getElementById('contact'), name: 'contact' }

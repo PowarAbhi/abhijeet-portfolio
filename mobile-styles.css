@@ -85,6 +85,33 @@
     padding: 6px;
   }
 
+  /* ========== HOME SECTION ========== */
+  #home {
+    min-height: 80vh;
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+
+  .home-video,
+  .cat-placeholder {
+    width: 200px;
+    height: 200px;
+  }
+
+  .cat-placeholder {
+    font-size: 60px;
+  }
+
+  /* ========== NAVIGATION ========== */
+  .nav-links {
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
   /* ========== ABOUT SECTION ========== */
   .about {
     padding: var(--spacing-lg) 0;
@@ -93,6 +120,47 @@
   .about-bento {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
+  }
+
+  .about-left,
+  .about-right {
+    order: initial;
+  }
+
+  .character {
+    width: 220px;
+    height: 260px;
+    margin: var(--spacing-md) auto;
+  }
+
+  .character-eyes {
+    gap: 20px;
+  }
+
+  .eye {
+    width: 60px;
+    height: 60px;
+  }
+
+  .pupil {
+    width: 24px;
+    height: 24px;
+  }
+
+  .character-mouth {
+    width: 140px;
+    height: 80px;
+  }
+
+  .software-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .about-right {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .about-card {
