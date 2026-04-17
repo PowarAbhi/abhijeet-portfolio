@@ -36,10 +36,12 @@
   <section id="home">
     <h1 class="home-title">PORTFOLIO</h1>
     <p class="home-subtitle">GRAPHIC DESIGN</p>
-    <div class="cat-placeholder">🐱</div>
-    <!-- <video class="home-video" autoplay loop muted playsinline>
-      <source src="assets/video/CATLOOP.mp4" type="video/mp4">
-    </video> -->
+    <!-- Cat Video Loop -->
+    <video class="home-video" autoplay loop muted playsinline>
+      <source src="assets/uploads/CATLOOP.mp4" type="video/mp4">
+      <!-- Fallback if video not found -->
+      <div class="cat-placeholder">🐱</div>
+    </video>
   </section>
 
   <!-- TOP MARQUEE -->
@@ -96,93 +98,101 @@
       </div>
     </div>
 
-    <!-- ABOUT SECTION WITH EYE-TRACKING CHARACTER -->
+    <!-- ABOUT SECTION WITH JIJI EYE-TRACKING CAT -->
     <section id="about" class="about">
-      <div class="container">
-        <div class="about-bento">
-          <!-- Left Column: Text Content -->
-          <div class="about-left">
-            <!-- About Me -->
-            <div class="about-card">
-              <h3 class="about-card-title">ABOUT ME</h3>
-              <div class="about-card-content">
-                <p>Creative Graphic Designer with 4.5+ years of experience in delivering impactful and visually engaging designs. Skilled in transforming ideas into effective brand visuals with a strong focus on quality and creativity.</p>
-              </div>
-            </div>
-
-            <!-- Education -->
-            <div class="about-card">
-              <h3 class="about-card-title">EDUCATION</h3>
-              <div class="about-card-content">
-                <p>
-                  <strong>Bachelor's in Commerce (2023 – 2025)</strong>
-                  Shivaji University-Kolhapur
-                </p>
-              </div>
-            </div>
-
-            <!-- Experience -->
-            <div class="about-card">
-              <h3 class="about-card-title">EXPERIENCE</h3>
-              <div class="about-card-content">
-                <p><strong>4+ years of professional design experience</strong></p>
-                <p>
-                  <strong>Design Executive at Hitech Computer (3+ year)</strong><br>
-                  Creating impactful brand visuals and visual storytelling.
-                </p>
-                <p>
-                  <strong>Design Executive at Digital Scope (1 year)</strong><br>
-                  Specializing in branding and creative design solutions.
-                </p>
-              </div>
-            </div>
-
-            <!-- Skills -->
-            <div class="about-card">
-              <h3 class="about-card-title">SKILLS</h3>
-              <div class="about-card-content">
-                <p><strong>Branding, Social Media Design, Visual Identity</strong></p>
-                <p><strong>Logo Design, Thumbnail Design, Video Editing</strong></p>
-                <p><strong>Motion Graphics, Illustrations</strong></p>
-              </div>
+      <div class="about-container">
+        <!-- Left: Content Cards -->
+        <div class="about-content">
+          <div class="about-card">
+            <h3 class="about-card-title">ABOUT ME</h3>
+            <div class="about-card-content">
+              <p>Creative Graphic Designer with 4.5+ years of experience in delivering impactful and visually engaging designs. Skilled in transforming ideas into effective brand visuals with a strong focus on quality and creativity.</p>
             </div>
           </div>
 
-          <!-- Center: Eye-Tracking Character -->
-          <div class="character" id="character">
-            <div class="character-eyes">
-              <div class="eye" data-eye="left">
-                <div class="pupil" data-pupil="left"></div>
-              </div>
-              <div class="eye" data-eye="right">
-                <div class="pupil" data-pupil="right"></div>
-              </div>
-            </div>
-            <div class="character-mouth">
-              <div class="character-smile"></div>
+          <div class="about-card">
+            <h3 class="about-card-title">EDUCATION</h3>
+            <div class="about-card-content">
+              <p>
+                <strong>Bachelor's in Commerce (2023 – 2025)</strong><br>
+                Shivaji University-Kolhapur
+              </p>
             </div>
           </div>
 
-          <!-- Right Column: Software Icons -->
-          <div class="about-right">
-            <div class="software-icon">
-              <img src="assets/uploads/ICON__PS.svg" alt="Photoshop" />
+          <div class="about-card">
+            <h3 class="about-card-title">EXPERIENCE</h3>
+            <div class="about-card-content">
+              <p><strong>4+ years of professional design experience</strong></p>
+              <p>
+                <strong>Design Executive at Hitech Computer (3+ year)</strong><br>
+                Creating impactful brand visuals and visual storytelling.
+              </p>
+              <p>
+                <strong>Design Executive at Digital Scope (1 year)</strong><br>
+                Specializing in branding and creative design solutions.
+              </p>
             </div>
-            <div class="software-icon">
-              <img src="assets/uploads/ICON__AE.svg" alt="After Effects" />
+          </div>
+
+          <div class="about-card">
+            <h3 class="about-card-title">SKILLS</h3>
+            <div class="about-card-content">
+              <p><strong>Branding, Social Media Design, Visual Identity</strong></p>
+              <p><strong>Logo Design, Thumbnail Design, Video Editing</strong></p>
+              <p><strong>Motion Graphics, Illustrations</strong></p>
             </div>
-            <div class="software-icon">
-              <img src="assets/uploads/ICON__PR.svg" alt="Premiere Pro" />
-            </div>
-            <div class="software-icon">
-              <img src="assets/uploads/ICON__AI.svg" alt="Illustrator" />
-            </div>
-            <div class="software-icon">
-              <img src="assets/uploads/ICON__BL.svg" alt="Blender" />
-            </div>
-            <div class="software-icon">
-              <img src="assets/uploads/ICON__CR.svg" alt="CorelDraw" />
-            </div>
+          </div>
+        </div>
+
+        <!-- Center: Jiji Cat with Eye Tracking -->
+        <div class="jiji-container">
+          <svg viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" class="jiji-cat">
+            <!-- Background -->
+            <rect width="1920" height="1080" fill="transparent" />
+            
+            <!-- Ears -->
+            <path d="M784.5 352.5C762.5 423.5 784.5 541.5 784.5 541.5L880.5 491.5C880.5 491.5 831.5 321.5 784.5 352.5Z" fill="white"/>
+            <path d="M1135.5 352.5C1157.5 423.5 1135.5 541.5 1135.5 541.5L1039.5 491.5C1039.5 491.5 1088.5 321.5 1135.5 352.5Z" fill="white"/>
+            
+            <!-- Left Eye Socket -->
+            <path d="M860.5 613.5C808.5 613.5 771.5 659.5 771.5 706.5C771.5 753.5 812.5 791.5 860.5 791.5C908.5 791.5 949.5 753.5 949.5 706.5C949.5 659.5 912.5 613.5 860.5 613.5Z" fill="white"/>
+            
+            <!-- Right Eye Socket -->
+            <path d="M1059.5 613.5C1007.5 613.5 970.5 659.5 970.5 706.5C970.5 753.5 1011.5 791.5 1059.5 791.5C1107.5 791.5 1148.5 753.5 1148.5 706.5C1148.5 659.5 1111.5 613.5 1059.5 613.5Z" fill="white"/>
+            
+            <!-- Nose -->
+            <path d="M960 770C950 770 945 780 960 788C975 780 970 770 960 770Z" fill="white"/>
+
+            <!-- Moving Pupils -->
+            <g id="jiji-pupils">
+              <!-- Left Pupil -->
+              <ellipse id="jiji-left-pupil" cx="860.5" cy="702.5" rx="14" ry="24" fill="black" />
+              <!-- Right Pupil -->
+              <ellipse id="jiji-right-pupil" cx="1059.5" cy="702.5" rx="14" ry="24" fill="black" />
+            </g>
+          </svg>
+        </div>
+
+        <!-- Right: Software Icons (Aligned to screen edge) -->
+        <div class="about-icons">
+          <div class="software-icon">
+            <img src="assets/uploads/ICON__PS.svg" alt="Photoshop" />
+          </div>
+          <div class="software-icon">
+            <img src="assets/uploads/ICON__AE.svg" alt="After Effects" />
+          </div>
+          <div class="software-icon">
+            <img src="assets/uploads/ICON__PR.svg" alt="Premiere Pro" />
+          </div>
+          <div class="software-icon">
+            <img src="assets/uploads/ICON__AI.svg" alt="Illustrator" />
+          </div>
+          <div class="software-icon">
+            <img src="assets/uploads/ICON__BL.svg" alt="Blender" />
+          </div>
+          <div class="software-icon">
+            <img src="assets/uploads/ICON__CR.svg" alt="CorelDraw" />
           </div>
         </div>
       </div>
@@ -341,55 +351,54 @@
       window.addEventListener('scroll', updateActiveNav);
     })();
 
-    /* ========== EYE-TRACKING SYSTEM ========== */
+    /* ========== JIJI CAT EYE-TRACKING SYSTEM ========== */
     (function() {
-      const character = document.getElementById('character');
-      const pupils = document.querySelectorAll('.pupil');
+      const leftPupil = document.getElementById('jiji-left-pupil');
+      const rightPupil = document.getElementById('jiji-right-pupil');
       
-      if (!character || pupils.length === 0) return;
+      if (!leftPupil || !rightPupil) return;
 
       const isMobile = window.innerWidth <= 980;
+      if (isMobile) return; // Skip on mobile for performance
 
-      // Skip on mobile for performance
-      if (isMobile) return;
+      // Starting (center) positions for the pupils
+      const leftOrigin = { x: 860.5, y: 702.5 };
+      const rightOrigin = { x: 1059.5, y: 702.5 };
+      
+      // Limits how far the pupil can "travel" inside the eye
+      const maxDistance = 25;
 
-      function updateEyes(e) {
-        pupils.forEach(pupil => {
-          const eye = pupil.closest('.eye');
-          const eyeRect = eye.getBoundingClientRect();
-          
-          // Eye center coordinates
-          const eyeCenterX = eyeRect.left + eyeRect.width / 2;
-          const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+      window.addEventListener('mousemove', (e) => {
+        movePupil(e.clientX, e.clientY, leftPupil, leftOrigin);
+        movePupil(e.clientX, e.clientY, rightPupil, rightOrigin);
+      });
 
-          // Mouse coordinates
-          const mouseX = e.clientX;
-          const mouseY = e.clientY;
+      function movePupil(mouseX, mouseY, pupilElement, origin) {
+        // Find where the eye is on the actual screen
+        const rect = pupilElement.getBoundingClientRect();
+        const eyeCenterX = rect.left + rect.width / 2;
+        const eyeCenterY = rect.top + rect.height / 2;
 
-          // Calculate angle between eye and mouse
-          const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
-          
-          // Maximum distance pupil can move from center
-          const maxDistance = 18; // Reduced from 25 for constrained movement
-          
-          // Calculate pupil position
-          let pupilX = Math.cos(angle) * maxDistance;
-          let pupilY = Math.sin(angle) * maxDistance;
+        // Calculate the angle from eye to mouse
+        const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
+        
+        // Calculate how far the mouse is (to make movement subtle when close)
+        const distToMouse = Math.hypot(mouseX - eyeCenterX, mouseY - eyeCenterY);
+        const moveDist = Math.min(maxDistance, distToMouse / 10);
 
-          // Constrain pupil within eye boundaries
-          const distance = Math.sqrt(pupilX * pupilX + pupilY * pupilY);
-          if (distance > maxDistance) {
-            pupilX = (pupilX / distance) * maxDistance;
-            pupilY = (pupilY / distance) * maxDistance;
-          }
+        // Use math to find the new X and Y coordinates
+        const targetX = Math.cos(angle) * moveDist;
+        const targetY = Math.sin(angle) * moveDist;
 
-          // Apply transform
-          pupil.style.transform = `translate(calc(-50% + ${pupilX}px), calc(-50% + ${pupilY}px))`;
-        });
+        // Apply the movement using CSS transform
+        pupilElement.style.transform = `translate(${targetX}px, ${targetY}px)`;
       }
-
-      // Track mouse movement
-      document.addEventListener('mousemove', updateEyes);
+      
+      // Handle window resizing to keep calculations accurate
+      window.addEventListener('resize', () => {
+        leftPupil.style.transform = `translate(0,0)`;
+        rightPupil.style.transform = `translate(0,0)`;
+      });
     })();
 
     /* ========== SIMPLIFIED INTERACTIVE PERSONA CURSOR SYSTEM ========== */

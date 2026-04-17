@@ -117,50 +117,36 @@
     padding: var(--spacing-lg) 0;
   }
 
-  .about-bento {
+  .about-container {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
+    padding: 0 var(--spacing-sm);
   }
 
-  .about-left,
-  .about-right {
-    order: initial;
+  .about-content {
+    order: 1;
+    max-width: 100%;
   }
 
-  .character {
-    width: 220px;
-    height: 260px;
+  .jiji-container {
+    order: 2;
+    width: 250px;
     margin: var(--spacing-md) auto;
   }
 
-  .character-eyes {
-    gap: 20px;
-  }
-
-  .eye {
-    width: 60px;
-    height: 60px;
-  }
-
-  .pupil {
-    width: 24px;
-    height: 24px;
-  }
-
-  .character-mouth {
-    width: 140px;
-    height: 80px;
+  .about-icons {
+    order: 3;
+    position: static;
+    transform: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: var(--spacing-md) auto;
   }
 
   .software-icon {
     width: 50px;
     height: 50px;
-  }
-
-  .about-right {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
   }
 
   .about-card {
