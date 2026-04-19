@@ -85,20 +85,18 @@
     padding: 6px;
   }
 
-  /* ========== HOME SECTION ========== */
+  /* ========== HOME SECTION (Full BG Video) ========== */
   #home {
-    min-height: 80vh;
+    min-height: 100vh;
     padding: var(--spacing-lg) var(--spacing-sm);
   }
 
-  .home-video,
-  .cat-placeholder {
-    width: 200px;
-    height: 200px;
+  .home-bg-video {
+    object-fit: cover;
   }
 
-  .cat-placeholder {
-    font-size: 60px;
+  .home-content {
+    padding: 0 var(--spacing-sm);
   }
 
   /* ========== NAVIGATION ========== */
@@ -112,15 +110,26 @@
     padding: 6px 10px;
   }
 
-  /* ========== ABOUT SECTION ========== */
+  /* ========== ABOUT SECTION - 2x2 GRID STACKED TO 1 COLUMN ON MOBILE ========== */
   .about {
     padding: var(--spacing-lg) 0;
   }
 
   .about-container {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
     gap: var(--spacing-md);
     padding: 0 var(--spacing-sm);
+    position: relative;
+  }
+
+  /* Reset 2x2 grid positioning so cards stack naturally */
+  .about-card:nth-child(1),
+  .about-card:nth-child(2),
+  .about-card:nth-child(3),
+  .about-card:nth-child(4) {
+    grid-column: 1;
+    grid-row: auto;
   }
 
   .about-content {
@@ -128,12 +137,12 @@
     max-width: 100%;
   }
 
+  /* HIDE JIJI CAT ON MOBILE (user request) */
   .jiji-container {
-    order: 2;
-    width: 350px;
-    margin: var(--spacing-md) auto;
+    display: none !important;
   }
 
+  /* Software Icons - repositioned for mobile, NOT hidden */
   .about-icons {
     order: 3;
     position: static;
@@ -141,7 +150,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin: var(--spacing-md) auto;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) auto 0;
+    padding: var(--spacing-sm);
   }
 
   .software-icon {
@@ -387,11 +398,17 @@
     grid-template-columns: 1fr;
   }
 
-  .about-bento {
+  .about-container {
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
   }
 
-  .about-card:last-child {
-    grid-column: 1 / -1;
+  .about-card:nth-child(1) { grid-column: 1; grid-row: 1; }
+  .about-card:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .about-card:nth-child(3) { grid-column: 1; grid-row: 2; }
+  .about-card:nth-child(4) { grid-column: 2; grid-row: 2; }
+
+  .jiji-container {
+    display: none !important;
   }
 }
