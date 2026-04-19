@@ -118,12 +118,13 @@
   .about-container {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    gap: var(--spacing-md);
+    column-gap: 0;
+    row-gap: var(--spacing-md);
     padding: 0 var(--spacing-sm);
     position: relative;
   }
 
-  /* Reset 2x2 grid positioning so cards stack naturally */
+  /* Reset 3-column positioning so cards stack naturally */
   .about-card:nth-child(1),
   .about-card:nth-child(2),
   .about-card:nth-child(3),
@@ -144,7 +145,9 @@
 
   /* Software Icons - repositioned for mobile, NOT hidden */
   .about-icons {
-    order: 3;
+    grid-column: 1;
+    grid-row: auto;
+    order: 99;
     position: static;
     transform: none;
     flex-direction: row;
@@ -153,6 +156,8 @@
     gap: var(--spacing-sm);
     margin: var(--spacing-md) auto 0;
     padding: var(--spacing-sm);
+    justify-self: center;
+    align-self: auto;
   }
 
   .software-icon {
@@ -401,6 +406,7 @@
   .about-container {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
+    column-gap: var(--spacing-md);
   }
 
   .about-card:nth-child(1) { grid-column: 1; grid-row: 1; }
@@ -410,5 +416,18 @@
 
   .jiji-container {
     display: none !important;
+  }
+
+  .about-icons {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-self: center;
+    align-self: auto;
+    position: static;
+    transform: none;
+    margin-top: var(--spacing-md);
   }
 }

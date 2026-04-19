@@ -50,17 +50,27 @@ Full-stack UI refactor of `index.html` and `styles.css` into a Bento Grid system
 ## Completed Changelog
 
 ### 2026-02 (Current Session)
-- ✅ Swapped Home video: `.home-video` (CATLOOP.mp4) → `.home-bg-video` (HOMEBG.mp4, full-bg)
-- ✅ Wrapped Home title + subtitle in `.home-content` overlay on top of video
-- ✅ Relocated PORTFOLIO marquee from below Home to directly below nav
-- ✅ Implemented 2×2 Bento Grid for About section with centered Jiji cat
-- ✅ Updated `mobile-styles.css`:
-  - About container stacks to 1 column on mobile
-  - Jiji cat `display: none` on mobile and tablet (<980px)
-  - Software icons reflow horizontally (kept visible per user request)
-  - Home section kept at full viewport with cover background video
-  - Tablet breakpoint (768-980px) preserves 2×2 cards but hides Jiji
-- ✅ Verified via Playwright screenshots at desktop (1920px) and mobile (390px) viewports
+- ✅ **Home Section WebGL Shader** — Replaced HOMEBG.mp4 with Three.js r128 purple liquid glow shader
+  - `#shader-container` with `position: absolute; inset: 0; z-index: 0`
+  - Desktop: `pointermove` drives `u_mouse` uniform with coords relative to the home section
+  - Mobile: `touchstart` + `touchmove` mapped to same uniforms; `touch-action: none` enabled
+  - Smooth mouse-follow interpolation (divisor = 1/10) + feedback buffer swap for trail
+  - `#home` reduced to `min-height: 80vh`, black background
+  - PORTFOLIO + GRAPHIC DESIGN centered in white `#FFFFFF` with subtle text-shadow
+- ✅ **About Me refinement**
+  - Restructured to 4-column grid: `1fr 320px 1fr 80px` (Card | Jiji | Card | Icons)
+  - Zero overlap between Jiji character and software icons (each in dedicated column)
+  - Added `#fbb03b` circular backdrop behind Jiji cat via `::before` pseudo element with black border
+  - Removed drop-shadow / glow from `.jiji-cat` for clean Doodle look
+  - Cropped Jiji SVG viewBox to `720 300 490 520` to fit cleanly inside the circular frame
+  - Software icons moved to absolute far-right grid column (`justify-self: end`)
+- ✅ **Mobile responsive fixes**
+  - Reset grid-column for cards + icons in mobile breakpoint (single-column stack)
+  - Tablet breakpoint (768-980px): 2×2 cards + icons in full-width row at bottom, Jiji hidden
+  - Jiji fully hidden on mobile (<980px) per user spec
+  - Software icons remain visible on mobile, reflow horizontally
+
+### 2026-02 (Earlier in this session)
 
 ### Previous Sessions
 - ✅ Brutalist node-border frames

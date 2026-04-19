@@ -58,10 +58,8 @@
 
   <!-- HOME SECTION with Full Background Video -->
   <section id="home">
-    <!-- Full Background Video -->
-    <video class="home-bg-video" autoplay loop muted playsinline>
-      <source src="assets/uploads/HOMEBG.mp4" type="video/mp4">
-    </video>
+    <!-- WebGL Shader Background (Purple Liquid Glow) -->
+    <div id="shader-container"></div>
     <!-- Overlapping Text Content -->
     <div class="home-content">
       <h1 class="home-title">PORTFOLIO</h1>
@@ -148,10 +146,7 @@
 
         <!-- Center: Jiji Cat with Eye Tracking -->
         <div class="jiji-container">
-          <svg viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" class="jiji-cat">
-            <!-- Background -->
-            <rect width="1920" height="1080" fill="transparent" />
-            
+          <svg viewBox="720 300 490 520" xmlns="http://www.w3.org/2000/svg" class="jiji-cat" preserveAspectRatio="xMidYMid meet">
             <!-- Ears -->
             <path d="M784.5 352.5C762.5 423.5 784.5 541.5 784.5 541.5L880.5 491.5C880.5 491.5 831.5 321.5 784.5 352.5Z" fill="white"/>
             <path d="M1135.5 352.5C1157.5 423.5 1135.5 541.5 1135.5 541.5L1039.5 491.5C1039.5 491.5 1088.5 321.5 1135.5 352.5Z" fill="white"/>
@@ -904,6 +899,231 @@
         }
       });
     }
+  </script>
+
+  <!-- ====== WEBGL SHADER: PURPLE LIQUID GLOW (HOME SECTION) ====== -->
+  <script id="homeVertexShader" type="x-shader/x-vertex">
+    void main() {
+      gl_Position = vec4( position, 1.0 );
+    }
+  </script>
+
+  <script id="homeFragmentShader" type="x-shader/x-fragment">
+    uniform vec2 u_resolution;
+    uniform vec2 u_mouse;
+    uniform float u_time;
+    uniform sampler2D u_noise;
+    uniform sampler2D u_buffer;
+    uniform bool u_renderpass;
+
+    const float blurMultiplier = 0.95;
+    const float circleSize = .25;
+    const float blurStrength = .98;
+    const float threshold = .5;
+    const float scale = 4.;
+
+    #define PI 3.141592653589793
+
+    vec3 hash33(vec3 p){
+      float n = sin(dot(p, vec3(7, 157, 113)));
+      return fract(vec3(2097152, 262144, 32768)*n);
+    }
+
+    const int samples = 8;
+    const float sigma = float(samples) * 0.25;
+
+    float gaussian(vec2 i) {
+      return 1.0 / (2.0 * PI * (sigma * sigma)) * exp(-((i.x * i.x + i.y * i.y) / (2.0 * (sigma * sigma))));
+    }
+
+    vec3 blur(sampler2D sp, vec2 uv, vec2 scale) {
+      vec3 col = vec3(0.0);
+      float accum = 0.0;
+      float weight;
+      vec2 offset;
+      for (int x = -samples / 2; x < samples / 2; ++x) {
+        for (int y = -samples / 2; y < samples / 2; ++y) {
+          offset = vec2(float(x), float(y));
+          weight = gaussian(offset);
+          col += texture2D(sp, uv + scale * offset).rgb * weight;
+          accum += weight;
+        }
+      }
+      return col / accum;
+    }
+
+    void main() {
+      vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
+      uv *= scale;
+      vec2 mouse = u_mouse * scale;
+
+      vec2 ps = vec2(1.0) / u_resolution.xy;
+      vec2 samplePos = gl_FragCoord.xy / u_resolution.xy;
+
+      vec2 o = mouse * 0.2 + vec2(0.65, 0.5);
+      float d = 0.98;
+      samplePos = d * (samplePos - o) + o;
+      samplePos += vec2(sin((u_time + uv.y * 0.5) * 10.) * 0.001, 0.0);
+
+      vec3 fragcolour = vec3(0.0);
+      vec4 tex;
+
+      if(u_renderpass) {
+        tex = vec4(blur(u_buffer, samplePos, ps * blurStrength) * blurMultiplier, 1.0);
+        float df = length(mouse - uv);
+        fragcolour = vec3(smoothstep(circleSize, 0.0, df));
+      } else {
+        tex = texture2D(u_buffer, samplePos, 2.0) * 0.98;
+        tex = vec4(
+          smoothstep(0.0, threshold - fwidth(tex.x), tex.x),
+          smoothstep(0.2, threshold - fwidth(tex.y) + 0.2, tex.y),
+          smoothstep(-0.05, threshold - fwidth(tex.z) - 0.2, tex.z),
+          1.0
+        );
+        vec3 n = hash33(vec3(uv, u_time * 0.1));
+        tex.rgb += n * 0.2 - 0.1;
+      }
+
+      gl_FragColor = vec4(fragcolour, 1.0) + tex;
+    }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    (function () {
+      const container = document.getElementById('shader-container');
+      if (!container || typeof THREE === 'undefined') return;
+
+      let camera, scene, renderer, uniforms;
+      let rtA, rtB;
+      const divisor = 1 / 10;
+      const newmouse = { x: 0, y: 0 };
+
+      function getSize() {
+        const rect = container.getBoundingClientRect();
+        return { w: Math.max(1, rect.width), h: Math.max(1, rect.height) };
+      }
+
+      const loader = new THREE.TextureLoader();
+      loader.setCrossOrigin('anonymous');
+      loader.load(
+        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/982762/noise.png',
+        function (tex) {
+          tex.wrapS = THREE.RepeatWrapping;
+          tex.wrapT = THREE.RepeatWrapping;
+          tex.minFilter = THREE.LinearFilter;
+          init(tex);
+          animate();
+        },
+        undefined,
+        function () {
+          const fallback = new THREE.DataTexture(new Uint8Array([0, 0, 0, 255]), 1, 1, THREE.RGBAFormat);
+          fallback.needsUpdate = true;
+          init(fallback);
+          animate();
+        }
+      );
+
+      function init(noiseTex) {
+        const { w, h } = getSize();
+        camera = new THREE.Camera();
+        camera.position.z = 1;
+        scene = new THREE.Scene();
+
+        const geometry = new THREE.PlaneBufferGeometry(2, 2);
+        rtA = new THREE.WebGLRenderTarget(Math.max(1, w * 0.2), Math.max(1, h * 0.2));
+        rtB = new THREE.WebGLRenderTarget(Math.max(1, w * 0.2), Math.max(1, h * 0.2));
+
+        uniforms = {
+          u_time: { value: 1.0 },
+          u_resolution: { value: new THREE.Vector2(w, h) },
+          u_noise: { value: noiseTex },
+          u_buffer: { value: rtA.texture },
+          u_mouse: { value: new THREE.Vector2() },
+          u_renderpass: { value: false }
+        };
+
+        const material = new THREE.ShaderMaterial({
+          uniforms: uniforms,
+          vertexShader: document.getElementById('homeVertexShader').textContent,
+          fragmentShader: document.getElementById('homeFragmentShader').textContent
+        });
+        material.extensions.derivatives = true;
+
+        scene.add(new THREE.Mesh(geometry, material));
+
+        renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(w, h);
+        container.appendChild(renderer.domElement);
+
+        onResize();
+        window.addEventListener('resize', onResize, false);
+
+        // Desktop pointer (coordinates relative to container)
+        function setMouseFromEvent(clientX, clientY) {
+          const rect = container.getBoundingClientRect();
+          const x = clientX - rect.left;
+          const y = clientY - rect.top;
+          const ratio = rect.height / rect.width;
+          newmouse.x = (x - rect.width / 2) / rect.width / ratio;
+          newmouse.y = (y - rect.height / 2) / rect.height * -1;
+        }
+
+        container.addEventListener('pointermove', (e) => {
+          setMouseFromEvent(e.clientX, e.clientY);
+        }, { passive: true });
+
+        // Mobile touch support (draw the glow with finger)
+        const onTouch = (e) => {
+          if (e.touches && e.touches.length) {
+            const t = e.touches[0];
+            setMouseFromEvent(t.clientX, t.clientY);
+            e.preventDefault();
+          }
+        };
+        container.addEventListener('touchstart', onTouch, { passive: false });
+        container.addEventListener('touchmove', onTouch, { passive: false });
+      }
+
+      function onResize() {
+        if (!renderer) return;
+        const { w, h } = getSize();
+        renderer.setSize(w, h);
+        uniforms.u_resolution.value.set(w, h);
+        rtA = new THREE.WebGLRenderTarget(Math.max(1, w * 0.2), Math.max(1, h * 0.2));
+        rtB = new THREE.WebGLRenderTarget(Math.max(1, w * 0.2), Math.max(1, h * 0.2));
+      }
+
+      function renderTexture() {
+        const odims = uniforms.u_resolution.value.clone();
+        const { w, h } = getSize();
+        uniforms.u_resolution.value.set(w * 0.2, h * 0.2);
+        uniforms.u_buffer.value = rtB.texture;
+        uniforms.u_renderpass.value = true;
+
+        renderer.setRenderTarget(rtA);
+        renderer.render(scene, camera);
+
+        const temp = rtA;
+        rtA = rtB;
+        rtB = temp;
+
+        renderer.setRenderTarget(null);
+        uniforms.u_buffer.value = rtA.texture;
+        uniforms.u_resolution.value = odims;
+        uniforms.u_renderpass.value = false;
+      }
+
+      function animate(timestamp) {
+        requestAnimationFrame(animate);
+        uniforms.u_mouse.value.x += (newmouse.x - uniforms.u_mouse.value.x) * divisor;
+        uniforms.u_mouse.value.y += (newmouse.y - uniforms.u_mouse.value.y) * divisor;
+        uniforms.u_time.value = (timestamp || 0) * 0.001;
+        renderTexture();
+        renderer.render(scene, camera);
+      }
+    })();
   </script>
 </body>
 </html>
