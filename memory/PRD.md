@@ -49,7 +49,27 @@ Full-stack UI refactor of `index.html` and `styles.css` into a Bento Grid system
 
 ## Completed Changelog
 
-### 2026-02 (Current Session)
+### 2026-02-19 (Current Session — Patch 3)
+- ✅ **Home mobile refinement:**
+  - WebGL shader disabled on `window.innerWidth < 980` (JS early-return + CSS `display:none` on `#shader-container`)
+  - Mobile `#home` → solid black `#000000`, `min-height: 60vh`
+- ✅ **Cursor chatbox mobile-only migration:**
+  - Removed `#mouse-keychain` DOM + all cursor-follow JS (Math.atan2 eye-tracking + 1:1 follow)
+  - `#chat-bubble` DOM removed on desktop (JS `.remove()` if desktop); retained on mobile as fixed bottom-right toast
+  - IntersectionObserver still drives section-based randomized messages from 4 `.txt` files
+  - Cycle: 2s delay → show 5s → hide 3s → next random
+- ✅ **About Me — Expanding Flex Cards refactor:**
+  - Removed: Jiji cat SVG, eye-tracking logic, 2×2 grid, circular backdrop
+  - 4 cards: About Me (profile.jpg), Education (Illustration3.jpg), Experience (Magzine Design2.jpg), Skills (photoshop5.jpg)
+  - FontAwesome 6.5.1 CDN added for `.fas` icons on card labels
+  - CSS: `flex-grow: 1` inactive, `flex-grow: 10000` + `max-width: 820px` active, smooth `cubic-bezier(0.05, 0.61, 0.41, 0.95)` transitions
+  - Labels: 44px white circular icon + main title + sub description; info fades in only on active card
+  - Vanilla JS click handler toggles `.active` class between cards (jQuery-free)
+  - Software icons remain pinned to far-right flex edge — zero overlap with cards at any screen size
+  - Mobile: cards stack vertically; inactive collapse to 60px min-height; active expands to 280px min-height
+  - Tablet (768-980px): preserves horizontal expanding-row behavior
+
+### 2026-02-18 (Patch 2)
 - ✅ **Home Section WebGL Shader** — Replaced HOMEBG.mp4 with Three.js r128 purple liquid glow shader
   - `#shader-container` with `position: absolute; inset: 0; z-index: 0`
   - Desktop: `pointermove` drives `u_mouse` uniform with coords relative to the home section

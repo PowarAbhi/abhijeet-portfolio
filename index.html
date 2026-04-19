@@ -11,6 +11,9 @@
   
   <!-- Mobile Stylesheet -->
   <link rel="stylesheet" href="mobile-styles.css" media="screen and (max-width: 980px)">
+
+  <!-- FontAwesome (used by expanding flex cards' .fas icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="loading">
 
@@ -97,99 +100,67 @@
       </div>
     </div>
 
-    <!-- ABOUT SECTION WITH JIJI EYE-TRACKING CAT -->
+    <!-- ABOUT SECTION — EXPANDING FLEX CARDS -->
     <section id="about" class="about">
       <div class="about-container">
-        <!-- Left: Content Cards -->
-        <div class="about-content">
-          <div class="about-card">
-            <h3 class="about-card-title">ABOUT ME</h3>
-            <div class="about-card-content">
-              <p>Creative Graphic Designer with 4.5+ years of experience in delivering impactful and visually engaging designs. Skilled in transforming ideas into effective brand visuals with a strong focus on quality and creativity.</p>
+        <div class="options">
+          <div class="option active" data-card="about"
+               style="--optionBackground:url('assets/uploads/profile.jpg');">
+            <div class="shadow"></div>
+            <div class="label">
+              <div class="icon"><i class="fas fa-user"></i></div>
+              <div class="info">
+                <div class="main">About Me</div>
+                <div class="sub">Creative Graphic Designer with 4.5+ years of experience in delivering impactful and visually engaging designs. Skilled in transforming ideas into effective brand visuals with a strong focus on quality and creativity.</div>
+              </div>
             </div>
           </div>
 
-          <div class="about-card">
-            <h3 class="about-card-title">EDUCATION</h3>
-            <div class="about-card-content">
-              <p>
-                <strong>Bachelor's in Commerce (2023 – 2025)</strong><br>
-                Shivaji University-Kolhapur
-              </p>
+          <div class="option" data-card="education"
+               style="--optionBackground:url('assets/uploads/Illustration3.jpg');">
+            <div class="shadow"></div>
+            <div class="label">
+              <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+              <div class="info">
+                <div class="main">Education</div>
+                <div class="sub">Bachelor's in Commerce (2023 – 2025)&#10;Shivaji University-Kolhapur</div>
+              </div>
             </div>
           </div>
 
-          <div class="about-card">
-            <h3 class="about-card-title">EXPERIENCE</h3>
-            <div class="about-card-content">
-              <p><strong>4+ years of professional design experience</strong></p>
-              <p>
-                <strong>Design Executive at Hitech Computer (3+ year)</strong><br>
-                Creating impactful brand visuals and visual storytelling.
-              </p>
-              <p>
-                <strong>Design Executive at Digital Scope (1 year)</strong><br>
-                Specializing in branding and creative design solutions.
-              </p>
+          <div class="option" data-card="experience"
+               style="--optionBackground:url('assets/uploads/Magzine Design2.jpg');">
+            <div class="shadow"></div>
+            <div class="label">
+              <div class="icon"><i class="fas fa-briefcase"></i></div>
+              <div class="info">
+                <div class="main">Experience</div>
+                <div class="sub">Design Executive · Hitech Computer (3+ yrs) — brand visuals & visual storytelling.&#10;Design Executive · Digital Scope (1 yr) — branding & creative design.</div>
+              </div>
             </div>
           </div>
 
-          <div class="about-card">
-            <h3 class="about-card-title">SKILLS</h3>
-            <div class="about-card-content">
-              <p><strong>Branding, Social Media Design, Visual Identity</strong></p>
-              <p><strong>Logo Design, Thumbnail Design, Video Editing</strong></p>
-              <p><strong>Motion Graphics, Illustrations</strong></p>
+          <div class="option" data-card="skills"
+               style="--optionBackground:url('assets/uploads/photoshop5.jpg');">
+            <div class="shadow"></div>
+            <div class="label">
+              <div class="icon"><i class="fas fa-palette"></i></div>
+              <div class="info">
+                <div class="main">Skills</div>
+                <div class="sub">Branding · Social Media Design · Visual Identity&#10;Logo · Thumbnail · Video Editing&#10;Motion Graphics · Illustrations</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Center: Jiji Cat with Eye Tracking -->
-        <div class="jiji-container">
-          <svg viewBox="720 300 490 520" xmlns="http://www.w3.org/2000/svg" class="jiji-cat" preserveAspectRatio="xMidYMid meet">
-            <!-- Ears -->
-            <path d="M784.5 352.5C762.5 423.5 784.5 541.5 784.5 541.5L880.5 491.5C880.5 491.5 831.5 321.5 784.5 352.5Z" fill="white"/>
-            <path d="M1135.5 352.5C1157.5 423.5 1135.5 541.5 1135.5 541.5L1039.5 491.5C1039.5 491.5 1088.5 321.5 1135.5 352.5Z" fill="white"/>
-            
-            <!-- Left Eye Socket -->
-            <path d="M860.5 613.5C808.5 613.5 771.5 659.5 771.5 706.5C771.5 753.5 812.5 791.5 860.5 791.5C908.5 791.5 949.5 753.5 949.5 706.5C949.5 659.5 912.5 613.5 860.5 613.5Z" fill="white"/>
-            
-            <!-- Right Eye Socket -->
-            <path d="M1059.5 613.5C1007.5 613.5 970.5 659.5 970.5 706.5C970.5 753.5 1011.5 791.5 1059.5 791.5C1107.5 791.5 1148.5 753.5 1148.5 706.5C1148.5 659.5 1111.5 613.5 1059.5 613.5Z" fill="white"/>
-            
-            <!-- Nose -->
-            <path d="M960 770C950 770 945 780 960 788C975 780 970 770 960 770Z" fill="white"/>
-
-            <!-- Moving Pupils -->
-            <g id="jiji-pupils">
-              <!-- Left Pupil -->
-              <ellipse id="jiji-left-pupil" cx="860.5" cy="702.5" rx="14" ry="24" fill="black" />
-              <!-- Right Pupil -->
-              <ellipse id="jiji-right-pupil" cx="1059.5" cy="702.5" rx="14" ry="24" fill="black" />
-            </g>
-          </svg>
-        </div>
-
-        <!-- Right: Software Icons (Aligned to screen edge) -->
+        <!-- Software Icons (pinned to absolute right edge) -->
         <div class="about-icons">
-          <div class="software-icon">
-            <img src="assets/uploads/ICON__PS.svg" alt="Photoshop" />
-          </div>
-          <div class="software-icon">
-            <img src="assets/uploads/ICON__AE.svg" alt="After Effects" />
-          </div>
-          <div class="software-icon">
-            <img src="assets/uploads/ICON__PR.svg" alt="Premiere Pro" />
-          </div>
-          <div class="software-icon">
-            <img src="assets/uploads/ICON__AI.svg" alt="Illustrator" />
-          </div>
-          <div class="software-icon">
-            <img src="assets/uploads/ICON__BL.svg" alt="Blender" />
-          </div>
-          <div class="software-icon">
-            <img src="assets/uploads/ICON__CR.svg" alt="CorelDraw" />
-          </div>
+          <div class="software-icon"><img src="assets/uploads/ICON__PS.svg" alt="Photoshop" /></div>
+          <div class="software-icon"><img src="assets/uploads/ICON__AE.svg" alt="After Effects" /></div>
+          <div class="software-icon"><img src="assets/uploads/ICON__PR.svg" alt="Premiere Pro" /></div>
+          <div class="software-icon"><img src="assets/uploads/ICON__AI.svg" alt="Illustrator" /></div>
+          <div class="software-icon"><img src="assets/uploads/ICON__BL.svg" alt="Blender" /></div>
+          <div class="software-icon"><img src="assets/uploads/ICON__CR.svg" alt="CorelDraw" /></div>
         </div>
       </div>
     </section>
@@ -304,15 +275,8 @@
     <img id="modalImage" alt="Portfolio item">
   </div>
 
-  <!-- INTERACTIVE PERSONA CURSOR SYSTEM -->
-  <!-- Mouse Keychain -->
-  <div id="mouse-keychain">
-    <img src="assets/uploads/profile.jpg" alt="Abhijeet">
-  </div>
-
-  <!-- Chat Bubble -->
+  <!-- MOBILE CHAT BUBBLE (Toast in bottom-right, mobile-only) -->
   <div id="chat-bubble">
-    <div id="chat-bubble-tail"></div>
     <span id="chat-text"></span>
   </div>
 
@@ -347,131 +311,44 @@
       window.addEventListener('scroll', updateActiveNav);
     })();
 
-    /* ========== JIJI CAT EYE-TRACKING SYSTEM ========== */
-    (function() {
-      const leftPupil = document.getElementById('jiji-left-pupil');
-      const rightPupil = document.getElementById('jiji-right-pupil');
-      
-      if (!leftPupil || !rightPupil) return;
-
-      const isMobile = window.innerWidth <= 980;
-      if (isMobile) return; // Skip on mobile for performance
-
-      // Starting (center) positions for the pupils
-      const leftOrigin = { x: 860.5, y: 702.5 };
-      const rightOrigin = { x: 1059.5, y: 702.5 };
-      
-      // Limits how far the pupil can "travel" inside the eye
-      const maxDistance = 25;
-
-      window.addEventListener('mousemove', (e) => {
-        movePupil(e.clientX, e.clientY, leftPupil, leftOrigin);
-        movePupil(e.clientX, e.clientY, rightPupil, rightOrigin);
-      });
-
-      function movePupil(mouseX, mouseY, pupilElement, origin) {
-        // Find where the eye is on the actual screen
-        const rect = pupilElement.getBoundingClientRect();
-        const eyeCenterX = rect.left + rect.width / 2;
-        const eyeCenterY = rect.top + rect.height / 2;
-
-        // Calculate the angle from eye to mouse
-        const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
-        
-        // Calculate how far the mouse is (to make movement subtle when close)
-        const distToMouse = Math.hypot(mouseX - eyeCenterX, mouseY - eyeCenterY);
-        const moveDist = Math.min(maxDistance, distToMouse / 10);
-
-        // Use math to find the new X and Y coordinates
-        const targetX = Math.cos(angle) * moveDist;
-        const targetY = Math.sin(angle) * moveDist;
-
-        // Apply the movement using CSS transform
-        pupilElement.style.transform = `translate(${targetX}px, ${targetY}px)`;
-      }
-      
-      // Handle window resizing to keep calculations accurate
-      window.addEventListener('resize', () => {
-        leftPupil.style.transform = `translate(0,0)`;
-        rightPupil.style.transform = `translate(0,0)`;
+    /* ========== ABOUT ME: EXPANDING FLEX CARDS ========== */
+    (function () {
+      const options = document.querySelectorAll('.about .option');
+      if (!options.length) return;
+      options.forEach(opt => {
+        opt.addEventListener('click', () => {
+          options.forEach(o => o.classList.remove('active'));
+          opt.classList.add('active');
+        });
       });
     })();
 
-    /* ========== SIMPLIFIED INTERACTIVE PERSONA CURSOR SYSTEM ========== */
-    (function() {
-      // Elements
-      const keychain = document.getElementById('mouse-keychain');
+    /* ========== MOBILE-ONLY CONTEXTUAL CHAT BUBBLE ==========
+       - Desktop: disabled entirely
+       - Mobile (<980px): fixed toast in bottom-right showing randomized
+         strings from .txt files based on active section (IntersectionObserver)
+    */
+    (function () {
       const chatBubble = document.getElementById('chat-bubble');
       const chatText = document.getElementById('chat-text');
+      if (!chatBubble || !chatText) return;
 
-      if (!keychain || !chatBubble) return;
+      const isMobile = window.innerWidth < 980;
+      if (!isMobile) {
+        // Desktop: remove the DOM entirely
+        chatBubble.remove();
+        return;
+      }
 
-      // Device detection
-      const isMobile = window.innerWidth <= 980;
+      chatBubble.classList.add('mobile-mode');
 
-      // State
-      let mouseX = window.innerWidth / 2;
-      let mouseY = window.innerHeight / 2;
-      let isActive = false;
-
-      // Section detection
       let currentSection = 'hero';
-      let sectionMessages = {};
-      let usedMessages = new Set();
+      const sectionMessages = {};
+      const usedMessages = new Set();
       let messageTimer = null;
       let hideTimer = null;
       let delayTimer = null;
 
-      // Fixed offset for keychain (appears slightly below cursor)
-      const KEYCHAIN_OFFSET_Y = 40;
-
-      // Initialize responsive mode
-      if (isMobile) {
-        chatBubble.classList.add('mobile-mode');
-        keychain.style.display = 'none';
-      }
-
-      /* ========== SIMPLE 1:1 CURSOR FOLLOW (DESKTOP ONLY) ========== */
-      
-      if (!isMobile) {
-        // Hide initially
-        keychain.style.opacity = '0';
-
-        // Track mouse position with simple 1:1 follow
-        document.addEventListener('mousemove', (e) => {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-
-          // Show keychain on first move
-          if (!isActive) {
-            isActive = true;
-            keychain.style.opacity = '1';
-          }
-
-          // Apply position with fixed offset (1:1 ratio, no lag)
-          keychain.style.left = mouseX + 'px';
-          keychain.style.top = (mouseY + KEYCHAIN_OFFSET_Y) + 'px';
-          keychain.style.transform = 'translate(-50%, -50%)';
-
-          // Update chat bubble position
-          updateChatBubblePosition();
-        });
-
-        // Hide when mouse leaves
-        document.addEventListener('mouseleave', () => {
-          isActive = false;
-          keychain.style.opacity = '0';
-          chatBubble.classList.remove('visible');
-          clearAllTimers();
-        });
-      } else {
-        // Mobile: Start message cycle immediately
-        isActive = true;
-      }
-
-      /* ========== CONTEXTUAL MESSAGE ENGINE (RANDOMIZED) - PRESERVED ========== */
-
-      // Load messages from files
       async function loadMessages() {
         try {
           const files = [
@@ -480,119 +357,25 @@
             { section: 'works', file: 'WORKSMESSAGE.txt' },
             { section: 'contact', file: 'LETSCONNECTMESSAGE.txt' }
           ];
-
           for (const { section, file } of files) {
             const response = await fetch(`assets/${file}`);
             const text = await response.text();
-            // Split by newlines and filter empty lines
             sectionMessages[section] = text.split('\n').filter(line => line.trim());
           }
-
           startMessageCycle();
         } catch (error) {
           console.error('Failed to load messages:', error);
         }
       }
 
-      // Get random unused message from current section
       function getRandomMessage() {
         const messages = sectionMessages[currentSection];
         if (!messages || messages.length === 0) return null;
-
-        // Reset if all messages have been used
-        if (usedMessages.size >= messages.length) {
-          usedMessages.clear();
-        }
-
-        // Get available messages
-        const availableMessages = messages.filter((msg, idx) => !usedMessages.has(idx));
-        
-        // Pick random message
-        const randomIndex = Math.floor(Math.random() * availableMessages.length);
-        const selectedMessage = availableMessages[randomIndex];
-        
-        // Mark as used
-        const originalIndex = messages.indexOf(selectedMessage);
-        usedMessages.add(originalIndex);
-
-        return selectedMessage;
-      }
-
-      // Section detection with IntersectionObserver
-      function setupIntersectionObserver() {
-        const sections = [
-          { element: document.getElementById('home'), name: 'hero' },
-          { element: document.getElementById('about'), name: 'about' },
-          { element: document.getElementById('works'), name: 'works' },
-          { element: document.getElementById('contact'), name: 'contact' }
-        ];
-
-        const observerOptions = {
-          root: null,
-          rootMargin: '-100px 0px -100px 0px',
-          threshold: 0.2
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const newSection = entry.target.getAttribute('data-section');
-              if (newSection && newSection !== currentSection) {
-                currentSection = newSection;
-                usedMessages.clear(); // Reset message pool for new section
-                clearAllTimers();
-                hideMessage();
-                if (isActive) {
-                  startMessageCycle();
-                }
-              }
-            }
-          });
-        }, observerOptions);
-
-        // Observe all sections
-        sections.forEach(({ element, name }) => {
-          if (element) {
-            element.setAttribute('data-section', name);
-            observer.observe(element);
-          }
-        });
-      }
-
-      // Message cycle: 3s delay → show 5s → hide 4s → next random (PRESERVED)
-      function startMessageCycle() {
-        if (!sectionMessages[currentSection]) return;
-
-        clearAllTimers();
-
-        // 3s delay before showing
-        delayTimer = setTimeout(() => {
-          showMessage();
-
-          // Show for 5s
-          messageTimer = setTimeout(() => {
-            hideMessage();
-
-            // Hide for 4s, then show next random
-            hideTimer = setTimeout(() => {
-              startMessageCycle();
-            }, 4000);
-          }, 5000);
-        }, 3000);
-      }
-
-      function showMessage() {
-        if (!sectionMessages[currentSection] || !isActive) return;
-
-        const message = getRandomMessage();
-        if (message) {
-          chatText.textContent = message;
-          chatBubble.classList.add('visible');
-        }
-      }
-
-      function hideMessage() {
-        chatBubble.classList.remove('visible');
+        if (usedMessages.size >= messages.length) usedMessages.clear();
+        const available = messages.filter((_, idx) => !usedMessages.has(idx));
+        const picked = available[Math.floor(Math.random() * available.length)];
+        usedMessages.add(messages.indexOf(picked));
+        return picked;
       }
 
       function clearAllTimers() {
@@ -601,79 +384,69 @@
         clearTimeout(delayTimer);
       }
 
-      /* ========== CHAT BUBBLE POSITION WITH COLLISION DETECTION ========== */
-
-      function updateChatBubblePosition() {
-        if (!chatBubble.classList.contains('visible') || isMobile) return;
-
-        const bubbleRect = chatBubble.getBoundingClientRect();
-        const bubbleWidth = bubbleRect.width || 280;
-        const bubbleHeight = bubbleRect.height || 100;
-        const margin = 20;
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-
-        // Default position: above keychain
-        const keychainY = mouseY + KEYCHAIN_OFFSET_Y;
-        let bubbleX = mouseX;
-        let bubbleY = keychainY - bubbleHeight - 40;
-        let tailClass = '';
-
-        // Collision detection with flipping
-
-        // Check if bubble goes off top -> flip to bottom
-        if (bubbleY < margin) {
-          bubbleY = keychainY + 40;
-          tailClass = 'tail-top';
-        }
-
-        // Check if bubble goes off bottom -> try top again
-        if (bubbleY + bubbleHeight > viewportHeight - margin) {
-          bubbleY = keychainY - bubbleHeight - 40;
-          if (bubbleY < margin) {
-            // If still doesn't fit, position beside
-            bubbleY = keychainY - bubbleHeight / 2;
-          }
-        }
-
-        // Check if bubble goes off left -> flip to right
-        if (bubbleX - bubbleWidth / 2 < margin) {
-          bubbleX = mouseX + 100;
-          tailClass = 'tail-left';
-        }
-
-        // Check if bubble goes off right -> flip to left
-        if (bubbleX + bubbleWidth / 2 > viewportWidth - margin) {
-          bubbleX = mouseX - 100;
-          tailClass = 'tail-right';
-        }
-
-        // Final boundary constraints
-        bubbleX = Math.max(margin + bubbleWidth / 2, Math.min(viewportWidth - margin - bubbleWidth / 2, bubbleX));
-        bubbleY = Math.max(margin, Math.min(viewportHeight - margin - bubbleHeight, bubbleY));
-
-        // Apply position
-        chatBubble.style.left = bubbleX + 'px';
-        chatBubble.style.top = bubbleY + 'px';
-        chatBubble.style.transform = tailClass ? 'translateX(0)' : 'translateX(-50%)';
-
-        // Update tail orientation
-        chatBubble.className = chatBubble.className.replace(/tail-\w+/g, '');
-        if (tailClass) {
-          chatBubble.classList.add(tailClass);
+      function showMessage() {
+        const msg = getRandomMessage();
+        if (msg) {
+          chatText.textContent = msg;
+          chatBubble.classList.add('visible');
         }
       }
 
-      // Initialize
+      function hideMessage() {
+        chatBubble.classList.remove('visible');
+      }
+
+      // Cycle: 2s wait → show 5s → hide 3s → repeat
+      function startMessageCycle() {
+        if (!sectionMessages[currentSection]) return;
+        clearAllTimers();
+        delayTimer = setTimeout(() => {
+          showMessage();
+          messageTimer = setTimeout(() => {
+            hideMessage();
+            hideTimer = setTimeout(startMessageCycle, 3000);
+          }, 5000);
+        }, 2000);
+      }
+
+      function setupIntersectionObserver() {
+        const sections = [
+          { id: 'home', name: 'hero' },
+          { id: 'about', name: 'about' },
+          { id: 'works', name: 'works' },
+          { id: 'contact', name: 'contact' }
+        ];
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const newSection = entry.target.getAttribute('data-section');
+              if (newSection && newSection !== currentSection) {
+                currentSection = newSection;
+                usedMessages.clear();
+                clearAllTimers();
+                hideMessage();
+                startMessageCycle();
+              }
+            }
+          });
+        }, { root: null, rootMargin: '-80px 0px -80px 0px', threshold: 0.2 });
+
+        sections.forEach(({ id, name }) => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.setAttribute('data-section', name);
+            observer.observe(el);
+          }
+        });
+      }
+
       loadMessages();
       setupIntersectionObserver();
 
-      // Handle window resize
+      // Reload if crossing the desktop/mobile threshold
       window.addEventListener('resize', () => {
-        const newIsMobile = window.innerWidth <= 980;
-        if (newIsMobile !== isMobile) {
-          location.reload(); // Reload to switch modes
-        }
+        const nowMobile = window.innerWidth < 980;
+        if (nowMobile !== isMobile) location.reload();
       });
     })();
 
@@ -993,6 +766,12 @@
     (function () {
       const container = document.getElementById('shader-container');
       if (!container || typeof THREE === 'undefined') return;
+
+      // Mobile: disable the WebGL shader entirely — use solid black background
+      if (window.innerWidth < 980) {
+        container.style.display = 'none';
+        return;
+      }
 
       let camera, scene, renderer, uniforms;
       let rtA, rtB;
