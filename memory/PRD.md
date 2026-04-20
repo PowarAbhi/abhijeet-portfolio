@@ -49,7 +49,21 @@ Full-stack UI refactor of `index.html` and `styles.css` into a Bento Grid system
 
 ## Completed Changelog
 
-### 2026-02-19 (Current Session — Patch 3)
+### 2026-02-20 (Patch 4)
+- ✅ **Home mobile height:** reduced to `min-height: 35vh; height: 35vh;` (was 60vh) — prevents excessive scrolling above fold.
+- ✅ **Expanding card asset mapping:** mapped each card to its dedicated asset:
+  - About Me → `assets/uploads/ABOUTME-CARD.png`
+  - Education → `assets/uploads/EDUCATION-CARD.png`
+  - Experience → `assets/uploads/EXPERIENCE-CARD.png`
+  - Skills → `assets/uploads/SKILLS-CARD.png`
+- ✅ **Background-pattern fix:** `.about .option` now uses `background-size: cover; background-repeat: no-repeat; background-position: center center;` and split into `background-image` + `background-color` so images never tile or stack when a card is collapsed.
+- ✅ **Icon alignment fix:**
+  - Collapsed cards: `.label` uses `top: 50%; left: 50%; transform: translate(-50%, -50%)` so the circular icon is perfectly centered on both axes (verified at 61/232 desktop and 179/30 mobile).
+  - `.info` is now `display: none` on inactive cards (was `opacity: 0`), so it no longer steals flex space and pushes the icon off-center.
+  - Active cards: `.label` stays at bottom-left (`bottom: 24px; left: 24px`) with icon + info side by side (flex-row, align-items: flex-end).
+  - Added subtle box-shadow on `.icon` for better visibility over image backgrounds.
+
+### 2026-02-19 (Patch 3)
 - ✅ **Home mobile refinement:**
   - WebGL shader disabled on `window.innerWidth < 980` (JS early-return + CSS `display:none` on `#shader-container`)
   - Mobile `#home` → solid black `#000000`, `min-height: 60vh`
