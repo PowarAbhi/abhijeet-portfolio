@@ -49,6 +49,11 @@ Full-stack UI refactor of `index.html` and `styles.css` into a Bento Grid system
 
 ## Completed Changelog
 
+### 2026-02-21 (Patch 5)
+- ✅ **Expanding cards simplified:** Removed all `.info` divs (main + sub text) from the 4 cards; each card now displays only its FontAwesome icon inside the white circle. Icons (user, graduation-cap, briefcase, palette) remain on both active and collapsed states so the card identity stays clear.
+- ✅ **Mobile software-icon row fix:** `.about-icons` → `display: flex; flex-wrap: nowrap; justify-content: center; gap: 6px`; `.software-icon` → `45×45` with `flex-shrink: 0`. All 6 icons (Ps, Ae, Pr, Ai, Blender, CorelDRAW) fit on one line at 390px (evenly spaced 51px apart).
+- ✅ **Works Zomato-style filter slider:** `.filters` → `flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none` with `::-webkit-scrollbar { display:none }`. Chips have `flex-shrink: 0; border-radius: 999px; white-space: nowrap; scroll-snap-align: start`. Desktop centers chips when they fit; mobile scrolls horizontally with hidden scrollbar and smooth scroll-snap.
+
 ### 2026-02-20 (Patch 4)
 - ✅ **Home mobile height:** reduced to `min-height: 35vh; height: 35vh;` (was 60vh) — prevents excessive scrolling above fold.
 - ✅ **Expanding card asset mapping:** mapped each card to its dedicated asset:
