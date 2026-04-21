@@ -202,7 +202,8 @@
     gap: 8px;
     margin-bottom: var(--spacing-md);
     justify-content: flex-start;
-    padding: 4px var(--spacing-sm) 10px;
+    padding: 10px 20px;
+    scroll-padding-left: 20px;
   }
 
   .chip {

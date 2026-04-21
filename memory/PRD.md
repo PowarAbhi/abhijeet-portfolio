@@ -49,6 +49,14 @@ Full-stack UI refactor of `index.html` and `styles.css` into a Bento Grid system
 
 ## Completed Changelog
 
+### 2026-02-21 (Patch 6 — filter clip fix)
+- ✅ **Works filter "ALL" button clipping fixed:**
+  - Removed the `@media (min-width: 981px) { justify-content: center }` override that caused overflow clipping when chips exceeded container width
+  - `.filters` now uses `padding: 10px 20px` (horizontal 20px breathing room so black borders never clip; vertical 10px so top/bottom borders aren't trimmed)
+  - Added `scroll-padding-left: 20px` + `scroll-padding-right: 20px` so when users swipe back the ALL chip snaps with a consistent left margin
+  - Chips already had `flex-shrink: 0` so they don't squash
+  - Verified: the "ALL" chip's left edge sits exactly 20px from the filter container's left edge (no clipping on any viewport size)
+
 ### 2026-02-21 (Patch 5)
 - ✅ **Expanding cards simplified:** Removed all `.info` divs (main + sub text) from the 4 cards; each card now displays only its FontAwesome icon inside the white circle. Icons (user, graduation-cap, briefcase, palette) remain on both active and collapsed states so the card identity stays clear.
 - ✅ **Mobile software-icon row fix:** `.about-icons` → `display: flex; flex-wrap: nowrap; justify-content: center; gap: 6px`; `.software-icon` → `45×45` with `flex-shrink: 0`. All 6 icons (Ps, Ae, Pr, Ai, Blender, CorelDRAW) fit on one line at 390px (evenly spaced 51px apart).

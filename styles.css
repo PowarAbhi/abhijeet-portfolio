@@ -777,7 +777,9 @@ button {
   gap: var(--spacing-sm);
   justify-content: flex-start;
   margin-bottom: var(--spacing-xl);
-  padding: 4px var(--spacing-sm) 12px;
+  padding: 10px 20px;
+  scroll-padding-left: 20px;
+  scroll-padding-right: 20px;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge legacy */
   -webkit-overflow-scrolling: touch;
@@ -789,13 +791,6 @@ button {
   display: none;
   width: 0;
   height: 0;
-}
-
-/* Center chips when they fit without overflow */
-@media (min-width: 981px) {
-  .filters {
-    justify-content: center;
-  }
 }
 
 .chip {
