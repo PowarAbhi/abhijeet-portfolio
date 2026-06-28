@@ -1,14 +1,14 @@
 {
   "works": [
     {
-      "title": "Vector Illustration Krishna",
-      "src": "assets/uploads/vector-portrait-01.jpg",
-      "tags": ["Illustrations"]
+      "title": "Thumbnail",
+      "src": "assets/uploads/THUMBNAILNEW3.png",
+      "tags": ["Social Media"]
     },
     {
-      "title": "Photoshop",
-      "src": "assets/uploads/photoshop13.png",
-      "tags": ["Social Media"]
+      "title": "Thumbnail",
+      "src": "assets/uploads/THUMBNAIL10.png",
+      "tags": ["Creative Thinking"]
     },
     {
       "title": "Social Media",
@@ -24,16 +24,6 @@
       "title": "Poster Design-Illustrator",
       "src": "assets/uploads/SOCIAL MEDIA-3.jpeg",
       "tags": ["Social Media"]
-    },
-    {
-      "title": "Vector Portrait-Baby Face",
-      "src": "assets/uploads/Illustration6.jpg",
-      "tags": ["Illustrations"]
-    },
-    {
-      "title": "Thumbnail",
-      "src": "assets/uploads/THUMBNAIL10.png",
-      "tags": ["Creative Thinking"]
     },
     {
       "title": "Thumbnail",
@@ -106,19 +96,24 @@
       "tags": ["Marathi Designs"]
     },
     {
+      "title": "Vector Portrait-Baby Face",
+      "src": "assets/uploads/Illustration6.jpg",
+      "tags": ["Illustrations"]
+    },
+    {
       "title": "Thumbnail",
       "src": "assets/uploads/THUMBNAILNEW1.png",
       "tags": ["Creative Thinking"]
     },
     {
-      "title": "Thumbnail",
-      "src": "assets/uploads/THUMBNAILNEW2.png",
-      "tags": ["Creative Thinking"]
+      "title": "Vector Illustration Krishna",
+      "src": "assets/uploads/vector-portrait-01.jpg",
+      "tags": ["Illustrations"]
     },
     {
       "title": "Thumbnail",
-      "src": "assets/uploads/THUMBNAILNEW3.png",
-      "tags": ["Social Media"]
+      "src": "assets/uploads/THUMBNAILNEW2.png",
+      "tags": ["Creative Thinking"]
     },
     {
       "title": "Logo Design",
@@ -129,6 +124,11 @@
       "title": "Social Media",
       "src": "assets/uploads/SOCIAL MEDIA-19.png",
       "tags": ["Illustrations"]
+    },
+    {
+      "title": "Photoshop",
+      "src": "assets/uploads/photoshop13.png",
+      "tags": ["Social Media"]
     },
     {
       "title": "Social Media",
