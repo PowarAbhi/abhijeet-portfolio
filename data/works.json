@@ -1,44 +1,44 @@
 {
   "works": [
     {
-      "title": "Thumbnail",
+      "title": "Ankur Warikoor-Thumbnail-01",
       "src": "assets/uploads/THUMBNAILNEW3.png",
-      "tags": ["Social Media"]
+      "tags": ["Thumbnails"]
     },
     {
-      "title": "Thumbnail",
+      "title": "Instacover-page",
       "src": "assets/uploads/THUMBNAIL10.png",
-      "tags": ["Creative Thinking"]
+      "tags": ["Thumbnails"]
     },
     {
-      "title": "Social Media",
+      "title": "Social Media-01",
       "src": "assets/uploads/SOCIAL MEDIA-1.jpg",
       "tags": ["Social Media"]
     },
     {
-      "title": "Social Media",
+      "title": "Social Media-02",
       "src": "assets/uploads/SOCIAL MEDIA-2.png",
       "tags": ["Social Media"]
     },
     {
-      "title": "Poster Design-Illustrator",
+      "title": "Social Media-03",
       "src": "assets/uploads/SOCIAL MEDIA-3.jpeg",
       "tags": ["Social Media"]
     },
     {
-      "title": "Thumbnail",
+      "title": "Thumbnail Design-02",
       "src": "assets/uploads/THUMBNAIL11.png",
-      "tags": ["Creative Thinking"]
+      "tags": ["Thumbnails"]
     },
     {
-      "title": "Thumbnail",
+      "title": "Thumbnail Design-03",
       "src": "assets/uploads/THUMBNAIL12.png",
-      "tags": ["Creative Thinking"]
+      "tags": ["Thumbnails"]
     },
     {
-      "title": "Thumbnail",
+      "title": "Insta-cover page",
       "src": "assets/uploads/THUMBNAIL13.png",
-      "tags": ["Creative Thinking"]
+      "tags": ["Thumbnails"]
     },
     {
       "title": "Thumbnail",
@@ -63,11 +63,6 @@
     {
       "title": "Illustration",
       "src": "assets/uploads/ILLUSTRATION2.png",
-      "tags": ["Illustration"]
-    },
-    {
-      "title": "Illustration",
-      "src": "assets/uploads/ILLUSTRATION3.png",
       "tags": ["Illustration"]
     },
     {
