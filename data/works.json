@@ -11,8 +11,18 @@
       "tags": ["Thumbnails"]
     },
     {
+      "title": "Social Media",
+      "src": "assets/uploads/ALLPHOTOS.png",
+      "tags": ["Social Media"]
+    },
+    {
       "title": "Social Media-01",
       "src": "assets/uploads/SOCIAL MEDIA-1.jpg",
+      "tags": ["Social Media"]
+    },
+    {
+      "title": "y2k-Designs",
+      "src": "assets/uploads/y2k.png",
       "tags": ["Social Media"]
     },
     {
@@ -79,6 +89,11 @@
       "title": "Marathi Design",
       "src": "assets/uploads/MARATHI5.png",
       "tags": ["Marathi Designs"]
+    },
+    {
+      "title": "Social Media",
+      "src": "assets/uploads/ALLPHOTOS2.png",
+      "tags": ["Social Media"]
     },
     {
       "title": "Social Media",
